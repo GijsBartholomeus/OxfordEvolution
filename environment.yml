@@ -1,0 +1,79 @@
+name: bioevo
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  # --- Core scientific stack ---
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - numba
+  - jupyterlab
+  - ipykernel
+  - ipywidgets
+  - pyarrow        # fast parquet/feather IO
+  - xarray         # labeled n-d arrays (great for PDE grids, time-series)
+  - pip
+
+  # --- Optimization / math / symbolic ---
+  - sympy
+  - cvxpy
+  - ecos
+  - scs
+
+  # --- Machine learning (lightweight classical ML) ---
+  - scikit-learn
+
+  # --- Networks / graphs ---
+  - networkx
+  - python-igraph
+
+  # --- Geospatial (optional but handy for spread models) ---
+  - geopandas
+  - shapely
+  - pyproj
+
+  # --- Evolution / popgen / phylogenetics ---
+  - tskit           # tree sequence toolkit
+  - msprime         # coalescent simulator
+  - pyslim          # SLiM <-> tskit bridge (post-sim analysis)
+  - demes           # demographic models
+  - scikit-bio
+  - biopython
+  - dendropy
+  - ete3
+
+  # --- Systems biology / ODE modeling ---
+  - python-libsbml=5.20.5
+  - libsbml
+
+  # --- Probabilistic programming / Bayesian ---
+  - pymc
+  - arviz
+
+  # --- Quality of life / dev tools ---
+  - tqdm
+  - rich
+  - black
+  - ruff
+  - pytest
+  - jupyterlab-spellchecker
+
+  # --- Optional JAX for differentiable math (comment out if you don't want it) ---
+  - jax
+  - jaxlib
+  # If you want diffrax (JAX ODE/PDE solvers), install via pip below.
+
+  # --- Anything not on conda-forge goes here ---
+  - pip:
+      # Population genetics
+      - moments                 # alternative to dadi for SFS inference
+      - dadi                    # SFS-based demographic inference
+      - pyvolve                 # codon/protein sequence evolution simulator
+      # JAX ODE solver library (nice if you use JAX):
+      - diffrax
+      # Compartmental/Epi modeling (choose one or both)
+      - epipack
+      - pyross
