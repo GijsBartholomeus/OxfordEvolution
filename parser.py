@@ -1,6 +1,15 @@
 import re
-import libsbml
 import numpy as np
+
+# Try to import libsbml, fall back to simple XML writer if not available
+try:
+    import libsbml
+    HAS_LIBSBML = True
+    print("Using libsbml for SBML generation")
+except ImportError:
+    HAS_LIBSBML = False
+    print("libsbml not found, using simple XML writer")
+    from simple_sbml_writer import create_simple_sbml
 
 def parse_matlab_model(file_path):
     with open(file_path, "r") as f:
