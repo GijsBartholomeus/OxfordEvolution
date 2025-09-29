@@ -149,33 +149,88 @@ def convert_matlab_syntax(expr):
     
     return expr
 
-def build_sbml(species_list, params, odes, output_file="model.xml"):
+def build_sbml(species_list, initial_conditions, parameters, functions, odes, output_file="model.xml"):
     # --- Step 4: Create SBML doc ---
     doc = libsbml.SBMLDocument(3, 2)
     model = doc.createModel()
-    model.createCompartment().setId("cell")
+    model.setId("BuddingYeastCellCycle_2015")
+    model.setName("Budding Yeast Cell Cycle Model 2015")
     
-    # Species (no initial concentrations here yet, set to 0 by default)
-    for s in species_list:
-        sp = model.createSpecies()
-        sp.setId(s)
-        sp.setCompartment("cell")
-        sp.setInitialConcentration(0.0)
+    # Create a default compartment
+    compartment = model.createCompartment()
+    compartment.setId("cell")
+    compartment.setName("Cell")
+    compartment.setConstant(True)
+    compartment.setSize(1.0)
     
-    # Parameters
-    for p, val in params.items():
-        param = model.createParameter()
-        param.setId(p)
-        param.setValue(val)
+    print(f"Creating SBML with {len(species_list)} species...")
     
-    # Rate rules
-    for s, ode in odes.items():
-        rule = model.createRateRule()
-        rule.setVariable(s)
-        rule.setFormula(ode)
+    # Add species with initial concentrations
+    for i, species_name in enumerate(species_list):
+        if species_name in odes:  # Only add species that have ODEs
+            species = model.createSpecies()
+            species.setId(species_name)
+            species.setName(species_name)
+            species.setCompartment("cell")
+            species.setHasOnlySubstanceUnits(False)
+            species.setConstant(False)
+            species.setBoundaryCondition(False)
+            
+            # Set initial concentration
+            initial_value = initial_conditions.get(species_name, 0.0)
+            species.setInitialConcentration(initial_value)
     
-    libsbml.writeSBMLToFile(doc, output_file)
-    print(f"SBML model written to {output_file}")
+    print(f"Added {model.getNumSpecies()} species to SBML")
+    
+    # Add parameters
+    for param_name, param_value in parameters.items():
+        parameter = model.createParameter()
+        parameter.setId(param_name)
+        parameter.setName(param_name)
+        parameter.setValue(param_value)
+        parameter.setConstant(True)
+    
+    print(f"Added {model.getNumParameters()} parameters to SBML")
+    
+    # Add intermediate functions as assignment rules
+    for func_name, func_expr in functions.items():
+        if func_name not in odes:  # Don't add species as assignment rules
+            assignment_rule = model.createAssignmentRule()
+            assignment_rule.setVariable(func_name)
+            assignment_rule.setFormula(func_expr)
+    
+    print(f"Added {model.getNumRules()} assignment rules to SBML")
+    
+    # Add rate rules for ODEs
+    for species_name, ode_expr in odes.items():
+        if species_name in [s.getId() for s in model.getListOfSpecies()]:
+            rate_rule = model.createRateRule()
+            rate_rule.setVariable(species_name)
+            rate_rule.setFormula(ode_expr)
+    
+    print(f"Added rate rules for {len([r for r in model.getListOfRules() if r.isRate()])} species")
+    
+    # Write SBML to file
+    writer = libsbml.SBMLWriter()
+    success = writer.writeSBMLToFile(doc, output_file)
+    
+    if success:
+        print(f"SBML model successfully written to {output_file}")
+    else:
+        print(f"Error writing SBML model to {output_file}")
+        
+    # Validate the model
+    doc.checkConsistency()
+    errors = doc.getNumErrors()
+    if errors > 0:
+        print(f"SBML validation found {errors} issues:")
+        for i in range(errors):
+            error = doc.getError(i)
+            print(f"  {error.getSeverityAsString()}: {error.getMessage()}")
+    else:
+        print("SBML model passed validation")
+    
+    return doc
 
 # --- Example usage ---
 species, params, odes = parse_matlab_model("BuddingYeastCellCycle_2015.m")
