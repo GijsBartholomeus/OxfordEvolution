@@ -266,8 +266,50 @@ end
 saveas(gcf, 'yeast_phase_analysis.fig');
 saveas(gcf, 'yeast_phase_analysis.png');
 
-fprintf('Results saved to:\n');
+% ========================================================================
+% ANALYSIS SUMMARY
+% ========================================================================
+
+fprintf('\n=== BUDDING YEAST CELL CYCLE ANALYSIS COMPLETE ===\n');
+fprintf('Model: Kraikivski et al. 2015\n');
+fprintf('Time span: %.1f time units (approximately %.1f cell cycles)\n', T(end), T(end)/120);
+
+% Calculate cell cycle period (estimate from CLB2 oscillations)
+if ~isempty(clb2_idx)
+    clb2_values = allValues(:, clb2_idx);
+    % Find peaks to estimate period
+    [peaks, peak_locs] = findpeaks(clb2_values, 'MinPeakHeight', max(clb2_values)*0.5);
+    if length(peak_locs) > 1
+        periods = diff(T(peak_locs));
+        avg_period = mean(periods);
+        fprintf('Estimated cell cycle period: %.1f ± %.1f time units\n', avg_period, std(periods));
+        fprintf('Number of complete cycles observed: %d\n', length(peaks));
+    end
+end
+
+% Report key species concentrations at final time
+fprintf('\nFinal concentrations of key regulators:\n');
+final_time_idx = length(T);
+key_species = {{'CLN3', cln3_idx}, {'CLN2', cln2_idx}, {'CLB5', clb5_idx}, ...
+               {'CLB2', clb2_idx}, {'SIC1', sic1_idx}, {'CDC6', cdc6_idx}, ...
+               {'MASS', mass_idx}};
+
+for i = 1:length(key_species)
+    name = key_species{i}{1};
+    idx = key_species{i}{2};
+    if ~isempty(idx)
+        fprintf('  %s: %.3f\n', name, allValues(final_time_idx, idx));
+    end
+end
+
+fprintf('\nFiles saved:\n');
 fprintf('  - matlab_results.mat (MATLAB format)\n');
 fprintf('  - time_data.csv (time points)\n');
 fprintf('  - species_concentrations.csv (concentration data)\n');
 fprintf('  - species_names.txt (variable names)\n');
+fprintf('  - yeast_cell_cycle_analysis.png (main plots)\n');
+fprintf('  - yeast_phase_analysis.png (phase portraits)\n');
+fprintf('  - yeast_cell_cycle_analysis.fig (MATLAB figure)\n');
+fprintf('  - yeast_phase_analysis.fig (MATLAB figure)\n');
+
+fprintf('\n=== Analysis completed successfully! ===\n');
