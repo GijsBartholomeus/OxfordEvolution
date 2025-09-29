@@ -159,7 +159,15 @@ def convert_matlab_syntax(expr):
     return expr
 
 def build_sbml(species_list, initial_conditions, parameters, functions, odes, output_file="model.xml"):
-    # --- Step 4: Create SBML doc ---
+    """
+    Build SBML model using libsbml if available, otherwise use simple XML writer
+    """
+    
+    if not HAS_LIBSBML:
+        print("Using simple XML writer (libsbml not available)")
+        return create_simple_sbml(species_list, initial_conditions, parameters, functions, odes, output_file)
+    
+    # --- Use libsbml if available ---
     doc = libsbml.SBMLDocument(3, 2)
     model = doc.createModel()
     model.setId("BuddingYeastCellCycle_2015")
