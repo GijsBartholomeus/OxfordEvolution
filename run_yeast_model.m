@@ -134,72 +134,8 @@ end
 sgtitle('Budding Yeast Cell Cycle: Key Regulatory Dynamics', 'FontSize', 16, 'FontWeight', 'bold');
 
 % Save the figure
-saveas(gcf, 'yeast_cell_cycle_analysis.fig');
-saveas(gcf, 'yeast_cell_cycle_analysis.png');
-
-% ---- Additional: Phase Portrait Analysis ----
-figure('Position', [150, 150, 800, 600], 'Name', 'Cell Cycle Phase Analysis');
-
-% Create phase portrait: CLN2 vs CLB2 (G1/S vs G2/M)
-if ~isempty(cln2_idx) && ~isempty(clb2_idx)
-    subplot(2, 2, 1);
-    plot(allValues(:, cln2_idx), allValues(:, clb2_idx), 'b-', 'LineWidth', 2);
-    xlabel('CLN2 (G1/S Cyclin)');
-    ylabel('CLB2 (G2/M Cyclin)');
-    title('Phase Portrait: CLN2 vs CLB2');
-    grid on;
-    
-    % Mark start and end points
-    hold on;
-    plot(allValues(1, cln2_idx), allValues(1, clb2_idx), 'go', 'MarkerSize', 8, 'LineWidth', 2);
-    plot(allValues(end, cln2_idx), allValues(end, clb2_idx), 'ro', 'MarkerSize', 8, 'LineWidth', 2);
-    legend('Trajectory', 'Start', 'End', 'Location', 'best');
-end
-
-% CLB2 vs Cell Mass
-if ~isempty(clb2_idx) && ~isempty(mass_idx)
-    subplot(2, 2, 2);
-    plot(allValues(:, mass_idx), allValues(:, clb2_idx), 'r-', 'LineWidth', 2);
-    xlabel('Cell Mass');
-    ylabel('CLB2 (Mitotic Cyclin)');
-    title('CLB2 vs Cell Mass');
-    grid on;
-end
-
-% SIC1 vs CLB2 (Inhibitor vs Cyclin)
-if ~isempty(sic1_idx) && ~isempty(clb2_idx)
-    subplot(2, 2, 3);
-    plot(allValues(:, sic1_idx), allValues(:, clb2_idx), 'k-', 'LineWidth', 2);
-    xlabel('SIC1 (CDK Inhibitor)');
-    ylabel('CLB2 (G2/M Cyclin)');
-    title('SIC1 vs CLB2: Inhibition Dynamics');
-    grid on;
-end
-
-% Time series overlay of key oscillating species
-if ~isempty(cln2_idx) && ~isempty(clb2_idx) && ~isempty(sic1_idx)
-    subplot(2, 2, 4);
-    hold on;
-    
-    % Normalize for comparison
-    cln2_norm = allValues(:, cln2_idx) / max(allValues(:, cln2_idx));
-    clb2_norm = allValues(:, clb2_idx) / max(allValues(:, clb2_idx));
-    sic1_norm = allValues(:, sic1_idx) / max(allValues(:, sic1_idx));
-    
-    plot(T, cln2_norm, 'r-', 'LineWidth', 2, 'DisplayName', 'CLN2 (norm)');
-    plot(T, clb2_norm, 'b-', 'LineWidth', 2, 'DisplayName', 'CLB2 (norm)');
-    plot(T, sic1_norm, 'k--', 'LineWidth', 2, 'DisplayName', 'SIC1 (norm)');
-    
-    xlabel('Time');
-    ylabel('Normalized Concentration');
-    title('Normalized Oscillations');
-    legend('show', 'Location', 'best');
-    grid on;
-    xlim([0, 300]);
-end
-
-saveas(gcf, 'yeast_phase_analysis.fig');
-saveas(gcf, 'yeast_phase_analysis.png');
+saveas(gcf, 'yeast_key_species_analysis.fig');
+saveas(gcf, 'yeast_key_species_analysis.png');
 
 % ========================================================================
 % ANALYSIS SUMMARY
@@ -225,9 +161,7 @@ end
 % Report key species concentrations at final time
 fprintf('\nFinal concentrations of key regulators:\n');
 final_time_idx = length(T);
-key_species = {{'CLN3', cln3_idx}, {'CLN2', cln2_idx}, {'CLB5', clb5_idx}, ...
-               {'CLB2', clb2_idx}, {'SIC1', sic1_idx}, {'CDC6', cdc6_idx}, ...
-               {'MASS', mass_idx}};
+key_species = {{'CLN2', cln2_idx}, {'CLB2', clb2_idx}, {'SIC1', sic1_idx}};
 
 for i = 1:length(key_species)
     name = key_species{i}{1};
@@ -242,9 +176,7 @@ fprintf('  - matlab_results.mat (MATLAB format)\n');
 fprintf('  - time_data.csv (time points)\n');
 fprintf('  - species_concentrations.csv (concentration data)\n');
 fprintf('  - species_names.txt (variable names)\n');
-fprintf('  - yeast_cell_cycle_analysis.png (main plots)\n');
-fprintf('  - yeast_phase_analysis.png (phase portraits)\n');
-fprintf('  - yeast_cell_cycle_analysis.fig (MATLAB figure)\n');
-fprintf('  - yeast_phase_analysis.fig (MATLAB figure)\n');
+fprintf('  - yeast_key_species_analysis.png (simplified plots)\n');
+fprintf('  - yeast_key_species_analysis.fig (MATLAB figure)\n');
 
 fprintf('\n=== Analysis completed successfully! ===\n');
