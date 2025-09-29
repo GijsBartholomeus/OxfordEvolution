@@ -148,13 +148,34 @@ fprintf('Time span: %.1f time units (approximately %.1f cell cycles)\n', T(end),
 % Calculate cell cycle period (estimate from CLB2 oscillations)
 if ~isempty(clb2_idx)
     clb2_values = allValues(:, clb2_idx);
-    % Find peaks to estimate period
-    [peaks, peak_locs] = findpeaks(clb2_values, 'MinPeakHeight', max(clb2_values)*0.5);
-    if length(peak_locs) > 1
-        periods = diff(T(peak_locs));
-        avg_period = mean(periods);
-        fprintf('Estimated cell cycle period: %.1f ± %.1f time units\n', avg_period, std(periods));
-        fprintf('Number of complete cycles observed: %d\n', length(peaks));
+    % Simple peak detection without Signal Processing Toolbox
+    try
+        [peaks, peak_locs] = findpeaks(clb2_values, 'MinPeakHeight', max(clb2_values)*0.5);
+        if length(peak_locs) > 1
+            periods = diff(T(peak_locs));
+            avg_period = mean(periods);
+            fprintf('Estimated cell cycle period: %.1f ± %.1f time units\n', avg_period, std(periods));
+            fprintf('Number of complete cycles observed: %d\n', length(peaks));
+        end
+    catch
+        % Alternative peak detection without toolbox
+        fprintf('Signal Processing Toolbox not available - using basic analysis\n');
+        clb2_max = max(clb2_values);
+        clb2_min = min(clb2_values);
+        clb2_range = clb2_max - clb2_min;
+        fprintf('CLB2 oscillation range: %.3f to %.3f (amplitude: %.3f)\n', clb2_min, clb2_max, clb2_range);
+        
+        % Simple cycle counting
+        threshold = clb2_min + 0.7 * clb2_range;
+        above_threshold = clb2_values > threshold;
+        transitions = diff(above_threshold);
+        rising_edges = find(transitions == 1);
+        if length(rising_edges) > 1
+            periods = diff(T(rising_edges));
+            avg_period = mean(periods);
+            fprintf('Estimated cell cycle period (simple method): %.1f ± %.1f time units\n', avg_period, std(periods));
+            fprintf('Number of cycles detected: %d\n', length(rising_edges));
+        end
     end
 end
 
