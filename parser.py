@@ -182,7 +182,8 @@ def build_sbml(species_list, initial_conditions, parameters, functions, odes, ou
     
     print(f"Creating SBML with {len(species_list)} species...")
     
-    # Add species with initial concentrations
+    # Add species with initial concentrations (only those with ODEs)
+    added_species = []
     for i, species_name in enumerate(species_list):
         if species_name in odes:  # Only add species that have ODEs
             species = model.createSpecies()
@@ -196,6 +197,7 @@ def build_sbml(species_list, initial_conditions, parameters, functions, odes, ou
             # Set initial concentration
             initial_value = initial_conditions.get(species_name, 0.0)
             species.setInitialConcentration(initial_value)
+            added_species.append(species_name)
     
     print(f"Added {model.getNumSpecies()} species to SBML")
     
@@ -209,23 +211,43 @@ def build_sbml(species_list, initial_conditions, parameters, functions, odes, ou
     
     print(f"Added {model.getNumParameters()} parameters to SBML")
     
-    # Add intermediate functions as assignment rules
+    # Add intermediate functions as parameters (not assignment rules)
+    # This avoids the issue with non-terminal symbols
+    function_params_added = 0
+    for func_name, func_expr in functions.items():
+        if func_name not in odes and func_name not in added_species:
+            # Create as a parameter with initial value 0
+            # These will be computed during simulation
+            parameter = model.createParameter()
+            parameter.setId(func_name)
+            parameter.setName(func_name)
+            parameter.setValue(0.0)  # Initial value
+            parameter.setConstant(False)  # Allow it to change
+            function_params_added += 1
+    
+    print(f"Added {function_params_added} function parameters to SBML")
+    
+    # Now add assignment rules for the intermediate functions
+    assignment_rules_added = 0
     for func_name, func_expr in functions.items():
         if func_name not in odes:  # Don't add species as assignment rules
             assignment_rule = model.createAssignmentRule()
             assignment_rule.setVariable(func_name)
             assignment_rule.setFormula(func_expr)
+            assignment_rules_added += 1
     
-    print(f"Added {model.getNumRules()} assignment rules to SBML")
+    print(f"Added {assignment_rules_added} assignment rules to SBML")
     
     # Add rate rules for ODEs
+    rate_rules_added = 0
     for species_name, ode_expr in odes.items():
-        if species_name in [s.getId() for s in model.getListOfSpecies()]:
+        if species_name in added_species:
             rate_rule = model.createRateRule()
             rate_rule.setVariable(species_name)
             rate_rule.setFormula(ode_expr)
+            rate_rules_added += 1
     
-    print(f"Added rate rules for {len([r for r in model.getListOfRules() if r.isRate()])} species")
+    print(f"Added {rate_rules_added} rate rules to SBML")
     
     # Write SBML to file
     writer = libsbml.SBMLWriter()
@@ -241,9 +263,14 @@ def build_sbml(species_list, initial_conditions, parameters, functions, odes, ou
     errors = doc.getNumErrors()
     if errors > 0:
         print(f"SBML validation found {errors} issues:")
+        error_count = 0
         for i in range(errors):
             error = doc.getError(i)
-            print(f"  {error.getSeverityAsString()}: {error.getMessage()}")
+            if error_count < 10:  # Only show first 10 errors
+                print(f"  {error.getSeverityAsString()}: {error.getMessage()}")
+            error_count += 1
+        if error_count > 10:
+            print(f"  ... and {error_count - 10} more errors")
     else:
         print("SBML model passed validation")
     
