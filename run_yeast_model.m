@@ -48,6 +48,50 @@ cln2_idx = find(strcmp(allNames, 'CLN2'), 1);
 clb2_idx = find(strcmp(allNames, 'CLB2'), 1);
 sic1_idx = find(strcmp(allNames, 'SIC1'), 1);
 
+% Debug: print all names containing these keywords
+fprintf('Debugging species search:\n');
+cln_matches = find(contains(allNames, 'CLN'));
+clb_matches = find(contains(allNames, 'CLB'));
+sic_matches = find(contains(allNames, 'SIC'));
+
+if ~isempty(cln_matches)
+    fprintf('CLN-containing species: ');
+    for i = cln_matches
+        fprintf('%s ', allNames{i});
+    end
+    fprintf('\n');
+end
+
+if ~isempty(clb_matches)
+    fprintf('CLB-containing species: ');
+    for i = clb_matches
+        fprintf('%s ', allNames{i});
+    end
+    fprintf('\n');
+end
+
+if ~isempty(sic_matches)
+    fprintf('SIC-containing species: ');
+    for i = sic_matches
+        fprintf('%s ', allNames{i});
+    end
+    fprintf('\n');
+else
+    fprintf('No SIC-containing species found\n');
+    % Try alternative names
+    cki_matches = find(contains(allNames, 'CKI'));
+    if ~isempty(cki_matches)
+        fprintf('CKI-containing species: ');
+        for i = cki_matches
+            fprintf('%s ', allNames{i});
+        end
+        fprintf('\n');
+        % Use the first CKI species if SIC1 not found
+        sic1_idx = cki_matches(1);
+        fprintf('Using %s as SIC1 substitute\n', allNames{sic1_idx});
+    end
+end
+
 % Print found indices
 species_found = {};
 if ~isempty(cln2_idx), species_found{end+1} = 'CLN2'; end
