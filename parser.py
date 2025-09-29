@@ -233,5 +233,25 @@ def build_sbml(species_list, initial_conditions, parameters, functions, odes, ou
     return doc
 
 # --- Example usage ---
-species, params, odes = parse_matlab_model("BuddingYeastCellCycle_2015.m")
-build_sbml(species, params, odes, "BuddingYeastCellCycle_2015.xml")
+if __name__ == "__main__":
+    try:
+        print("Parsing Budding Yeast Cell Cycle MATLAB model...")
+        species, initial_conditions, params, functions, odes = parse_matlab_model("BuddingYeastCellCycle_2015.m")
+        
+        print("\n=== Parsing Summary ===")
+        print(f"Species found: {len(species)}")
+        print(f"Initial conditions: {len(initial_conditions)}")
+        print(f"Parameters: {len(params)}")
+        print(f"Functions: {len(functions)}")
+        print(f"ODEs: {len(odes)}")
+        
+        print("\nBuilding SBML model...")
+        doc = build_sbml(species, initial_conditions, params, functions, odes, "BuddingYeastCellCycle_2015.xml")
+        
+        print("\n=== Conversion Complete ===")
+        print("SBML file: BuddingYeastCellCycle_2015.xml")
+        
+    except Exception as e:
+        print(f"Error during conversion: {e}")
+        import traceback
+        traceback.print_exc()
