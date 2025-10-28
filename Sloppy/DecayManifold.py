@@ -99,3 +99,42 @@ ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
 
 plt.tight_layout()
 plt.show()
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# --- Model ---
+def y_theta(t, thetas):
+    """Mean of N decaying exponentials with parameters `thetas`."""
+    thetas = np.array(thetas)
+    return np.mean(np.exp(-np.outer(thetas, t)), axis=0)
+
+# --- Sampling function ---
+def sample_thetas(N, n_samples=5000, theta_min=1e-2, theta_max=1e2):
+    """Sample θ values log-uniformly between theta_min and theta_max."""
+    log_min, log_max = np.log10(theta_min), np.log10(theta_max)
+    return 10**np.random.uniform(log_min, log_max, size=(n_samples, N))
+
+# --- Parameters ---
+T = np.array([1/3, 1, 3])
+theta_min, theta_max = 1e-2, 1e2
+
+for N in [2, 7]:
+    thetas_all = sample_thetas(N, n_samples=5000, theta_min=theta_min, theta_max=theta_max)
+
+    # Compute model outputs for each random parameter vector
+    Y = np.array([y_theta(T, th) for th in thetas_all])
+
+    # 3D scatter plot
+    fig = plt.figure(figsize=(8,6))
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(Y[:,0], Y[:,1], Y[:,2], s=5, alpha=0.5, c=np.log10(Y[:,1]), cmap='viridis')
+
+    ax.set_xlabel('y(1/3)')
+    ax.set_ylabel('y(1)')
+    ax.set_zlabel('y(3)')
+    ax.set_title(f'Model manifold for N={N} exponentials')
+
+    plt.show()
