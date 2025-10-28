@@ -1,0 +1,2085 @@
+{
+  "meta": {
+    "source": "/home/gijs/Documents/OxfordEvolution/Yeast/Chen/chen2004_biomd56.xml",
+    "species_count": 50,
+    "reaction_count": 94,
+    "global_param_count": 163,
+    "notes": "Local (per-reaction) parameters have been inlined numerically into reaction rate expressions."
+  },
+  "species": {
+    "ids": [
+      "BCK2",
+      "BUB2",
+      "BUD",
+      "C2",
+      "C2P",
+      "C5",
+      "C5P",
+      "CDC14",
+      "CDC14T",
+      "CDC15",
+      "CDC20",
+      "CDC20i",
+      "CDC6",
+      "CDC6P",
+      "CDC6T",
+      "CDH1",
+      "CDH1i",
+      "CKIT",
+      "CLB2",
+      "CLB2T",
+      "CLB5",
+      "CLB5T",
+      "CLN2",
+      "CLN3",
+      "ESP1",
+      "F2",
+      "F2P",
+      "F5",
+      "F5P",
+      "IEP",
+      "LTE1",
+      "MAD2",
+      "MASS",
+      "MCM1",
+      "NET1",
+      "NET1P",
+      "NET1T",
+      "ORI",
+      "PDS1",
+      "PPX",
+      "RENT",
+      "RENTP",
+      "SBF",
+      "SIC1",
+      "SIC1P",
+      "SIC1T",
+      "SPN",
+      "SWI5",
+      "SWI5P",
+      "TEM1GTP"
+    ],
+    "index": {
+      "BCK2": 0,
+      "BUB2": 1,
+      "BUD": 2,
+      "C2": 3,
+      "C2P": 4,
+      "C5": 5,
+      "C5P": 6,
+      "CDC14": 7,
+      "CDC14T": 8,
+      "CDC15": 9,
+      "CDC20": 10,
+      "CDC20i": 11,
+      "CDC6": 12,
+      "CDC6P": 13,
+      "CDC6T": 14,
+      "CDH1": 15,
+      "CDH1i": 16,
+      "CKIT": 17,
+      "CLB2": 18,
+      "CLB2T": 19,
+      "CLB5": 20,
+      "CLB5T": 21,
+      "CLN2": 22,
+      "CLN3": 23,
+      "ESP1": 24,
+      "F2": 25,
+      "F2P": 26,
+      "F5": 27,
+      "F5P": 28,
+      "IEP": 29,
+      "LTE1": 30,
+      "MAD2": 31,
+      "MASS": 32,
+      "MCM1": 33,
+      "NET1": 34,
+      "NET1P": 35,
+      "NET1T": 36,
+      "ORI": 37,
+      "PDS1": 38,
+      "PPX": 39,
+      "RENT": 40,
+      "RENTP": 41,
+      "SBF": 42,
+      "SIC1": 43,
+      "SIC1P": 44,
+      "SIC1T": 45,
+      "SPN": 46,
+      "SWI5": 47,
+      "SWI5P": 48,
+      "TEM1GTP": 49
+    },
+    "initial": [
+      0.0,
+      0.20000000298023224,
+      0.008472999557852745,
+      0.23840400576591492,
+      0.02403399907052517,
+      0.07008100301027298,
+      0.006878000218421221,
+      0.4683440029621124,
+      2.0,
+      0.6565330028533936,
+      0.4442960023880005,
+      1.4720439910888672,
+      0.10757999867200851,
+      0.01548600010573864,
+      0.0,
+      0.9304990172386169,
+      0.06949999928474426,
+      0.0,
+      0.14692269265651703,
+      0.17000000178813934,
+      0.051801398396492004,
+      0.11999999731779099,
+      0.06525109708309174,
+      0.0,
+      0.30131301283836365,
+      0.23605799674987793,
+      0.027393799275159836,
+      7.239999831654131e-05,
+      7.90999984019436e-05,
+      0.1014999970793724,
+      0.10000000149011612,
+      0.009999999776482582,
+      1.2060190439224243,
+      0.0,
+      0.018644999712705612,
+      0.9702709913253784,
+      2.799999952316284,
+      0.0009089999948628247,
+      0.0256120003759861,
+      0.12317900359630585,
+      1.0495400428771973,
+      0.6000000238418579,
+      0.0,
+      0.02287760004401207,
+      0.006409999914467335,
+      0.0,
+      0.029999999329447746,
+      0.949999988079071,
+      0.019999999552965164,
+      0.8999999761581421
+    ]
+  },
+  "parameters": {
+    "global_ids": [
+      "C0",
+      "CDC15T",
+      "D",
+      "Dn3",
+      "ESP1T",
+      "F",
+      "IET",
+      "J20ppx",
+      "Jacdh",
+      "Jaiep",
+      "Jamcm",
+      "Jasbf",
+      "Jatem",
+      "Jd2c1",
+      "Jd2f6",
+      "Jicdh",
+      "Jiiep",
+      "Jimcm",
+      "Jisbf",
+      "Jitem",
+      "Jn3",
+      "Jpds",
+      "Jspn",
+      "KEZ",
+      "KEZ2",
+      "TEM1T",
+      "Vacdh",
+      "Vaiep",
+      "Vasbf",
+      "Vd2c1",
+      "Vd2f6",
+      "Vdb2",
+      "Vdb5",
+      "Vdpds",
+      "Vdppx",
+      "Vicdh",
+      "Visbf",
+      "Vkpc1",
+      "Vkpf6",
+      "Vkpnet",
+      "Vppc1",
+      "Vppf6",
+      "Vppnet",
+      "b0",
+      "bub2h",
+      "bub2l",
+      "ebudb5",
+      "ebudn2",
+      "ebudn3",
+      "ec1b2",
+      "ec1b5",
+      "ec1k2",
+      "ec1n2",
+      "ec1n3",
+      "ef6b2",
+      "ef6b5",
+      "ef6k2",
+      "ef6n2",
+      "ef6n3",
+      "eicdhb2",
+      "eicdhb5",
+      "eicdhn2",
+      "eicdhn3",
+      "eorib2",
+      "eorib5",
+      "esbfb5",
+      "esbfn2",
+      "esbfn3",
+      "ka15_p",
+      "ka15_p_p",
+      "ka15p",
+      "ka20_p",
+      "ka20_p_p",
+      "kacdh_p",
+      "kacdh_p_p",
+      "kaiep",
+      "kamcm",
+      "kasb2",
+      "kasb5",
+      "kasbf",
+      "kasesp",
+      "kasf2",
+      "kasf5",
+      "kasrent",
+      "kasrentp",
+      "kaswi",
+      "kd14",
+      "kd1c1",
+      "kd1f6",
+      "kd1pds_p",
+      "kd20",
+      "kd2c1",
+      "kd2f6",
+      "kd2pds_p_p",
+      "kd3c1",
+      "kd3f6",
+      "kd3pds_p_p",
+      "kdb2_p",
+      "kdb2_p_p",
+      "kdb2p",
+      "kdb5_p",
+      "kdb5_p_p",
+      "kdbud",
+      "kdcdh",
+      "kdib2",
+      "kdib5",
+      "kdiesp",
+      "kdif2",
+      "kdif5",
+      "kdirent",
+      "kdirentp",
+      "kdn2",
+      "kdnet",
+      "kdori",
+      "kdppx_p",
+      "kdppx_p_p",
+      "kdspn",
+      "kdswi",
+      "ki15",
+      "kicdh_p",
+      "kicdh_p_p",
+      "kiiep",
+      "kimcm",
+      "kisbf_p",
+      "kisbf_p_p",
+      "kiswi",
+      "kkpnet_p",
+      "kkpnet_p_p",
+      "kppc1",
+      "kppf6",
+      "kppnet_p",
+      "kppnet_p_p",
+      "ks14",
+      "ks1pds_p_p",
+      "ks20_p",
+      "ks20_p_p",
+      "ks2pds_p_p",
+      "ksb2_p",
+      "ksb2_p_p",
+      "ksb5_p",
+      "ksb5_p_p",
+      "ksbud",
+      "ksc1_p",
+      "ksc1_p_p",
+      "kscdh",
+      "ksf6_p",
+      "ksf6_p_p",
+      "ksf6_p_p_p",
+      "ksn2_p",
+      "ksn2_p_p",
+      "ksnet",
+      "ksori",
+      "kspds_p",
+      "ksppx",
+      "ksspn",
+      "ksswi_p",
+      "ksswi_p_p",
+      "lte1h",
+      "lte1l",
+      "mad2h",
+      "mad2l",
+      "mdt",
+      "mu"
+    ],
+    "global_index": {
+      "C0": 0,
+      "CDC15T": 1,
+      "D": 2,
+      "Dn3": 3,
+      "ESP1T": 4,
+      "F": 5,
+      "IET": 6,
+      "J20ppx": 7,
+      "Jacdh": 8,
+      "Jaiep": 9,
+      "Jamcm": 10,
+      "Jasbf": 11,
+      "Jatem": 12,
+      "Jd2c1": 13,
+      "Jd2f6": 14,
+      "Jicdh": 15,
+      "Jiiep": 16,
+      "Jimcm": 17,
+      "Jisbf": 18,
+      "Jitem": 19,
+      "Jn3": 20,
+      "Jpds": 21,
+      "Jspn": 22,
+      "KEZ": 23,
+      "KEZ2": 24,
+      "TEM1T": 25,
+      "Vacdh": 26,
+      "Vaiep": 27,
+      "Vasbf": 28,
+      "Vd2c1": 29,
+      "Vd2f6": 30,
+      "Vdb2": 31,
+      "Vdb5": 32,
+      "Vdpds": 33,
+      "Vdppx": 34,
+      "Vicdh": 35,
+      "Visbf": 36,
+      "Vkpc1": 37,
+      "Vkpf6": 38,
+      "Vkpnet": 39,
+      "Vppc1": 40,
+      "Vppf6": 41,
+      "Vppnet": 42,
+      "b0": 43,
+      "bub2h": 44,
+      "bub2l": 45,
+      "ebudb5": 46,
+      "ebudn2": 47,
+      "ebudn3": 48,
+      "ec1b2": 49,
+      "ec1b5": 50,
+      "ec1k2": 51,
+      "ec1n2": 52,
+      "ec1n3": 53,
+      "ef6b2": 54,
+      "ef6b5": 55,
+      "ef6k2": 56,
+      "ef6n2": 57,
+      "ef6n3": 58,
+      "eicdhb2": 59,
+      "eicdhb5": 60,
+      "eicdhn2": 61,
+      "eicdhn3": 62,
+      "eorib2": 63,
+      "eorib5": 64,
+      "esbfb5": 65,
+      "esbfn2": 66,
+      "esbfn3": 67,
+      "ka15_p": 68,
+      "ka15_p_p": 69,
+      "ka15p": 70,
+      "ka20_p": 71,
+      "ka20_p_p": 72,
+      "kacdh_p": 73,
+      "kacdh_p_p": 74,
+      "kaiep": 75,
+      "kamcm": 76,
+      "kasb2": 77,
+      "kasb5": 78,
+      "kasbf": 79,
+      "kasesp": 80,
+      "kasf2": 81,
+      "kasf5": 82,
+      "kasrent": 83,
+      "kasrentp": 84,
+      "kaswi": 85,
+      "kd14": 86,
+      "kd1c1": 87,
+      "kd1f6": 88,
+      "kd1pds_p": 89,
+      "kd20": 90,
+      "kd2c1": 91,
+      "kd2f6": 92,
+      "kd2pds_p_p": 93,
+      "kd3c1": 94,
+      "kd3f6": 95,
+      "kd3pds_p_p": 96,
+      "kdb2_p": 97,
+      "kdb2_p_p": 98,
+      "kdb2p": 99,
+      "kdb5_p": 100,
+      "kdb5_p_p": 101,
+      "kdbud": 102,
+      "kdcdh": 103,
+      "kdib2": 104,
+      "kdib5": 105,
+      "kdiesp": 106,
+      "kdif2": 107,
+      "kdif5": 108,
+      "kdirent": 109,
+      "kdirentp": 110,
+      "kdn2": 111,
+      "kdnet": 112,
+      "kdori": 113,
+      "kdppx_p": 114,
+      "kdppx_p_p": 115,
+      "kdspn": 116,
+      "kdswi": 117,
+      "ki15": 118,
+      "kicdh_p": 119,
+      "kicdh_p_p": 120,
+      "kiiep": 121,
+      "kimcm": 122,
+      "kisbf_p": 123,
+      "kisbf_p_p": 124,
+      "kiswi": 125,
+      "kkpnet_p": 126,
+      "kkpnet_p_p": 127,
+      "kppc1": 128,
+      "kppf6": 129,
+      "kppnet_p": 130,
+      "kppnet_p_p": 131,
+      "ks14": 132,
+      "ks1pds_p_p": 133,
+      "ks20_p": 134,
+      "ks20_p_p": 135,
+      "ks2pds_p_p": 136,
+      "ksb2_p": 137,
+      "ksb2_p_p": 138,
+      "ksb5_p": 139,
+      "ksb5_p_p": 140,
+      "ksbud": 141,
+      "ksc1_p": 142,
+      "ksc1_p_p": 143,
+      "kscdh": 144,
+      "ksf6_p": 145,
+      "ksf6_p_p": 146,
+      "ksf6_p_p_p": 147,
+      "ksn2_p": 148,
+      "ksn2_p_p": 149,
+      "ksnet": 150,
+      "ksori": 151,
+      "kspds_p": 152,
+      "ksppx": 153,
+      "ksspn": 154,
+      "ksswi_p": 155,
+      "ksswi_p_p": 156,
+      "lte1h": 157,
+      "lte1l": 158,
+      "mad2h": 159,
+      "mad2l": 160,
+      "mdt": 161,
+      "mu": 162
+    },
+    "global_values": [
+      0.4000000059604645,
+      1.0,
+      0.0,
+      1.0,
+      1.0,
+      0.0,
+      1.0,
+      0.15000000596046448,
+      0.029999999329447746,
+      0.10000000149011612,
+      0.10000000149011612,
+      0.009999999776482582,
+      0.10000000149011612,
+      0.05000000074505806,
+      0.05000000074505806,
+      0.029999999329447746,
+      0.10000000149011612,
+      0.10000000149011612,
+      0.009999999776482582,
+      0.10000000149011612,
+      6.0,
+      0.03999999910593033,
+      0.14000000059604645,
+      0.30000001192092896,
+      0.20000000298023224,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.05400000140070915,
+      1.0,
+      0.20000000298023224,
+      1.0,
+      0.25,
+      0.05000000074505806,
+      0.44999998807907104,
+      0.10000000149011612,
+      0.029999999329447746,
+      0.05999999865889549,
+      0.30000001192092896,
+      0.550000011920929,
+      0.10000000149011612,
+      0.029999999329447746,
+      0.05999999865889549,
+      0.30000001192092896,
+      1.2000000476837158,
+      8.0,
+      0.4000000059604645,
+      0.25,
+      0.44999998807907104,
+      0.8999999761581421,
+      2.0,
+      2.0,
+      10.0,
+      0.0020000000949949026,
+      1.0,
+      0.0010000000474974513,
+      0.05000000074505806,
+      0.20000000298023224,
+      0.009999999776482582,
+      0.800000011920929,
+      0.10000000149011612,
+      1.0,
+      50.0,
+      50.0,
+      0.3799999952316284,
+      50.0,
+      15.0,
+      0.009999999776482582,
+      200.0,
+      1.0,
+      2.0,
+      0.10000000149011612,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.30000001192092896,
+      1.0,
+      1.0,
+      0.20000000298023224,
+      1.0,
+      1.0,
+      0.03999999910593033,
+      0.003000000026077032,
+      0.4000000059604645,
+      0.15000000596046448,
+      0.009999999776482582,
+      0.1599999964237213,
+      0.05999999865889549,
+      0.009999999776482582,
+      0.05000000074505806,
+      0.05999999865889549,
+      0.5,
+      0.5,
+      0.009999999776482582,
+      1.0,
+      2.0,
+      0.11999999731779099,
+      0.029999999329447746,
+      0.05999999865889549,
+      0.17000000178813934,
+      2.0,
+      0.05999999865889549,
+      0.07999999821186066,
+      0.5,
+      0.0010000000474974513,
+      0.07999999821186066,
+      0.15000000596046448,
+      0.15000000596046448,
+      0.6000000238418579,
+      8.0,
+      0.05000000074505806,
+      0.009999999776482582,
+      0.6000000238418579,
+      4.0,
+      4.0,
+      0.05000000074505806,
+      3.0,
+      0.20000000298023224,
+      0.029999999329447746,
+      0.006000000052154064,
+      0.6000000238418579,
+      0.054999999701976776,
+      0.0010000000474974513,
+      0.03999999910593033,
+      0.0007999999797903001,
+      0.004999999888241291,
+      0.20000000298023224,
+      0.012000000104308128,
+      0.11999999731779099,
+      0.009999999776482582,
+      0.024000000208616257,
+      0.11999999731779099,
+      0.004000000189989805,
+      0.0,
+      0.15000000596046448,
+      0.08399999886751175,
+      2.0,
+      0.0,
+      0.10000000149011612,
+      0.10000000149011612,
+      0.004999999888241291,
+      0.07999999821186066,
+      1.0,
+      0.10000000149011612,
+      8.0,
+      0.009999999776482582,
+      90.0,
+      0.0
+    ]
+  },
+  "reactions": [
+    {
+      "id": "Growth",
+      "rate": "mu * MASS",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "MASS": 1.0
+      }
+    },
+    {
+      "id": "Synthesis_of_CLN2",
+      "rate": "(ksn2_p + ksn2_p_p * SBF) * MASS",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CLN2": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLN2",
+      "rate": "Mass_Action_1_222(kdn2, CLN2)",
+      "local_params": {},
+      "reactants": {
+        "CLN2": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Synthesis_of_CLB2",
+      "rate": "(ksb2_p + ksb2_p_p * MCM1) * MASS",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CLB2": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB2",
+      "rate": "Mass_Action_1_222(Vdb2, CLB2)",
+      "local_params": {},
+      "reactants": {
+        "CLB2": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Synthesis_of_CLB5",
+      "rate": "(ksb5_p + ksb5_p_p * SBF) * MASS",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CLB5": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB5",
+      "rate": "Mass_Action_1_222(Vdb5, CLB5)",
+      "local_params": {},
+      "reactants": {
+        "CLB5": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Synthesis_of_SIC1",
+      "rate": "ksc1_p + ksc1_p_p * SWI5",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Phosphorylation_of_SIC1",
+      "rate": "Mass_Action_1_222(Vkpc1, SIC1)",
+      "local_params": {},
+      "reactants": {
+        "SIC1": 1.0
+      },
+      "products": {
+        "SIC1P": 1.0
+      }
+    },
+    {
+      "id": "Dephosphorylation_of_SIC1",
+      "rate": "Mass_Action_1_222(Vppc1, SIC1P)",
+      "local_params": {},
+      "reactants": {
+        "SIC1P": 1.0
+      },
+      "products": {
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Fast_Degradation_of_SIC1P",
+      "rate": "Mass_Action_1_222(kd3c1, SIC1P)",
+      "local_params": {},
+      "reactants": {
+        "SIC1P": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Assoc_of_CLB2_and_SIC1",
+      "rate": "Mass_Action_2_221(kasb2, CLB2, SIC1)",
+      "local_params": {},
+      "reactants": {
+        "CLB2": 1.0,
+        "SIC1": 1.0
+      },
+      "products": {
+        "C2": 1.0
+      }
+    },
+    {
+      "id": "Dissoc_of_CLB2SIC1_complex",
+      "rate": "Mass_Action_1_222(kdib2, C2)",
+      "local_params": {},
+      "reactants": {
+        "C2": 1.0
+      },
+      "products": {
+        "CLB2": 1.0,
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Assoc_of_CLB5_and_SIC1",
+      "rate": "Mass_Action_2_221(kasb5, CLB5, SIC1)",
+      "local_params": {},
+      "reactants": {
+        "CLB5": 1.0,
+        "SIC1": 1.0
+      },
+      "products": {
+        "C5": 1.0
+      }
+    },
+    {
+      "id": "Dissoc_of_CLB5SIC1",
+      "rate": "Mass_Action_1_222(kdib5, C5)",
+      "local_params": {},
+      "reactants": {
+        "C5": 1.0
+      },
+      "products": {
+        "CLB5": 1.0,
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Phosphorylation_of_C2",
+      "rate": "Mass_Action_1_222(Vkpc1, C2)",
+      "local_params": {},
+      "reactants": {
+        "C2": 1.0
+      },
+      "products": {
+        "C2P": 1.0
+      }
+    },
+    {
+      "id": "Dephosphorylation_of_C2P",
+      "rate": "Mass_Action_1_222(Vppc1, C2P)",
+      "local_params": {},
+      "reactants": {
+        "C2P": 1.0
+      },
+      "products": {
+        "C2": 1.0
+      }
+    },
+    {
+      "id": "Phosphorylation_of_C5",
+      "rate": "Mass_Action_1_222(Vkpc1, C5)",
+      "local_params": {},
+      "reactants": {
+        "C5": 1.0
+      },
+      "products": {
+        "C5P": 1.0
+      }
+    },
+    {
+      "id": "Dephosphorylation_of_C5P",
+      "rate": "Mass_Action_1_222(Vppc1, C5P)",
+      "local_params": {},
+      "reactants": {
+        "C5P": 1.0
+      },
+      "products": {
+        "C5": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB2_in_C2",
+      "rate": "Mass_Action_1_222(Vdb2, C2)",
+      "local_params": {},
+      "reactants": {
+        "C2": 1.0
+      },
+      "products": {
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB5_in_C5",
+      "rate": "Mass_Action_1_222(Vdb5, C5)",
+      "local_params": {},
+      "reactants": {
+        "C5": 1.0
+      },
+      "products": {
+        "SIC1": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_SIC1_in_C2P",
+      "rate": "Mass_Action_1_222(kd3c1, C2P)",
+      "local_params": {},
+      "reactants": {
+        "C2P": 1.0
+      },
+      "products": {
+        "CLB2": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_SIC1P_in_C5P_",
+      "rate": "Mass_Action_1_222(kd3c1, C5P)",
+      "local_params": {},
+      "reactants": {
+        "C5P": 1.0
+      },
+      "products": {
+        "CLB5": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB2_in_C2P",
+      "rate": "Mass_Action_1_222(Vdb2, C2P)",
+      "local_params": {},
+      "reactants": {
+        "C2P": 1.0
+      },
+      "products": {
+        "SIC1P": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CLB5_in_C5P",
+      "rate": "Mass_Action_1_222(Vdb5, C5P)",
+      "local_params": {},
+      "reactants": {
+        "C5P": 1.0
+      },
+      "products": {
+        "SIC1P": 1.0
+      }
+    },
+    {
+      "id": "CDC6_synthesis",
+      "rate": "ksf6_p + ksf6_p_p * SWI5 + ksf6_p_p_p * SBF",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "Phosphorylation_of_CDC6",
+      "rate": "Mass_Action_1_222(Vkpf6, CDC6)",
+      "local_params": {},
+      "reactants": {
+        "CDC6": 1.0
+      },
+      "products": {
+        "CDC6P": 1.0
+      }
+    },
+    {
+      "id": "Dephosphorylation_of_CDC6",
+      "rate": "Mass_Action_1_222(Vppf6, CDC6P)",
+      "local_params": {},
+      "reactants": {
+        "CDC6P": 1.0
+      },
+      "products": {
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CDC6P",
+      "rate": "Mass_Action_1_222(kd3f6, CDC6P)",
+      "local_params": {},
+      "reactants": {
+        "CDC6P": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "CLB2CDC6_complex_formation",
+      "rate": "Mass_Action_2_221(kasf2, CLB2, CDC6)",
+      "local_params": {},
+      "reactants": {
+        "CLB2": 1.0,
+        "CDC6": 1.0
+      },
+      "products": {
+        "F2": 1.0
+      }
+    },
+    {
+      "id": "CLB2CDC6_dissociation",
+      "rate": "Mass_Action_1_222(kdif2, F2)",
+      "local_params": {},
+      "reactants": {
+        "F2": 1.0
+      },
+      "products": {
+        "CLB2": 1.0,
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "CLB5CDC6_complex_formation",
+      "rate": "Mass_Action_2_221(kasf5, CLB5, CDC6)",
+      "local_params": {},
+      "reactants": {
+        "CLB5": 1.0,
+        "CDC6": 1.0
+      },
+      "products": {
+        "F5": 1.0
+      }
+    },
+    {
+      "id": "CLB5CDC6_dissociation",
+      "rate": "Mass_Action_1_222(kdif5, F5)",
+      "local_params": {},
+      "reactants": {
+        "F5": 1.0
+      },
+      "products": {
+        "CLB5": 1.0,
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "F2_phosphorylation",
+      "rate": "Mass_Action_1_222(Vkpf6, F2)",
+      "local_params": {},
+      "reactants": {
+        "F2": 1.0
+      },
+      "products": {
+        "F2P": 1.0
+      }
+    },
+    {
+      "id": "F2P_dephosphorylation",
+      "rate": "Mass_Action_1_222(Vppf6, F2P)",
+      "local_params": {},
+      "reactants": {
+        "F2P": 1.0
+      },
+      "products": {
+        "F2": 1.0
+      }
+    },
+    {
+      "id": "F5_phosphorylation",
+      "rate": "Mass_Action_1_222(Vkpf6, F5)",
+      "local_params": {},
+      "reactants": {
+        "F5": 1.0
+      },
+      "products": {
+        "F5P": 1.0
+      }
+    },
+    {
+      "id": "F5P_dephosphorylation",
+      "rate": "Mass_Action_1_222(Vppf6, F5P)",
+      "local_params": {},
+      "reactants": {
+        "F5P": 1.0
+      },
+      "products": {
+        "F5": 1.0
+      }
+    },
+    {
+      "id": "CLB2_degradation_in_F2",
+      "rate": "Mass_Action_1_222(Vdb2, F2)",
+      "local_params": {},
+      "reactants": {
+        "F2": 1.0
+      },
+      "products": {
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "CLB5_degradation_in_F5",
+      "rate": "Mass_Action_1_222(Vdb5, F5)",
+      "local_params": {},
+      "reactants": {
+        "F5": 1.0
+      },
+      "products": {
+        "CDC6": 1.0
+      }
+    },
+    {
+      "id": "CDC6_degradation_in_F2P",
+      "rate": "Mass_Action_1_222(kd3f6, F2P)",
+      "local_params": {},
+      "reactants": {
+        "F2P": 1.0
+      },
+      "products": {
+        "CLB2": 1.0
+      }
+    },
+    {
+      "id": "CDC6_degradation_in_F5P",
+      "rate": "Mass_Action_1_222(kd3f6, F5P)",
+      "local_params": {},
+      "reactants": {
+        "F5P": 1.0
+      },
+      "products": {
+        "CLB5": 1.0
+      }
+    },
+    {
+      "id": "CLB2_degradation_in_F2P",
+      "rate": "Mass_Action_1_222(Vdb2, F2P)",
+      "local_params": {},
+      "reactants": {
+        "F2P": 1.0
+      },
+      "products": {
+        "CDC6P": 1.0
+      }
+    },
+    {
+      "id": "CLB5_degradation_in_F5P",
+      "rate": "Mass_Action_1_222(Vdb5, F5P)",
+      "local_params": {},
+      "reactants": {
+        "F5P": 1.0
+      },
+      "products": {
+        "CDC6P": 1.0
+      }
+    },
+    {
+      "id": "Synthesis_of_SWI5",
+      "rate": "ksswi_p + ksswi_p_p * MCM1",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "SWI5": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_SWI5",
+      "rate": "Mass_Action_1_222(kdswi, SWI5)",
+      "local_params": {},
+      "reactants": {
+        "SWI5": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Degradation_of_SWI5P",
+      "rate": "Mass_Action_1_222(kdswi, SWI5P)",
+      "local_params": {},
+      "reactants": {
+        "SWI5P": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Activation_of_SWI5",
+      "rate": "Mass_Action_1_222(kaswi * CDC14, SWI5P)",
+      "local_params": {},
+      "reactants": {
+        "SWI5P": 1.0
+      },
+      "products": {
+        "SWI5": 1.0
+      }
+    },
+    {
+      "id": "Inactivation_of_SWI5",
+      "rate": "Mass_Action_1_222(kiswi * CLB2, SWI5)",
+      "local_params": {},
+      "reactants": {
+        "SWI5": 1.0
+      },
+      "products": {
+        "SWI5P": 1.0
+      }
+    },
+    {
+      "id": "Activation_of_IEP",
+      "rate": "MichaelisMenten_220(Vaiep, Jaiep, 1, IE)",
+      "local_params": {},
+      "reactants": {
+        "IE": 1.0
+      },
+      "products": {
+        "IEP": 1.0
+      }
+    },
+    {
+      "id": "Inactivation_1",
+      "rate": "MichaelisMenten_220(1, Jiiep, kiiep, IEP)",
+      "local_params": {},
+      "reactants": {
+        "IEP": 1.0
+      },
+      "products": {
+        "IE": 1.0
+      }
+    },
+    {
+      "id": "Synthesis_of_inactive_CDC20",
+      "rate": "ks20_p + ks20_p_p * MCM1",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CDC20i": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_inactiveCDC20",
+      "rate": "Mass_Action_1_222(kd20, CDC20i)",
+      "local_params": {},
+      "reactants": {
+        "CDC20i": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Degradation_of_active_CDC20",
+      "rate": "Mass_Action_1_222(kd20, CDC20)",
+      "local_params": {},
+      "reactants": {
+        "CDC20": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Activation_of_CDC20",
+      "rate": "Mass_Action_1_222(ka20_p + ka20_p_p * IEP, CDC20i)",
+      "local_params": {},
+      "reactants": {
+        "CDC20i": 1.0
+      },
+      "products": {
+        "CDC20": 1.0
+      }
+    },
+    {
+      "id": "Inactivation_2",
+      "rate": "k * Mass_Action_1_222(MAD2, CDC20)",
+      "local_params": {
+        "k": 1.0
+      },
+      "reactants": {
+        "CDC20": 1.0
+      },
+      "products": {
+        "CDC20i": 1.0
+      }
+    },
+    {
+      "id": "CDH1_synthesis",
+      "rate": "kscdh",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CDH1": 1.0
+      }
+    },
+    {
+      "id": "CDH1_degradation",
+      "rate": "Mass_Action_1_222(kdcdh, CDH1)",
+      "local_params": {},
+      "reactants": {
+        "CDH1": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "CDH1i_degradation",
+      "rate": "Mass_Action_1_222(kdcdh, CDH1i)",
+      "local_params": {},
+      "reactants": {
+        "CDH1i": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "CDH1i_activation",
+      "rate": "MichaelisMenten_220(Vacdh, Jacdh, 1, CDH1i)",
+      "local_params": {},
+      "reactants": {
+        "CDH1i": 1.0
+      },
+      "products": {
+        "CDH1": 1.0
+      }
+    },
+    {
+      "id": "Inactivation_3",
+      "rate": "MichaelisMenten_220(Vicdh, Jicdh, 1, CDH1)",
+      "local_params": {},
+      "reactants": {
+        "CDH1": 1.0
+      },
+      "products": {
+        "CDH1i": 1.0
+      }
+    },
+    {
+      "id": "CDC14_synthesis",
+      "rate": "ks14",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "CDC14": 1.0
+      }
+    },
+    {
+      "id": "CDC14_degradation",
+      "rate": "Mass_Action_1_222(kd14, CDC14)",
+      "local_params": {},
+      "reactants": {
+        "CDC14": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Assoc_with_NET1_to_form_RENT",
+      "rate": "Mass_Action_2_221(kasrent, CDC14, NET1)",
+      "local_params": {},
+      "reactants": {
+        "CDC14": 1.0,
+        "NET1": 1.0
+      },
+      "products": {
+        "RENT": 1.0
+      }
+    },
+    {
+      "id": "Dissoc_from_RENT",
+      "rate": "Mass_Action_1_222(kdirent, RENT)",
+      "local_params": {},
+      "reactants": {
+        "RENT": 1.0
+      },
+      "products": {
+        "NET1": 1.0,
+        "CDC14": 1.0
+      }
+    },
+    {
+      "id": "Assoc_with_NET1P_to_form_RENTP",
+      "rate": "Mass_Action_2_221(kasrentp, CDC14, NET1P)",
+      "local_params": {},
+      "reactants": {
+        "CDC14": 1.0,
+        "NET1P": 1.0
+      },
+      "products": {
+        "RENTP": 1.0
+      }
+    },
+    {
+      "id": "Dissoc_from_RENP",
+      "rate": "Mass_Action_1_222(kdirentp, RENTP)",
+      "local_params": {},
+      "reactants": {
+        "RENTP": 1.0
+      },
+      "products": {
+        "CDC14": 1.0,
+        "NET1P": 1.0
+      }
+    },
+    {
+      "id": "Net1_synthesis",
+      "rate": "ksnet",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "NET1": 1.0
+      }
+    },
+    {
+      "id": "Net1_degradation",
+      "rate": "Mass_Action_1_222(kdnet, NET1)",
+      "local_params": {},
+      "reactants": {
+        "NET1": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Net1P_degradation",
+      "rate": "Mass_Action_1_222(kdnet, NET1P)",
+      "local_params": {},
+      "reactants": {
+        "NET1P": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "NET1_phosphorylation",
+      "rate": "Mass_Action_1_222(Vkpnet, NET1)",
+      "local_params": {},
+      "reactants": {
+        "NET1": 1.0
+      },
+      "products": {
+        "NET1P": 1.0
+      }
+    },
+    {
+      "id": "dephosphorylation_1",
+      "rate": "Mass_Action_1_222(Vppnet, NET1P)",
+      "local_params": {},
+      "reactants": {
+        "NET1P": 1.0
+      },
+      "products": {
+        "NET1": 1.0
+      }
+    },
+    {
+      "id": "RENT_phosphorylation",
+      "rate": "Mass_Action_1_222(Vkpnet, RENT)",
+      "local_params": {},
+      "reactants": {
+        "RENT": 1.0
+      },
+      "products": {
+        "RENTP": 1.0
+      }
+    },
+    {
+      "id": "dephosphorylation_2",
+      "rate": "Mass_Action_1_222(Vppnet, RENTP)",
+      "local_params": {},
+      "reactants": {
+        "RENTP": 1.0
+      },
+      "products": {
+        "RENT": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_NET1_in_RENT",
+      "rate": "Mass_Action_1_222(kdnet, RENT)",
+      "local_params": {},
+      "reactants": {
+        "RENT": 1.0
+      },
+      "products": {
+        "CDC14": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_NET1P_in_RENTP",
+      "rate": "Mass_Action_1_222(kdnet, RENTP)",
+      "local_params": {},
+      "reactants": {
+        "RENTP": 1.0
+      },
+      "products": {
+        "CDC14": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CDC14_in_RENT",
+      "rate": "Mass_Action_1_222(kd14, RENT)",
+      "local_params": {},
+      "reactants": {
+        "RENT": 1.0
+      },
+      "products": {
+        "NET1": 1.0
+      }
+    },
+    {
+      "id": "Degradation_of_CDC14_in_RENTP",
+      "rate": "Mass_Action_1_222(kd14, RENTP)",
+      "local_params": {},
+      "reactants": {
+        "RENTP": 1.0
+      },
+      "products": {
+        "NET1P": 1.0
+      }
+    },
+    {
+      "id": "TEM1_activation",
+      "rate": "MichaelisMenten_220(LTE1, Jatem, 1, TEM1GDP)",
+      "local_params": {},
+      "reactants": {
+        "TEM1GDP": 1.0
+      },
+      "products": {
+        "TEM1GTP": 1.0
+      }
+    },
+    {
+      "id": "inactivation_1",
+      "rate": "MichaelisMenten_220(BUB2, Jitem, 1, TEM1GTP)",
+      "local_params": {},
+      "reactants": {
+        "TEM1GTP": 1.0
+      },
+      "products": {
+        "TEM1GDP": 1.0
+      }
+    },
+    {
+      "id": "CDC15_activation",
+      "rate": "Mass_Action_1_222(ka15_p * TEM1GDP + ka15_p_p * TEM1GTP + ka15p * CDC14, CDC15i)",
+      "local_params": {},
+      "reactants": {
+        "CDC15i": 1.0
+      },
+      "products": {
+        "CDC15": 1.0
+      }
+    },
+    {
+      "id": "inactivation_2",
+      "rate": "Mass_Action_1_222(ki15, CDC15)",
+      "local_params": {},
+      "reactants": {
+        "CDC15": 1.0
+      },
+      "products": {
+        "CDC15i": 1.0
+      }
+    },
+    {
+      "id": "PPX_synthesis",
+      "rate": "ksppx",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "PPX": 1.0
+      }
+    },
+    {
+      "id": "degradation_1",
+      "rate": "Mass_Action_1_222(Vdppx, PPX)",
+      "local_params": {},
+      "reactants": {
+        "PPX": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "PDS1_synthesis",
+      "rate": "kspds_p + ks1pds_p_p * SBF + ks2pds_p_p * MCM1",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "PDS1": 1.0
+      }
+    },
+    {
+      "id": "degradation_2",
+      "rate": "Mass_Action_1_222(Vdpds, PDS1)",
+      "local_params": {},
+      "reactants": {
+        "PDS1": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Degradation_of_PDS1_in_PE",
+      "rate": "Mass_Action_1_222(Vdpds, PE)",
+      "local_params": {},
+      "reactants": {
+        "PE": 1.0
+      },
+      "products": {
+        "ESP1": 1.0
+      }
+    },
+    {
+      "id": "Assoc_with_ESP1_to_form_PE",
+      "rate": "Mass_Action_2_221(kasesp, PDS1, ESP1)",
+      "local_params": {},
+      "reactants": {
+        "PDS1": 1.0,
+        "ESP1": 1.0
+      },
+      "products": {
+        "PE": 1.0
+      }
+    },
+    {
+      "id": "Disso_from_PE",
+      "rate": "Mass_Action_1_222(kdiesp, PE)",
+      "local_params": {},
+      "reactants": {
+        "PE": 1.0
+      },
+      "products": {
+        "PDS1": 1.0,
+        "ESP1": 1.0
+      }
+    },
+    {
+      "id": "DNA_synthesis",
+      "rate": "ksori * (eorib5 * CLB5 + eorib2 * CLB2)",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "ORI": 1.0
+      }
+    },
+    {
+      "id": "Negative_regulation_of_DNA_synthesis",
+      "rate": "Mass_Action_1_222(kdori, ORI)",
+      "local_params": {},
+      "reactants": {
+        "ORI": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Budding",
+      "rate": "ksbud * (ebudn2 * CLN2 + ebudn3 * CLN3 + ebudb5 * CLB5)",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "BUD": 1.0
+      }
+    },
+    {
+      "id": "Negative_regulation_of_Cell_budding",
+      "rate": "Mass_Action_1_222(kdbud, BUD)",
+      "local_params": {},
+      "reactants": {
+        "BUD": 1.0
+      },
+      "products": {}
+    },
+    {
+      "id": "Spindle_formation",
+      "rate": "ksspn * CLB2 / (Jspn + CLB2)",
+      "local_params": {},
+      "reactants": {},
+      "products": {
+        "SPN": 1.0
+      }
+    },
+    {
+      "id": "Spindle_disassembly",
+      "rate": "Mass_Action_1_222(kdspn, SPN)",
+      "local_params": {},
+      "reactants": {
+        "SPN": 1.0
+      },
+      "products": {}
+    }
+  ],
+  "reactions_inlined": [
+    {
+      "id": "Growth",
+      "rate_inlined": "mu * MASS"
+    },
+    {
+      "id": "Synthesis_of_CLN2",
+      "rate_inlined": "(ksn2_p + ksn2_p_p * SBF) * MASS"
+    },
+    {
+      "id": "Degradation_of_CLN2",
+      "rate_inlined": "Mass_Action_1_222(kdn2, CLN2)"
+    },
+    {
+      "id": "Synthesis_of_CLB2",
+      "rate_inlined": "(ksb2_p + ksb2_p_p * MCM1) * MASS"
+    },
+    {
+      "id": "Degradation_of_CLB2",
+      "rate_inlined": "Mass_Action_1_222(Vdb2, CLB2)"
+    },
+    {
+      "id": "Synthesis_of_CLB5",
+      "rate_inlined": "(ksb5_p + ksb5_p_p * SBF) * MASS"
+    },
+    {
+      "id": "Degradation_of_CLB5",
+      "rate_inlined": "Mass_Action_1_222(Vdb5, CLB5)"
+    },
+    {
+      "id": "Synthesis_of_SIC1",
+      "rate_inlined": "ksc1_p + ksc1_p_p * SWI5"
+    },
+    {
+      "id": "Phosphorylation_of_SIC1",
+      "rate_inlined": "Mass_Action_1_222(Vkpc1, SIC1)"
+    },
+    {
+      "id": "Dephosphorylation_of_SIC1",
+      "rate_inlined": "Mass_Action_1_222(Vppc1, SIC1P)"
+    },
+    {
+      "id": "Fast_Degradation_of_SIC1P",
+      "rate_inlined": "Mass_Action_1_222(kd3c1, SIC1P)"
+    },
+    {
+      "id": "Assoc_of_CLB2_and_SIC1",
+      "rate_inlined": "Mass_Action_2_221(kasb2, CLB2, SIC1)"
+    },
+    {
+      "id": "Dissoc_of_CLB2SIC1_complex",
+      "rate_inlined": "Mass_Action_1_222(kdib2, C2)"
+    },
+    {
+      "id": "Assoc_of_CLB5_and_SIC1",
+      "rate_inlined": "Mass_Action_2_221(kasb5, CLB5, SIC1)"
+    },
+    {
+      "id": "Dissoc_of_CLB5SIC1",
+      "rate_inlined": "Mass_Action_1_222(kdib5, C5)"
+    },
+    {
+      "id": "Phosphorylation_of_C2",
+      "rate_inlined": "Mass_Action_1_222(Vkpc1, C2)"
+    },
+    {
+      "id": "Dephosphorylation_of_C2P",
+      "rate_inlined": "Mass_Action_1_222(Vppc1, C2P)"
+    },
+    {
+      "id": "Phosphorylation_of_C5",
+      "rate_inlined": "Mass_Action_1_222(Vkpc1, C5)"
+    },
+    {
+      "id": "Dephosphorylation_of_C5P",
+      "rate_inlined": "Mass_Action_1_222(Vppc1, C5P)"
+    },
+    {
+      "id": "Degradation_of_CLB2_in_C2",
+      "rate_inlined": "Mass_Action_1_222(Vdb2, C2)"
+    },
+    {
+      "id": "Degradation_of_CLB5_in_C5",
+      "rate_inlined": "Mass_Action_1_222(Vdb5, C5)"
+    },
+    {
+      "id": "Degradation_of_SIC1_in_C2P",
+      "rate_inlined": "Mass_Action_1_222(kd3c1, C2P)"
+    },
+    {
+      "id": "Degradation_of_SIC1P_in_C5P_",
+      "rate_inlined": "Mass_Action_1_222(kd3c1, C5P)"
+    },
+    {
+      "id": "Degradation_of_CLB2_in_C2P",
+      "rate_inlined": "Mass_Action_1_222(Vdb2, C2P)"
+    },
+    {
+      "id": "Degradation_of_CLB5_in_C5P",
+      "rate_inlined": "Mass_Action_1_222(Vdb5, C5P)"
+    },
+    {
+      "id": "CDC6_synthesis",
+      "rate_inlined": "ksf6_p + ksf6_p_p * SWI5 + ksf6_p_p_p * SBF"
+    },
+    {
+      "id": "Phosphorylation_of_CDC6",
+      "rate_inlined": "Mass_Action_1_222(Vkpf6, CDC6)"
+    },
+    {
+      "id": "Dephosphorylation_of_CDC6",
+      "rate_inlined": "Mass_Action_1_222(Vppf6, CDC6P)"
+    },
+    {
+      "id": "Degradation_of_CDC6P",
+      "rate_inlined": "Mass_Action_1_222(kd3f6, CDC6P)"
+    },
+    {
+      "id": "CLB2CDC6_complex_formation",
+      "rate_inlined": "Mass_Action_2_221(kasf2, CLB2, CDC6)"
+    },
+    {
+      "id": "CLB2CDC6_dissociation",
+      "rate_inlined": "Mass_Action_1_222(kdif2, F2)"
+    },
+    {
+      "id": "CLB5CDC6_complex_formation",
+      "rate_inlined": "Mass_Action_2_221(kasf5, CLB5, CDC6)"
+    },
+    {
+      "id": "CLB5CDC6_dissociation",
+      "rate_inlined": "Mass_Action_1_222(kdif5, F5)"
+    },
+    {
+      "id": "F2_phosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vkpf6, F2)"
+    },
+    {
+      "id": "F2P_dephosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vppf6, F2P)"
+    },
+    {
+      "id": "F5_phosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vkpf6, F5)"
+    },
+    {
+      "id": "F5P_dephosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vppf6, F5P)"
+    },
+    {
+      "id": "CLB2_degradation_in_F2",
+      "rate_inlined": "Mass_Action_1_222(Vdb2, F2)"
+    },
+    {
+      "id": "CLB5_degradation_in_F5",
+      "rate_inlined": "Mass_Action_1_222(Vdb5, F5)"
+    },
+    {
+      "id": "CDC6_degradation_in_F2P",
+      "rate_inlined": "Mass_Action_1_222(kd3f6, F2P)"
+    },
+    {
+      "id": "CDC6_degradation_in_F5P",
+      "rate_inlined": "Mass_Action_1_222(kd3f6, F5P)"
+    },
+    {
+      "id": "CLB2_degradation_in_F2P",
+      "rate_inlined": "Mass_Action_1_222(Vdb2, F2P)"
+    },
+    {
+      "id": "CLB5_degradation_in_F5P",
+      "rate_inlined": "Mass_Action_1_222(Vdb5, F5P)"
+    },
+    {
+      "id": "Synthesis_of_SWI5",
+      "rate_inlined": "ksswi_p + ksswi_p_p * MCM1"
+    },
+    {
+      "id": "Degradation_of_SWI5",
+      "rate_inlined": "Mass_Action_1_222(kdswi, SWI5)"
+    },
+    {
+      "id": "Degradation_of_SWI5P",
+      "rate_inlined": "Mass_Action_1_222(kdswi, SWI5P)"
+    },
+    {
+      "id": "Activation_of_SWI5",
+      "rate_inlined": "Mass_Action_1_222(kaswi * CDC14, SWI5P)"
+    },
+    {
+      "id": "Inactivation_of_SWI5",
+      "rate_inlined": "Mass_Action_1_222(kiswi * CLB2, SWI5)"
+    },
+    {
+      "id": "Activation_of_IEP",
+      "rate_inlined": "MichaelisMenten_220(Vaiep, Jaiep, 1, IE)"
+    },
+    {
+      "id": "Inactivation_1",
+      "rate_inlined": "MichaelisMenten_220(1, Jiiep, kiiep, IEP)"
+    },
+    {
+      "id": "Synthesis_of_inactive_CDC20",
+      "rate_inlined": "ks20_p + ks20_p_p * MCM1"
+    },
+    {
+      "id": "Degradation_of_inactiveCDC20",
+      "rate_inlined": "Mass_Action_1_222(kd20, CDC20i)"
+    },
+    {
+      "id": "Degradation_of_active_CDC20",
+      "rate_inlined": "Mass_Action_1_222(kd20, CDC20)"
+    },
+    {
+      "id": "Activation_of_CDC20",
+      "rate_inlined": "Mass_Action_1_222(ka20_p + ka20_p_p * IEP, CDC20i)"
+    },
+    {
+      "id": "Inactivation_2",
+      "rate_inlined": "(1.0) * Mass_Action_1_222(MAD2, CDC20)"
+    },
+    {
+      "id": "CDH1_synthesis",
+      "rate_inlined": "kscdh"
+    },
+    {
+      "id": "CDH1_degradation",
+      "rate_inlined": "Mass_Action_1_222(kdcdh, CDH1)"
+    },
+    {
+      "id": "CDH1i_degradation",
+      "rate_inlined": "Mass_Action_1_222(kdcdh, CDH1i)"
+    },
+    {
+      "id": "CDH1i_activation",
+      "rate_inlined": "MichaelisMenten_220(Vacdh, Jacdh, 1, CDH1i)"
+    },
+    {
+      "id": "Inactivation_3",
+      "rate_inlined": "MichaelisMenten_220(Vicdh, Jicdh, 1, CDH1)"
+    },
+    {
+      "id": "CDC14_synthesis",
+      "rate_inlined": "ks14"
+    },
+    {
+      "id": "CDC14_degradation",
+      "rate_inlined": "Mass_Action_1_222(kd14, CDC14)"
+    },
+    {
+      "id": "Assoc_with_NET1_to_form_RENT",
+      "rate_inlined": "Mass_Action_2_221(kasrent, CDC14, NET1)"
+    },
+    {
+      "id": "Dissoc_from_RENT",
+      "rate_inlined": "Mass_Action_1_222(kdirent, RENT)"
+    },
+    {
+      "id": "Assoc_with_NET1P_to_form_RENTP",
+      "rate_inlined": "Mass_Action_2_221(kasrentp, CDC14, NET1P)"
+    },
+    {
+      "id": "Dissoc_from_RENP",
+      "rate_inlined": "Mass_Action_1_222(kdirentp, RENTP)"
+    },
+    {
+      "id": "Net1_synthesis",
+      "rate_inlined": "ksnet"
+    },
+    {
+      "id": "Net1_degradation",
+      "rate_inlined": "Mass_Action_1_222(kdnet, NET1)"
+    },
+    {
+      "id": "Net1P_degradation",
+      "rate_inlined": "Mass_Action_1_222(kdnet, NET1P)"
+    },
+    {
+      "id": "NET1_phosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vkpnet, NET1)"
+    },
+    {
+      "id": "dephosphorylation_1",
+      "rate_inlined": "Mass_Action_1_222(Vppnet, NET1P)"
+    },
+    {
+      "id": "RENT_phosphorylation",
+      "rate_inlined": "Mass_Action_1_222(Vkpnet, RENT)"
+    },
+    {
+      "id": "dephosphorylation_2",
+      "rate_inlined": "Mass_Action_1_222(Vppnet, RENTP)"
+    },
+    {
+      "id": "Degradation_of_NET1_in_RENT",
+      "rate_inlined": "Mass_Action_1_222(kdnet, RENT)"
+    },
+    {
+      "id": "Degradation_of_NET1P_in_RENTP",
+      "rate_inlined": "Mass_Action_1_222(kdnet, RENTP)"
+    },
+    {
+      "id": "Degradation_of_CDC14_in_RENT",
+      "rate_inlined": "Mass_Action_1_222(kd14, RENT)"
+    },
+    {
+      "id": "Degradation_of_CDC14_in_RENTP",
+      "rate_inlined": "Mass_Action_1_222(kd14, RENTP)"
+    },
+    {
+      "id": "TEM1_activation",
+      "rate_inlined": "MichaelisMenten_220(LTE1, Jatem, 1, TEM1GDP)"
+    },
+    {
+      "id": "inactivation_1",
+      "rate_inlined": "MichaelisMenten_220(BUB2, Jitem, 1, TEM1GTP)"
+    },
+    {
+      "id": "CDC15_activation",
+      "rate_inlined": "Mass_Action_1_222(ka15_p * TEM1GDP + ka15_p_p * TEM1GTP + ka15p * CDC14, CDC15i)"
+    },
+    {
+      "id": "inactivation_2",
+      "rate_inlined": "Mass_Action_1_222(ki15, CDC15)"
+    },
+    {
+      "id": "PPX_synthesis",
+      "rate_inlined": "ksppx"
+    },
+    {
+      "id": "degradation_1",
+      "rate_inlined": "Mass_Action_1_222(Vdppx, PPX)"
+    },
+    {
+      "id": "PDS1_synthesis",
+      "rate_inlined": "kspds_p + ks1pds_p_p * SBF + ks2pds_p_p * MCM1"
+    },
+    {
+      "id": "degradation_2",
+      "rate_inlined": "Mass_Action_1_222(Vdpds, PDS1)"
+    },
+    {
+      "id": "Degradation_of_PDS1_in_PE",
+      "rate_inlined": "Mass_Action_1_222(Vdpds, PE)"
+    },
+    {
+      "id": "Assoc_with_ESP1_to_form_PE",
+      "rate_inlined": "Mass_Action_2_221(kasesp, PDS1, ESP1)"
+    },
+    {
+      "id": "Disso_from_PE",
+      "rate_inlined": "Mass_Action_1_222(kdiesp, PE)"
+    },
+    {
+      "id": "DNA_synthesis",
+      "rate_inlined": "ksori * (eorib5 * CLB5 + eorib2 * CLB2)"
+    },
+    {
+      "id": "Negative_regulation_of_DNA_synthesis",
+      "rate_inlined": "Mass_Action_1_222(kdori, ORI)"
+    },
+    {
+      "id": "Budding",
+      "rate_inlined": "ksbud * (ebudn2 * CLN2 + ebudn3 * CLN3 + ebudb5 * CLB5)"
+    },
+    {
+      "id": "Negative_regulation_of_Cell_budding",
+      "rate_inlined": "Mass_Action_1_222(kdbud, BUD)"
+    },
+    {
+      "id": "Spindle_formation",
+      "rate_inlined": "ksspn * CLB2 / (Jspn + CLB2)"
+    },
+    {
+      "id": "Spindle_disassembly",
+      "rate_inlined": "Mass_Action_1_222(kdspn, SPN)"
+    }
+  ],
+  "odes": {
+    "BCK2": "0.0",
+    "BUB2": "0.0",
+    "BUD": "0.0 + (1.0)*(ksbud * (ebudn2 * CLN2 + ebudn3 * CLN3 + ebudb5 * CLB5)) + (-1.0)*(Mass_Action_1_222(kdbud, BUD))",
+    "C2": "0.0 + (1.0)*(Mass_Action_2_221(kasb2, CLB2, SIC1)) + (-1.0)*(Mass_Action_1_222(kdib2, C2)) + (-1.0)*(Mass_Action_1_222(Vkpc1, C2)) + (1.0)*(Mass_Action_1_222(Vppc1, C2P)) + (-1.0)*(Mass_Action_1_222(Vdb2, C2))",
+    "C2P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpc1, C2)) + (-1.0)*(Mass_Action_1_222(Vppc1, C2P)) + (-1.0)*(Mass_Action_1_222(kd3c1, C2P)) + (-1.0)*(Mass_Action_1_222(Vdb2, C2P))",
+    "C5": "0.0 + (1.0)*(Mass_Action_2_221(kasb5, CLB5, SIC1)) + (-1.0)*(Mass_Action_1_222(kdib5, C5)) + (-1.0)*(Mass_Action_1_222(Vkpc1, C5)) + (1.0)*(Mass_Action_1_222(Vppc1, C5P)) + (-1.0)*(Mass_Action_1_222(Vdb5, C5))",
+    "C5P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpc1, C5)) + (-1.0)*(Mass_Action_1_222(Vppc1, C5P)) + (-1.0)*(Mass_Action_1_222(kd3c1, C5P)) + (-1.0)*(Mass_Action_1_222(Vdb5, C5P))",
+    "CDC14": "0.0 + (1.0)*(ks14) + (-1.0)*(Mass_Action_1_222(kd14, CDC14)) + (-1.0)*(Mass_Action_2_221(kasrent, CDC14, NET1)) + (1.0)*(Mass_Action_1_222(kdirent, RENT)) + (-1.0)*(Mass_Action_2_221(kasrentp, CDC14, NET1P)) + (1.0)*(Mass_Action_1_222(kdirentp, RENTP)) + (1.0)*(Mass_Action_1_222(kdnet, RENT)) + (1.0)*(Mass_Action_1_222(kdnet, RENTP))",
+    "CDC14T": "0.0",
+    "CDC15": "0.0 + (1.0)*(Mass_Action_1_222(ka15_p * TEM1GDP + ka15_p_p * TEM1GTP + ka15p * CDC14, CDC15i)) + (-1.0)*(Mass_Action_1_222(ki15, CDC15))",
+    "CDC15i": "0.0 + (-1.0)*(Mass_Action_1_222(ka15_p * TEM1GDP + ka15_p_p * TEM1GTP + ka15p * CDC14, CDC15i)) + (1.0)*(Mass_Action_1_222(ki15, CDC15))",
+    "CDC20": "0.0 + (-1.0)*(Mass_Action_1_222(kd20, CDC20)) + (1.0)*(Mass_Action_1_222(ka20_p + ka20_p_p * IEP, CDC20i)) + (-1.0)*(k * Mass_Action_1_222(MAD2, CDC20))",
+    "CDC20i": "0.0 + (1.0)*(ks20_p + ks20_p_p * MCM1) + (-1.0)*(Mass_Action_1_222(kd20, CDC20i)) + (-1.0)*(Mass_Action_1_222(ka20_p + ka20_p_p * IEP, CDC20i)) + (1.0)*(k * Mass_Action_1_222(MAD2, CDC20))",
+    "CDC6": "0.0 + (1.0)*(ksf6_p + ksf6_p_p * SWI5 + ksf6_p_p_p * SBF) + (-1.0)*(Mass_Action_1_222(Vkpf6, CDC6)) + (1.0)*(Mass_Action_1_222(Vppf6, CDC6P)) + (-1.0)*(Mass_Action_2_221(kasf2, CLB2, CDC6)) + (1.0)*(Mass_Action_1_222(kdif2, F2)) + (-1.0)*(Mass_Action_2_221(kasf5, CLB5, CDC6)) + (1.0)*(Mass_Action_1_222(kdif5, F5)) + (1.0)*(Mass_Action_1_222(Vdb2, F2)) + (1.0)*(Mass_Action_1_222(Vdb5, F5))",
+    "CDC6P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpf6, CDC6)) + (-1.0)*(Mass_Action_1_222(Vppf6, CDC6P)) + (-1.0)*(Mass_Action_1_222(kd3f6, CDC6P)) + (1.0)*(Mass_Action_1_222(Vdb2, F2P)) + (1.0)*(Mass_Action_1_222(Vdb5, F5P))",
+    "CDC6T": "0.0",
+    "CDH1": "0.0 + (1.0)*(kscdh) + (-1.0)*(Mass_Action_1_222(kdcdh, CDH1)) + (1.0)*(MichaelisMenten_220(Vacdh, Jacdh, 1, CDH1i)) + (-1.0)*(MichaelisMenten_220(Vicdh, Jicdh, 1, CDH1))",
+    "CDH1i": "0.0 + (-1.0)*(Mass_Action_1_222(kdcdh, CDH1i)) + (-1.0)*(MichaelisMenten_220(Vacdh, Jacdh, 1, CDH1i)) + (1.0)*(MichaelisMenten_220(Vicdh, Jicdh, 1, CDH1))",
+    "CKIT": "0.0",
+    "CLB2": "0.0 + (1.0)*((ksb2_p + ksb2_p_p * MCM1) * MASS) + (-1.0)*(Mass_Action_1_222(Vdb2, CLB2)) + (-1.0)*(Mass_Action_2_221(kasb2, CLB2, SIC1)) + (1.0)*(Mass_Action_1_222(kdib2, C2)) + (1.0)*(Mass_Action_1_222(kd3c1, C2P)) + (-1.0)*(Mass_Action_2_221(kasf2, CLB2, CDC6)) + (1.0)*(Mass_Action_1_222(kdif2, F2)) + (1.0)*(Mass_Action_1_222(kd3f6, F2P))",
+    "CLB2T": "0.0",
+    "CLB5": "0.0 + (1.0)*((ksb5_p + ksb5_p_p * SBF) * MASS) + (-1.0)*(Mass_Action_1_222(Vdb5, CLB5)) + (-1.0)*(Mass_Action_2_221(kasb5, CLB5, SIC1)) + (1.0)*(Mass_Action_1_222(kdib5, C5)) + (1.0)*(Mass_Action_1_222(kd3c1, C5P)) + (-1.0)*(Mass_Action_2_221(kasf5, CLB5, CDC6)) + (1.0)*(Mass_Action_1_222(kdif5, F5)) + (1.0)*(Mass_Action_1_222(kd3f6, F5P))",
+    "CLB5T": "0.0",
+    "CLN2": "0.0 + (1.0)*((ksn2_p + ksn2_p_p * SBF) * MASS) + (-1.0)*(Mass_Action_1_222(kdn2, CLN2))",
+    "CLN3": "0.0",
+    "ESP1": "0.0 + (1.0)*(Mass_Action_1_222(Vdpds, PE)) + (-1.0)*(Mass_Action_2_221(kasesp, PDS1, ESP1)) + (1.0)*(Mass_Action_1_222(kdiesp, PE))",
+    "F2": "0.0 + (1.0)*(Mass_Action_2_221(kasf2, CLB2, CDC6)) + (-1.0)*(Mass_Action_1_222(kdif2, F2)) + (-1.0)*(Mass_Action_1_222(Vkpf6, F2)) + (1.0)*(Mass_Action_1_222(Vppf6, F2P)) + (-1.0)*(Mass_Action_1_222(Vdb2, F2))",
+    "F2P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpf6, F2)) + (-1.0)*(Mass_Action_1_222(Vppf6, F2P)) + (-1.0)*(Mass_Action_1_222(kd3f6, F2P)) + (-1.0)*(Mass_Action_1_222(Vdb2, F2P))",
+    "F5": "0.0 + (1.0)*(Mass_Action_2_221(kasf5, CLB5, CDC6)) + (-1.0)*(Mass_Action_1_222(kdif5, F5)) + (-1.0)*(Mass_Action_1_222(Vkpf6, F5)) + (1.0)*(Mass_Action_1_222(Vppf6, F5P)) + (-1.0)*(Mass_Action_1_222(Vdb5, F5))",
+    "F5P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpf6, F5)) + (-1.0)*(Mass_Action_1_222(Vppf6, F5P)) + (-1.0)*(Mass_Action_1_222(kd3f6, F5P)) + (-1.0)*(Mass_Action_1_222(Vdb5, F5P))",
+    "IE": "0.0 + (-1.0)*(MichaelisMenten_220(Vaiep, Jaiep, 1, IE)) + (1.0)*(MichaelisMenten_220(1, Jiiep, kiiep, IEP))",
+    "IEP": "0.0 + (1.0)*(MichaelisMenten_220(Vaiep, Jaiep, 1, IE)) + (-1.0)*(MichaelisMenten_220(1, Jiiep, kiiep, IEP))",
+    "LTE1": "0.0",
+    "MAD2": "0.0",
+    "MASS": "0.0 + (1.0)*(mu * MASS)",
+    "MCM1": "0.0",
+    "NET1": "0.0 + (-1.0)*(Mass_Action_2_221(kasrent, CDC14, NET1)) + (1.0)*(Mass_Action_1_222(kdirent, RENT)) + (1.0)*(ksnet) + (-1.0)*(Mass_Action_1_222(kdnet, NET1)) + (-1.0)*(Mass_Action_1_222(Vkpnet, NET1)) + (1.0)*(Mass_Action_1_222(Vppnet, NET1P)) + (1.0)*(Mass_Action_1_222(kd14, RENT))",
+    "NET1P": "0.0 + (-1.0)*(Mass_Action_2_221(kasrentp, CDC14, NET1P)) + (1.0)*(Mass_Action_1_222(kdirentp, RENTP)) + (-1.0)*(Mass_Action_1_222(kdnet, NET1P)) + (1.0)*(Mass_Action_1_222(Vkpnet, NET1)) + (-1.0)*(Mass_Action_1_222(Vppnet, NET1P)) + (1.0)*(Mass_Action_1_222(kd14, RENTP))",
+    "NET1T": "0.0",
+    "ORI": "0.0 + (1.0)*(ksori * (eorib5 * CLB5 + eorib2 * CLB2)) + (-1.0)*(Mass_Action_1_222(kdori, ORI))",
+    "PDS1": "0.0 + (1.0)*(kspds_p + ks1pds_p_p * SBF + ks2pds_p_p * MCM1) + (-1.0)*(Mass_Action_1_222(Vdpds, PDS1)) + (-1.0)*(Mass_Action_2_221(kasesp, PDS1, ESP1)) + (1.0)*(Mass_Action_1_222(kdiesp, PE))",
+    "PE": "0.0 + (-1.0)*(Mass_Action_1_222(Vdpds, PE)) + (1.0)*(Mass_Action_2_221(kasesp, PDS1, ESP1)) + (-1.0)*(Mass_Action_1_222(kdiesp, PE))",
+    "PPX": "0.0 + (1.0)*(ksppx) + (-1.0)*(Mass_Action_1_222(Vdppx, PPX))",
+    "RENT": "0.0 + (1.0)*(Mass_Action_2_221(kasrent, CDC14, NET1)) + (-1.0)*(Mass_Action_1_222(kdirent, RENT)) + (-1.0)*(Mass_Action_1_222(Vkpnet, RENT)) + (1.0)*(Mass_Action_1_222(Vppnet, RENTP)) + (-1.0)*(Mass_Action_1_222(kdnet, RENT)) + (-1.0)*(Mass_Action_1_222(kd14, RENT))",
+    "RENTP": "0.0 + (1.0)*(Mass_Action_2_221(kasrentp, CDC14, NET1P)) + (-1.0)*(Mass_Action_1_222(kdirentp, RENTP)) + (1.0)*(Mass_Action_1_222(Vkpnet, RENT)) + (-1.0)*(Mass_Action_1_222(Vppnet, RENTP)) + (-1.0)*(Mass_Action_1_222(kdnet, RENTP)) + (-1.0)*(Mass_Action_1_222(kd14, RENTP))",
+    "SBF": "0.0",
+    "SIC1": "0.0 + (1.0)*(ksc1_p + ksc1_p_p * SWI5) + (-1.0)*(Mass_Action_1_222(Vkpc1, SIC1)) + (1.0)*(Mass_Action_1_222(Vppc1, SIC1P)) + (-1.0)*(Mass_Action_2_221(kasb2, CLB2, SIC1)) + (1.0)*(Mass_Action_1_222(kdib2, C2)) + (-1.0)*(Mass_Action_2_221(kasb5, CLB5, SIC1)) + (1.0)*(Mass_Action_1_222(kdib5, C5)) + (1.0)*(Mass_Action_1_222(Vdb2, C2)) + (1.0)*(Mass_Action_1_222(Vdb5, C5))",
+    "SIC1P": "0.0 + (1.0)*(Mass_Action_1_222(Vkpc1, SIC1)) + (-1.0)*(Mass_Action_1_222(Vppc1, SIC1P)) + (-1.0)*(Mass_Action_1_222(kd3c1, SIC1P)) + (1.0)*(Mass_Action_1_222(Vdb2, C2P)) + (1.0)*(Mass_Action_1_222(Vdb5, C5P))",
+    "SIC1T": "0.0",
+    "SPN": "0.0 + (1.0)*(ksspn * CLB2 / (Jspn + CLB2)) + (-1.0)*(Mass_Action_1_222(kdspn, SPN))",
+    "SWI5": "0.0 + (1.0)*(ksswi_p + ksswi_p_p * MCM1) + (-1.0)*(Mass_Action_1_222(kdswi, SWI5)) + (1.0)*(Mass_Action_1_222(kaswi * CDC14, SWI5P)) + (-1.0)*(Mass_Action_1_222(kiswi * CLB2, SWI5))",
+    "SWI5P": "0.0 + (-1.0)*(Mass_Action_1_222(kdswi, SWI5P)) + (-1.0)*(Mass_Action_1_222(kaswi * CDC14, SWI5P)) + (1.0)*(Mass_Action_1_222(kiswi * CLB2, SWI5))",
+    "TEM1GDP": "0.0 + (-1.0)*(MichaelisMenten_220(LTE1, Jatem, 1, TEM1GDP)) + (1.0)*(MichaelisMenten_220(BUB2, Jitem, 1, TEM1GTP))",
+    "TEM1GTP": "0.0 + (1.0)*(MichaelisMenten_220(LTE1, Jatem, 1, TEM1GDP)) + (-1.0)*(MichaelisMenten_220(BUB2, Jitem, 1, TEM1GTP))"
+  },
+  "indices": {
+    "n_species": 50,
+    "n_reactions": 94,
+    "n_params": 163
+  }
+}

@@ -49,12 +49,6 @@ def lz76_complexity(s: str) -> int:
             k = 1
     return c
 
-def normalized_lz_complexity(s: str) -> float:
-    n = len(s)
-    if n <= 1:
-        return 0.0
-    c = lz76_complexity(s)
-    return c / (n / math.log2(n))
 
 
 # -------------------------------
@@ -81,9 +75,9 @@ print("-" * 58)
 
 for s in seqs:
     c1 = CLZ(s)
-    c2 = normalized_lz_complexity(s)
+    c2 = lz76_complexity(s)
     if antropy_available:
-        c3 = lziv_complexity(list(map(int, s)), normalize=True)
+        c3 = lziv_complexity(list(map(int, s)), normalize=False)
     else:
         c3 = None
     print(f"{s:<20} {c1:10.3f} {c2:12.3f} {c3 if c3 is not None else 'N/A':>12}")
