@@ -102,11 +102,11 @@ print("Explained variance ratios (N=2):", pca.explained_variance_ratio_[:3])
 # (e) PCA for N=7, see “thinning” hyperribbon
 # ============================================
 
-N = 7
+N = 150
 theta_samples = sample_thetas(N, num_samples)
 Y_full = np.array([y_theta(t_full, thetas) for thetas in theta_samples])
 
-pca = PCA(n_components=6)
+pca = PCA(n_components=0.95)
 Y_pca = pca.fit_transform(Y_full)
 
 # First 3 PCs
