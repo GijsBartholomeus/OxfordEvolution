@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "/home/b/bartholomeus/Documents/OxfordEvolution/Yeast/Chen/BioEvo/bin/python",
+    "jupyter.kernels.filter": [],
+    "notebook.defaultKernel": "BioEvo"
+}
