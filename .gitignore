@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Simulation / analysis outputs
+*.pkl
+*.npz
+*.npy
+
+# Optional: whole results folders
+results/
+Sloppy/SloppySearch/*.pkl
+
+# Large outputs
+*.pkl
