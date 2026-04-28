@@ -80,3 +80,28 @@ After a large run, regenerate representative traces and the wildtype check plot:
 MPLCONFIGDIR="$PWD/.mplconfig" python plot_complexity_representatives.py
 MPLCONFIGDIR="$PWD/.mplconfig" python plot_wildtype_traces.py
 ```
+
+## NNSE Neutral-Set Sampling
+
+The starter NNSE runner is `wsbw_nnse.py`. It ports the mutation/permutation
+logic from the earlier Chen/Tyson NNSE notebooks into a regular Python script
+and saves neutral-set coordinates as portable `.npz` files.
+
+Quick Chen smoke test:
+
+```bash
+MPLCONFIGDIR="$PWD/.mplconfig" python wsbw_nnse.py --model chen2004 --steps 100 --n-bins 20 --seed 42
+```
+
+Longer Chen run:
+
+```bash
+MPLCONFIGDIR="$PWD/.mplconfig" python wsbw_nnse.py --model chen2004 --steps 6000 --n-bins 50 --seed 42
+```
+
+Other model keys are `kholodenko2000`, `leloup1999`, `locke2005`, `ueda2001`,
+and `vilar2002`. Outputs are written to `results/nnse/`:
+
+- `*_nnse_*.npz`: neutral coordinates, final population, objective values, bins,
+  swap counts, and reference trace.
+- `*_nnse_*.json`: run summary and configuration.

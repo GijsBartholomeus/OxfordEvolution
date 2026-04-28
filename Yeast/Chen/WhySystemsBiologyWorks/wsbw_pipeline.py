@@ -384,6 +384,8 @@ def run_model(spec: ModelSpec, audit: dict, samples: int = 5000, seed: int = 1):
 
 
 def plot_complexity_frequency(all_data: list[dict], out: Path | None = None):
+    k_min = 15.0
+    k_max = 50.0
     colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2"]
     fig, axes = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
     for ax, data, color in zip(axes.ravel(), all_data, colors):
@@ -394,17 +396,15 @@ def plot_complexity_frequency(all_data: list[dict], out: Path | None = None):
         ax.scatter(xs, ys, s=10, color="black", alpha=0.55, linewidths=0)
         bins = defaultdict(list)
         for x, y in zip(xs, ys):
-            bins[round(float(x), 1)].append(float(y))
+            if k_min <= x <= k_max:
+                bins[round(float(x), 1)].append(float(y))
         if len(bins) >= 2:
             bx = np.array(sorted(bins))
             upper = np.array([max(bins[x]) for x in bx])
             lower = np.array([min(bins[x]) for x in bx])
             ax.fill_between(bx, lower, upper, color=color, alpha=0.35)
             ax.plot(bx, upper, color=color, lw=1.5)
-        if data["wildtype_encoding"]:
-            wt_x = data["wildtype_complexity"]
-            wt_y = max(data["wildtype_count"], 0.5) / successes
-            ax.scatter([wt_x], [wt_y], color="red", s=34, zorder=4)
+        ax.set_xlim(k_min, k_max)
         ax.set_yscale("log")
         ax.set_title(f"{data['label']}\n{len(phenos)} phenotypes, {successes} successes", fontsize=10)
         ax.set_xlabel("K(x)")
