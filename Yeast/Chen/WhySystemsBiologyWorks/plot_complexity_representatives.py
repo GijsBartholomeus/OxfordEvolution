@@ -18,6 +18,7 @@ from wsbw_pipeline import (
     SPECS,
     encode_signal,
     prepare_models,
+    sample_label,
 )
 
 
@@ -118,9 +119,12 @@ def plot_representatives(seed=42):
     fig_low, axes_low = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
     fig_high, axes_high = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
     report = {}
+    sample_values = set()
 
     for idx, spec in enumerate(SPECS):
         data = json.loads((RESULTS / f"{spec.key}_complexity_frequency.json").read_text())
+        if "samples" in data:
+            sample_values.add(int(data["samples"]))
         found, low, high = find_representatives(spec, audit, data, seed + idx)
         report[spec.key] = {
             "low_target": {"complexity": low["complexity"], "count": low["count"], "found": "low" in found},
@@ -150,10 +154,13 @@ def plot_representatives(seed=42):
             ax.set_ylabel(spec.output)
             ax.grid(alpha=0.25)
 
-    low_out = PLOTS / "oscillatory_subset_low_complexity_representatives_trough_windows.png"
-    high_out = PLOTS / "oscillatory_subset_high_complexity_representatives_trough_windows.png"
+    label = sample_label(next(iter(sample_values))) if len(sample_values) == 1 else "N=mixed"
+    low_out = PLOTS / f"oscillatory_subset_low_complexity_representatives_trough_windows_{label}.png"
+    high_out = PLOTS / f"oscillatory_subset_high_complexity_representatives_trough_windows_{label}.png"
     fig_low.savefig(low_out, dpi=220)
     fig_high.savefig(high_out, dpi=220)
+    fig_low.savefig(PLOTS / "oscillatory_subset_low_complexity_representatives_trough_windows.png", dpi=220)
+    fig_high.savefig(PLOTS / "oscillatory_subset_high_complexity_representatives_trough_windows.png", dpi=220)
     fig_low.savefig(PLOTS / "oscillatory_subset_low_complexity_representatives.png", dpi=220)
     fig_high.savefig(PLOTS / "oscillatory_subset_high_complexity_representatives.png", dpi=220)
     (RESULTS / "representative_trace_report.json").write_text(json.dumps(report, indent=2))

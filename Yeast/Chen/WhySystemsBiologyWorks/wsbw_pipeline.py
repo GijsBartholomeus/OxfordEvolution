@@ -47,6 +47,26 @@ class ModelSpec:
     warmup: Callable[[roadrunner.RoadRunner], None] | None = None
 
 
+def sample_label(samples: int | None) -> str:
+    if samples is None:
+        return "N=unknown"
+    if samples <= 0:
+        return f"N={samples}"
+    exponent = round(math.log10(samples))
+    if 10**exponent == samples:
+        return f"N=1e{exponent}"
+    return f"N={samples}"
+
+
+def sample_label_from_data(all_data: list[dict]) -> str:
+    sample_values = {int(data["samples"]) for data in all_data if "samples" in data}
+    if len(sample_values) == 1:
+        return sample_label(sample_values.pop())
+    if sample_values:
+        return "N=mixed"
+    return "N=unknown"
+
+
 def set_if_exists(rr: roadrunner.RoadRunner, key: str, value: float) -> None:
     try:
         rr.setValue(key, value)
@@ -383,9 +403,13 @@ def run_model(spec: ModelSpec, audit: dict, samples: int = 5000, seed: int = 1):
     return data
 
 
-def plot_complexity_frequency(all_data: list[dict], out: Path | None = None):
-    k_min = 15.0
-    k_max = 50.0
+def plot_complexity_frequency(
+    all_data: list[dict],
+    out: Path | None = None,
+    show_wildtype: bool = True,
+    min_complexity: float | None = None,
+    max_complexity: float | None = None,
+):
     colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2"]
     fig, axes = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
     for ax, data, color in zip(axes.ravel(), all_data, colors):
@@ -396,7 +420,11 @@ def plot_complexity_frequency(all_data: list[dict], out: Path | None = None):
         ax.scatter(xs, ys, s=10, color="black", alpha=0.55, linewidths=0)
         bins = defaultdict(list)
         for x, y in zip(xs, ys):
-            if k_min <= x <= k_max:
+            if min_complexity is not None and x < min_complexity:
+                continue
+            if max_complexity is not None and x > max_complexity:
+                continue
+            else:
                 bins[round(float(x), 1)].append(float(y))
         if len(bins) >= 2:
             bx = np.array(sorted(bins))
@@ -404,28 +432,49 @@ def plot_complexity_frequency(all_data: list[dict], out: Path | None = None):
             lower = np.array([min(bins[x]) for x in bx])
             ax.fill_between(bx, lower, upper, color=color, alpha=0.35)
             ax.plot(bx, upper, color=color, lw=1.5)
-        ax.set_xlim(k_min, k_max)
+        if show_wildtype and data.get("wildtype_encoding"):
+            wt_x = data["wildtype_complexity"]
+            wt_y = max(data["wildtype_count"], 0.5) / successes
+            ax.scatter([wt_x], [wt_y], color="red", s=34, zorder=4)
+        if min_complexity is not None or max_complexity is not None:
+            left = min_complexity if min_complexity is not None else float(np.nanmin(xs))
+            right = max_complexity if max_complexity is not None else float(np.nanmax(xs))
+            ax.set_xlim(left, right)
         ax.set_yscale("log")
-        ax.set_title(f"{data['label']}\n{len(phenos)} phenotypes, {successes} successes", fontsize=10)
+        ax.set_title(data["label"], fontsize=10)
         ax.set_xlabel("K(x)")
         ax.set_ylabel("P(x)")
         ax.grid(alpha=0.25)
     if out is None:
-        out = PLOTS / "oscillatory_subset_complexity_frequency_trough_windows.png"
+        out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_{sample_label_from_data(all_data)}.png"
     fig.savefig(out, dpi=220)
     legacy_out = PLOTS / "oscillatory_subset_complexity_frequency.png"
     if out != legacy_out:
         fig.savefig(legacy_out, dpi=220)
+    trough_legacy_out = PLOTS / "oscillatory_subset_complexity_frequency_trough_windows.png"
+    if out != trough_legacy_out:
+        fig.savefig(trough_legacy_out, dpi=220)
     return out
 
 
-def main(samples: int = 1000, seed: int = 1):
+def main(
+    samples: int = 1000,
+    seed: int = 1,
+    show_wildtype: bool = True,
+    min_complexity: float | None = None,
+    max_complexity: float | None = None,
+):
     audit = prepare_models()
     all_data = []
     for idx, spec in enumerate(SPECS):
         print(f"Running {spec.label} with {audit[spec.key]['free_parameter_count']} free parameters")
         all_data.append(run_model(spec, audit, samples=samples, seed=seed + idx))
-    out = plot_complexity_frequency(all_data)
+    out = plot_complexity_frequency(
+        all_data,
+        show_wildtype=show_wildtype,
+        min_complexity=min_complexity,
+        max_complexity=max_complexity,
+    )
     print(out)
 
 
@@ -435,5 +484,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--samples", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=1)
+    parser.add_argument("--hide-wildtype", action="store_true")
+    parser.add_argument("--min-complexity", type=float, default=None)
+    parser.add_argument("--max-complexity", type=float, default=None)
     args = parser.parse_args()
-    main(samples=args.samples, seed=args.seed)
+    main(
+        samples=args.samples,
+        seed=args.seed,
+        show_wildtype=not args.hide_wildtype,
+        min_complexity=args.min_complexity,
+        max_complexity=args.max_complexity,
+    )

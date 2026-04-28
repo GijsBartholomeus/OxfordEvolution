@@ -356,7 +356,7 @@ def run_nnse(config: NNSEConfig) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="NNSE neutral-set sampler for WSBW models")
-    parser.add_argument("--model", default="chen2004", choices=[spec.key for spec in SPECS])
+    parser.add_argument("--model", default="chen2004", choices=[spec.key for spec in SPECS] + ["all"])
     parser.add_argument("--steps", type=int, default=6000)
     parser.add_argument("--n-bins", type=int, default=50)
     parser.add_argument("--sigma", type=float, default=0.01)
@@ -370,7 +370,13 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--neutral-threshold", type=float, default=None)
     args = parser.parse_args()
-    run_nnse(NNSEConfig(**vars(args)))
+    if args.model == "all":
+        for spec in SPECS:
+            model_args = vars(args).copy()
+            model_args["model"] = spec.key
+            run_nnse(NNSEConfig(**model_args))
+    else:
+        run_nnse(NNSEConfig(**vars(args)))
 
 
 if __name__ == "__main__":

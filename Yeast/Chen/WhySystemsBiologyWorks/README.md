@@ -4,6 +4,11 @@ This folder contains the first modular pipeline for reproducing Chico-style
 complexity-frequency plots on the oscillatory subset of the Gutenkunst/Chico
 models.
 
+Quick command references:
+
+- Complexity-frequency runs: [INSTRUCTIONS_PIPELINE.md](INSTRUCTIONS_PIPELINE.md)
+- NNSE neutral-set sampling: [INSTRUCTIONS_NNSE.md](INSTRUCTIONS_NNSE.md)
+
 ## Current subset
 
 - Chen 2004, output `CLB2`
@@ -45,6 +50,9 @@ whose output scales differ by orders of magnitude.
 
 ## Running serial or parallel
 
+See [INSTRUCTIONS_PIPELINE.md](INSTRUCTIONS_PIPELINE.md) for paste-ready
+commands.
+
 Serial reference run:
 
 ```bash
@@ -82,6 +90,9 @@ MPLCONFIGDIR="$PWD/.mplconfig" python plot_wildtype_traces.py
 ```
 
 ## NNSE Neutral-Set Sampling
+
+See [INSTRUCTIONS_NNSE.md](INSTRUCTIONS_NNSE.md) for paste-ready commands and
+output-file details.
 
 The starter NNSE runner is `wsbw_nnse.py`. It ports the mutation/permutation
 logic from the earlier Chen/Tyson NNSE notebooks into a regular Python script

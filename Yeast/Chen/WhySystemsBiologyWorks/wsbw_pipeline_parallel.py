@@ -19,6 +19,7 @@ from wsbw_pipeline import (
     clz,
     plot_complexity_frequency,
     prepare_models,
+    sample_label,
     simulate_encoding,
 )
 
@@ -166,7 +167,16 @@ def run_model_parallel(spec_key: str, audit: dict, samples: int, seed: int, work
     return data
 
 
-def main(samples: int, seed: int, workers: int | None, chunks_per_worker: int, models: list[str] | None) -> Path:
+def main(
+    samples: int,
+    seed: int,
+    workers: int | None,
+    chunks_per_worker: int,
+    models: list[str] | None,
+    show_wildtype: bool = True,
+    min_complexity: float | None = None,
+    max_complexity: float | None = None,
+) -> Path:
     audit = prepare_models()
     selected = [spec for spec in SPECS if models is None or spec.key in models]
     if not selected:
@@ -190,7 +200,18 @@ def main(samples: int, seed: int, workers: int | None, chunks_per_worker: int, m
 
     # Keep the standard 2x3 figure only when all models are present.
     if len(all_data) == len(SPECS):
-        out = plot_complexity_frequency(all_data, PLOTS / "oscillatory_subset_complexity_frequency_trough_windows_parallel.png")
+        out = plot_complexity_frequency(
+            all_data,
+            PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_parallel_{sample_label(samples)}.png",
+            show_wildtype=show_wildtype,
+            min_complexity=min_complexity,
+            max_complexity=max_complexity,
+        )
+        legacy_out = PLOTS / "oscillatory_subset_complexity_frequency_trough_windows_parallel.png"
+        if out != legacy_out:
+            import matplotlib.pyplot as plt
+
+            plt.gcf().savefig(legacy_out, dpi=220)
         print(out)
         return out
     out = RESULTS / "parallel_subset_complete.txt"
@@ -205,6 +226,9 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--workers", type=int, default=None, help="Worker processes. Default: cpu_count - 1")
     parser.add_argument("--chunks-per-worker", type=int, default=2)
+    parser.add_argument("--hide-wildtype", action="store_true")
+    parser.add_argument("--min-complexity", type=float, default=None)
+    parser.add_argument("--max-complexity", type=float, default=None)
     parser.add_argument(
         "--models",
         nargs="*",
@@ -218,4 +242,7 @@ if __name__ == "__main__":
         workers=args.workers,
         chunks_per_worker=args.chunks_per_worker,
         models=args.models,
+        show_wildtype=not args.hide_wildtype,
+        min_complexity=args.min_complexity,
+        max_complexity=args.max_complexity,
     )
