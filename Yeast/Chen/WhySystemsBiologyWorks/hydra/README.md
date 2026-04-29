@@ -140,6 +140,13 @@ neutral samples after all chains finish:
 python hydra/wsbw_merge_nnse_parallel_chains.py --tag chen_nnse_parallel_25chains --model chen2004
 ```
 
+Then either inspect the merged file in `NNSE/NeutralSetSanityCheck.ipynb` or
+run the first accessibility/null-geometry analysis directly:
+
+```bash
+python nnse_accessibility.py --model chen2004 --n-random 10000 --max-cloud 50000
+```
+
 Set `WSBW_NNSE_REFILL_ATTEMPTS` to a small positive number if you want the
 runner to try random refills for newly opened loose bins after swaps. Leave it
 at the default `0` for the cleanest first benchmark from the merged initial

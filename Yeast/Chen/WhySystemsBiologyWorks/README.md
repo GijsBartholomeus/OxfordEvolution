@@ -102,7 +102,14 @@ MPLCONFIGDIR="$PWD/.mplconfig" python plot_wildtype_traces.py
 ## NNSE Neutral-Set Sampling
 
 See [INSTRUCTIONS_NNSE.md](INSTRUCTIONS_NNSE.md) for paste-ready commands and
-output-file details.
+output-file details. For quick inspection and first downstream geometry
+analysis, use:
+
+- `NNSE/NeutralSetSanityCheck.ipynb`: automatically opens the largest available
+  merged neutral-set `.npz`, prints bin counts, and plots representative traces.
+- `NNSE/NeutralSetAccessibility.ipynb`: compares random-start distances to the
+  NNSE cloud against compact, covariance-matched, shuffled, and tube-like null
+  geometries.
 
 The starter NNSE runner is `wsbw_nnse.py`. It ports the mutation/permutation
 logic from the earlier Chen/Tyson NNSE notebooks into a regular Python script

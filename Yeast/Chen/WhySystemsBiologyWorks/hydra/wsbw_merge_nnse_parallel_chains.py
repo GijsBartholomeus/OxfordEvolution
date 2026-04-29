@@ -41,6 +41,11 @@ def main(args: argparse.Namespace) -> Path:
         data = np.load(path, allow_pickle=True)
         points = np.asarray(data["neutral_points"], dtype=float)
         values = np.asarray(data["neutral_objective_values"], dtype=float)
+        if len(points) != len(values):
+            n = min(len(points), len(values))
+            print(f"Warning: {path.name} has {len(points)} neutral points but {len(values)} values; truncating to {n}")
+            points = points[:n]
+            values = values[:n]
         if points.size:
             neutral_points.append(points)
             neutral_values.append(values)

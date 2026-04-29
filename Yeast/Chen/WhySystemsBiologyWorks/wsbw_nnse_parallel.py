@@ -265,8 +265,14 @@ def checkpoint(
 ) -> None:
     final_x = np.array([x if x is not None else np.full_like(p0, np.nan) for x in xs])
     final_f = np.array([fx if fx is not None else np.nan for fx in fs], dtype=float)
-    neutral = np.unique(np.asarray(neutral_points, dtype=float), axis=0) if neutral_points else np.empty((0, len(p0)))
-    neutral_f = np.asarray(neutral_values, dtype=float)
+    if neutral_points:
+        raw_neutral = np.asarray(neutral_points, dtype=float)
+        raw_neutral_f = np.asarray(neutral_values, dtype=float)
+        neutral, unique_idx = np.unique(raw_neutral, axis=0, return_index=True)
+        neutral_f = raw_neutral_f[unique_idx]
+    else:
+        neutral = np.empty((0, len(p0)))
+        neutral_f = np.empty(0, dtype=float)
     volume_ratios = np.divide(
         swap_count,
         opportunity_count,

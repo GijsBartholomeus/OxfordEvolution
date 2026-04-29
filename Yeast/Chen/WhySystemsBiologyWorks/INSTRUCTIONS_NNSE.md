@@ -70,3 +70,38 @@ reference_signal
 The later accessibility analysis should use `neutral_points` as the NNSE sample
 cloud. If `neutral_points` is empty or very small, rerun with more steps, more
 bins, or a less strict `--neutral-threshold`.
+
+## Inspecting and analyzing a merged neutral set
+
+After merging parallel chains, open:
+
+```text
+NNSE/NeutralSetSanityCheck.ipynb
+```
+
+By default it selects the largest available merged neutral-set `.npz` under
+`results/nnse_parallel/`. Set `NPZ_PATH` in the first code cell if you want to
+inspect a specific file.
+
+For the first accessibility analysis, open:
+
+```text
+NNSE/NeutralSetAccessibility.ipynb
+```
+
+This computes distances from random parameter starts to the NNSE cloud and
+compares them with compact ball/box, covariance-ellipsoid, shuffled-marginal,
+and synthetic-tube null geometries. The same analysis can be run headlessly:
+
+```bash
+MPLCONFIGDIR="$PWD/.mplconfig" python nnse_accessibility.py \
+  --model chen2004 \
+  --n-random 10000 \
+  --max-cloud 50000
+```
+
+The output is saved in:
+
+```text
+results/nnse_accessibility/
+```
