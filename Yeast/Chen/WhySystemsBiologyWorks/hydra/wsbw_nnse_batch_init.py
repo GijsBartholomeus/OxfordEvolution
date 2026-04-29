@@ -275,14 +275,22 @@ def run_batch_init(args: argparse.Namespace) -> Path:
     tag = args.tag or f"{spec.key}_batch_{args.candidates}"
     out_dir = OUT_ROOT / tag
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / f"{spec.key}_nnse_batch_init_N={args.candidates}.npz"
+    chunk_suffix = f"_chunk-{args.chunk_id}" if args.chunk_id is not None else ""
+    out = out_dir / f"{spec.key}_nnse_batch_init_N={args.candidates}{chunk_suffix}.npz"
 
     candidate_counts_kept = np.zeros(len(thresholds), dtype=np.int64)
     best_by_bin = np.full(len(thresholds), np.nan, dtype=float)
+    candidate_bin_indices: list[int] = []
+    candidate_objective_values: list[float] = []
+    candidate_vectors: list[list[float]] = []
     for idx, values in candidates.items():
         candidate_counts_kept[idx] = len(values)
         if values:
             best_by_bin[idx] = values[0][0]
+        for value, vector in values:
+            candidate_bin_indices.append(idx)
+            candidate_objective_values.append(float(value))
+            candidate_vectors.append(vector)
 
     np.savez_compressed(
         out,
@@ -295,6 +303,11 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         bin_counts=bin_counts,
         candidate_counts_kept=candidate_counts_kept,
         best_by_bin=best_by_bin,
+        candidate_bin_indices=np.asarray(candidate_bin_indices, dtype=int),
+        candidate_objective_values=np.asarray(candidate_objective_values, dtype=float),
+        candidate_vectors=np.asarray(candidate_vectors, dtype=float)
+        if candidate_vectors
+        else np.empty((0, len(params)), dtype=float),
         global_best_vector=np.asarray(best_vector if best_vector is not None else np.full(len(params), np.nan), dtype=float),
         global_best_objective=np.asarray([best_value], dtype=float),
     )
@@ -304,6 +317,7 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         "label": spec.label,
         "output": spec.output,
         "candidates": args.candidates,
+        "chunk_id": args.chunk_id,
         "workers": workers,
         "batches": len(tasks),
         "batch_size_target": args.batch_size,
@@ -347,6 +361,7 @@ def main() -> None:
     parser.add_argument("--batch-size", type=int, default=250)
     parser.add_argument("--keep-per-bin", type=int, default=32)
     parser.add_argument("--tag", default=None)
+    parser.add_argument("--chunk-id", default=None)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-bins", type=int, default=50)
     parser.add_argument("--bin-min", type=float, default=1e-2)

@@ -37,7 +37,7 @@ fi
 
 echo "Using ${WORKERS} NNSE batch workers"
 
-"${PYTHON}" hydra/wsbw_nnse_batch_init.py \
+ARGS=(
   --model "${WSBW_NNSE_MODEL:-chen2004}" \
   --candidates "${WSBW_NNSE_CANDIDATES:-10000}" \
   --workers "${WORKERS}" \
@@ -50,3 +50,10 @@ echo "Using ${WORKERS} NNSE batch workers"
   --bin-max "${WSBW_NNSE_BIN_MAX:-250.0}" \
   --bin-top "${WSBW_NNSE_BIN_TOP:-1000.0}" \
   --spacing "${WSBW_NNSE_SPACING:-log}"
+)
+
+if [[ -n "${WSBW_NNSE_CHUNK_ID:-}" ]]; then
+  ARGS+=(--chunk-id "${WSBW_NNSE_CHUNK_ID}")
+fi
+
+"${PYTHON}" hydra/wsbw_nnse_batch_init.py "${ARGS[@]}"

@@ -81,3 +81,28 @@ results/nnse_batch_init/<tag>/
 Inspect the JSON summary first. The key fields are `elapsed_seconds`,
 `candidates_per_second`, `finite_fraction`, `placed_fraction`,
 `filled_thresholds`, and `bin_counts`.
+
+To use many Hydra nodes, run the chunked version. This is the preferred route
+for `1e6` or larger NNSE random screening:
+
+```bash
+bash hydra/submit_nnse_batch_chunks.sh chen_nnse_batch_1e6_chunked chen2004 25 40000 16 2 long
+```
+
+This submits 25 jobs, each using 16 cores and screening 40,000 Chen candidates,
+for 1,000,000 total candidates. When all jobs finish, the expected chunk file
+count is 25:
+
+```bash
+find results/nnse_batch_init/chen_nnse_batch_1e6_chunked -name '*chunk-*.json' | wc -l
+```
+
+Merge the chunks into one NNSE initialisation file:
+
+```bash
+python hydra/wsbw_merge_nnse_batch_chunks.py --tag chen_nnse_batch_1e6_chunked --model chen2004
+```
+
+The merged `.npz` contains the same `initial_population`,
+`initial_objective_values`, `parameter_names`, and `bin_thresholds` arrays as
+the single-job version, but pooled across all chunk jobs.
