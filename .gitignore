@@ -1,6 +1,7 @@
 # Python cache
 __pycache__/
 *.pyc
+.DS_Store
 
 # Jupyter
 .ipynb_checkpoints/
@@ -13,6 +14,13 @@ __pycache__/
 # Optional: whole results folders
 results/
 Sloppy/SloppySearch/*.pkl
+
+# WhySystemsBiologyWorks generated outputs
+Yeast/Chen/WhySystemsBiologyWorks/plots/*
+Yeast/Chen/WhySystemsBiologyWorks/results/*
+!Yeast/Chen/WhySystemsBiologyWorks/results/
+!Yeast/Chen/WhySystemsBiologyWorks/plots/.gitkeep
+!Yeast/Chen/WhySystemsBiologyWorks/results/.gitkeep
 
 # Large outputs
 *.pkl

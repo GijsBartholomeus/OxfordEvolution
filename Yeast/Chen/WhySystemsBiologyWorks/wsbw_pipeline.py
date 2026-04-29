@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import random
 import re
+import shutil
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -67,6 +69,63 @@ def sample_label_from_data(all_data: list[dict]) -> str:
     return "N=unknown"
 
 
+def parse_sample_label(text: str) -> int | None:
+    match = re.search(r"N=(\d+(?:e\d+)?)", text)
+    if not match:
+        return None
+    value = match.group(1)
+    if "e" in value:
+        mantissa, exponent = value.split("e", 1)
+        return int(float(mantissa) * (10 ** int(exponent)))
+    return int(value)
+
+
+def paper_figure_dirs() -> list[Path]:
+    dirs: list[Path] = []
+    configured = os.environ.get("WSBW_PAPER_DIR")
+    if configured:
+        dirs.append(Path(configured).expanduser() / "Figures")
+
+    papers_root = Path("/Users/gijsbartholomeus/Documents/STUDIE/Papers/WhySystemsBiologyWorks")
+    candidates = [
+        papers_root / "PNAS-WhySystemsBiologyWorks-git" / "Figures",
+        papers_root / "PNAS_WhySystemsBiologyWorks" / "Figures",
+        papers_root / "Figures",
+    ]
+    if papers_root.exists():
+        candidates.extend(path / "Figures" for path in papers_root.glob("PNAS*") if path.is_dir())
+    dirs.extend(candidates)
+
+    unique: list[Path] = []
+    seen: set[Path] = set()
+    for directory in dirs:
+        resolved = directory.expanduser()
+        if resolved not in seen:
+            unique.append(resolved)
+            seen.add(resolved)
+    return unique
+
+
+def max_sample_in_plot_dir() -> int | None:
+    values = [parse_sample_label(path.name) for path in PLOTS.glob("*.png")]
+    values = [value for value in values if value is not None]
+    return max(values) if values else None
+
+
+def sync_freqcomp_to_paper(plot_path: Path, all_data: list[dict]) -> None:
+    samples = parse_sample_label(plot_path.name) or parse_sample_label(sample_label_from_data(all_data))
+    largest = max_sample_in_plot_dir()
+    is_largest = samples is not None and largest is not None and samples >= largest
+    for figures_dir in paper_figure_dirs():
+        target = figures_dir / "FreqComp.png"
+        if not figures_dir.exists():
+            continue
+        if is_largest or not target.exists():
+            shutil.copy2(plot_path, target)
+            reason = "largest N in plots" if is_largest else "FreqComp.png was missing"
+            print(f"Synced {plot_path.name} to {target} ({reason})")
+
+
 def set_if_exists(rr: roadrunner.RoadRunner, key: str, value: float) -> None:
     try:
         rr.setValue(key, value)
@@ -108,6 +167,7 @@ SPECS = [
     ModelSpec("locke2005", "Locke 2005", "Locke_2005", MODELS / "BIOMD0000000055.xml", "cXn", 106.272, 1001, 10.272, 96.000, warmup=warmup_locke),
     ModelSpec("ueda2001", "Ueda 2001", "Ueda_2001", MODELS / "BIOMD0000000022.xml", "CCc", 88.713, 1001, 2.269, 86.444, warmup=warmup_ueda),
     ModelSpec("vilar2002", "Vilar 2002", "Vilar_2002", MODELS / "BIOMD0000000035.xml", "C", 116.960, 1201, 14.705, 102.255),
+    ModelSpec("tyson1991", "Tyson 1991", "Tyson_1991", MODELS / "BIOMD0000000005.xml", "M", 160.0, 1001, 0.0, 160.0),
 ]
 
 
@@ -407,44 +467,61 @@ def plot_complexity_frequency(
     all_data: list[dict],
     out: Path | None = None,
     show_wildtype: bool = True,
+    auto_hide_low_wildtype: bool = True,
     min_complexity: float | None = None,
     max_complexity: float | None = None,
 ):
-    colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2"]
-    fig, axes = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
-    for ax, data, color in zip(axes.ravel(), all_data, colors):
-        phenos = data["phenotypes"]
-        successes = max(data["successes"], 1)
-        xs = np.array([p["complexity"] for p in phenos])
-        ys = np.array([p["count"] / successes for p in phenos])
-        ax.scatter(xs, ys, s=10, color="black", alpha=0.55, linewidths=0)
-        bins = defaultdict(list)
-        for x, y in zip(xs, ys):
-            if min_complexity is not None and x < min_complexity:
-                continue
-            if max_complexity is not None and x > max_complexity:
-                continue
-            else:
-                bins[round(float(x), 1)].append(float(y))
-        if len(bins) >= 2:
-            bx = np.array(sorted(bins))
-            upper = np.array([max(bins[x]) for x in bx])
-            lower = np.array([min(bins[x]) for x in bx])
-            ax.fill_between(bx, lower, upper, color=color, alpha=0.35)
-            ax.plot(bx, upper, color=color, lw=1.5)
-        if show_wildtype and data.get("wildtype_encoding"):
-            wt_x = data["wildtype_complexity"]
-            wt_y = max(data["wildtype_count"], 0.5) / successes
-            ax.scatter([wt_x], [wt_y], color="red", s=34, zorder=4)
-        if min_complexity is not None or max_complexity is not None:
-            left = min_complexity if min_complexity is not None else float(np.nanmin(xs))
-            right = max_complexity if max_complexity is not None else float(np.nanmax(xs))
-            ax.set_xlim(left, right)
-        ax.set_yscale("log")
-        ax.set_title(data["label"], fontsize=10)
-        ax.set_xlabel("K(x)")
-        ax.set_ylabel("P(x)")
-        ax.grid(alpha=0.25)
+    data_by_model = {data["model"]: data for data in all_data}
+    if "chen2004" in data_by_model and len(all_data) == 7:
+        out = plot_complexity_frequency_chico_layout(
+            all_data,
+            out=out,
+            show_wildtype=show_wildtype,
+            auto_hide_low_wildtype=auto_hide_low_wildtype,
+            min_complexity=min_complexity,
+            max_complexity=max_complexity,
+            grid=False,
+        )
+        grid_out = out.with_name(f"{out.stem}_grid{out.suffix}")
+        plot_complexity_frequency_chico_layout(
+            all_data,
+            out=grid_out,
+            show_wildtype=show_wildtype,
+            auto_hide_low_wildtype=auto_hide_low_wildtype,
+            min_complexity=min_complexity,
+            max_complexity=max_complexity,
+            grid=True,
+        )
+        legacy_out = PLOTS / "oscillatory_subset_complexity_frequency.png"
+        if out != legacy_out:
+            legacy_out.write_bytes(out.read_bytes())
+        trough_legacy_out = PLOTS / "oscillatory_subset_complexity_frequency_trough_windows.png"
+        if out != trough_legacy_out:
+            trough_legacy_out.write_bytes(out.read_bytes())
+        sync_freqcomp_to_paper(out, all_data)
+        return out
+
+    colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2", "#9C755F"]
+    ncols = min(3, max(1, len(all_data)))
+    nrows = int(math.ceil(len(all_data) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(4.3 * ncols, 3.2 * nrows), constrained_layout=True)
+    axes = np.atleast_1d(axes).ravel()
+    for ax, data, color in zip(axes, all_data, colors):
+        draw_complexity_panel(
+            ax,
+            data,
+            color,
+            show_wildtype=show_wildtype,
+            auto_hide_low_wildtype=False,
+            min_complexity=min_complexity,
+            max_complexity=max_complexity,
+            title=data["label"],
+            xlabel="K(x)",
+            ylabel="P(x)",
+            grid=False,
+        )
+    for ax in axes[len(all_data) :]:
+        ax.axis("off")
     if out is None:
         out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_{sample_label_from_data(all_data)}.png"
     fig.savefig(out, dpi=220)
@@ -454,6 +531,173 @@ def plot_complexity_frequency(
     trough_legacy_out = PLOTS / "oscillatory_subset_complexity_frequency_trough_windows.png"
     if out != trough_legacy_out:
         fig.savefig(trough_legacy_out, dpi=220)
+    sync_freqcomp_to_paper(out, all_data)
+    return out
+
+
+def panel_points(data: dict) -> tuple[np.ndarray, np.ndarray]:
+    phenos = data["phenotypes"]
+    successes = max(data["successes"], 1)
+    xs = np.array([p["complexity"] for p in phenos], dtype=float)
+    ys = np.array([p["count"] / successes for p in phenos], dtype=float)
+    return xs, ys
+
+
+def draw_complexity_panel(
+    ax,
+    data: dict,
+    color: str,
+    *,
+    show_wildtype: bool,
+    auto_hide_low_wildtype: bool,
+    min_complexity: float | None,
+    max_complexity: float | None,
+    title: str | None = None,
+    roman: str | None = None,
+    xlabel: str | None = None,
+    ylabel: str | None = None,
+    grid: bool = False,
+    scatter_size: float = 10,
+    hull_alpha: float = 0.35,
+    trim_ylim_to_points: bool = True,
+):
+    xs, ys = panel_points(data)
+    ax.scatter(xs, ys, s=scatter_size, color="black", alpha=0.58, linewidths=0, zorder=3)
+    bins = defaultdict(list)
+    for x, y in zip(xs, ys):
+        if min_complexity is not None and x < min_complexity:
+            continue
+        if max_complexity is not None and x > max_complexity:
+            continue
+        bins[round(float(x), 1)].append(float(y))
+    if len(bins) >= 2:
+        bx = np.array(sorted(bins))
+        upper = np.array([max(bins[x]) for x in bx])
+        lower = np.array([min(bins[x]) for x in bx])
+        ax.fill_between(bx, lower, upper, color=color, alpha=hull_alpha, zorder=1)
+        ax.plot(bx, upper, color=color, lw=1.7, zorder=2)
+    wt_y = None
+    if show_wildtype and data.get("wildtype_encoding"):
+        wt_x = data["wildtype_complexity"]
+        wt_y = max(data["wildtype_count"], 0.5) / max(data["successes"], 1)
+        positive = ys[ys > 0]
+        should_hide_wt = auto_hide_low_wildtype and len(positive) and wt_y < float(np.nanmin(positive))
+        if not should_hide_wt:
+            ax.scatter([wt_x], [wt_y], color="red", edgecolor="black", linewidth=0.4, s=34, zorder=5)
+        else:
+            wt_y = None
+    if min_complexity is not None or max_complexity is not None:
+        left = min_complexity if min_complexity is not None else float(np.nanmin(xs))
+        right = max_complexity if max_complexity is not None else float(np.nanmax(xs))
+        ax.set_xlim(left, right)
+    ax.set_yscale("log")
+    if trim_ylim_to_points and len(ys):
+        positive = ys[ys > 0]
+        if len(positive):
+            ymin = float(np.nanmin(positive))
+            ymax = float(np.nanmax(positive))
+            if wt_y is not None and wt_y >= ymin:
+                ymin = min(ymin, float(wt_y))
+            if wt_y is not None:
+                ymax = max(ymax, float(wt_y))
+            ax.set_ylim(ymin / 1.4, ymax * 1.5)
+    if title:
+        ax.set_title(title, fontsize=10)
+    if roman:
+        ax.text(0.95, 0.92, roman, transform=ax.transAxes, ha="right", va="top", fontsize=12, fontweight="bold")
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
+    ax.grid(alpha=0.0 if not grid else 0.25)
+    if not grid:
+        ax.grid(False)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+
+def plot_complexity_frequency_chico_layout(
+    all_data: list[dict],
+    out: Path | None,
+    show_wildtype: bool,
+    auto_hide_low_wildtype: bool,
+    min_complexity: float | None,
+    max_complexity: float | None,
+    grid: bool,
+) -> Path:
+    data_by_model = {data["model"]: data for data in all_data}
+    chen = data_by_model["chen2004"]
+    right_order = ["kholodenko2000", "leloup1999", "locke2005", "ueda2001", "vilar2002", "tyson1991"]
+    right_data = [data_by_model[key] for key in right_order if key in data_by_model]
+    colors = {
+        "chen2004": "#9C6BC7",
+        "kholodenko2000": "#4C78A8",
+        "leloup1999": "#F58518",
+        "locke2005": "#54A24B",
+        "ueda2001": "#E45756",
+        "vilar2002": "#B279A2",
+        "tyson1991": "#9C755F",
+    }
+    all_x = np.concatenate([panel_points(data)[0] for data in all_data])
+    xmin = min_complexity if min_complexity is not None else float(np.floor(np.nanmin(all_x)))
+    xmax = max_complexity if max_complexity is not None else float(np.ceil(np.nanmax(all_x)))
+
+    fig = plt.figure(figsize=(13.5, 5.8))
+    ax_a = fig.add_axes([0.065, 0.14, 0.40, 0.78])
+    draw_complexity_panel(
+        ax_a,
+        chen,
+        colors["chen2004"],
+        show_wildtype=show_wildtype,
+        auto_hide_low_wildtype=auto_hide_low_wildtype,
+        min_complexity=min_complexity,
+        max_complexity=max_complexity,
+        xlabel=r"Phenotype complexity $K(x)$",
+        ylabel=r"Phenotype frequency $P(x)$",
+        grid=grid,
+        scatter_size=13,
+        hull_alpha=0.45,
+    )
+    ax_a.text(-0.13, 1.03, "A", transform=ax_a.transAxes, ha="left", va="bottom", fontsize=15, fontweight="bold")
+
+    left0 = 0.535
+    bottom0 = 0.12
+    panel_w = 0.165
+    panel_h = 0.22
+    xgap = 0.085
+    ygap = 0.105
+    romans = ["i", "ii", "iii", "iv", "v", "vi"]
+    for idx, (data, roman) in enumerate(zip(right_data, romans)):
+        row = idx // 2
+        col = idx % 2
+        x0 = left0 + col * (panel_w + xgap)
+        y0 = bottom0 + (2 - row) * (panel_h + ygap)
+        ax = fig.add_axes([x0, y0, panel_w, panel_h])
+        draw_complexity_panel(
+            ax,
+            data,
+            colors.get(data["model"], "#4C78A8"),
+            show_wildtype=show_wildtype,
+            auto_hide_low_wildtype=auto_hide_low_wildtype,
+            min_complexity=xmin,
+            max_complexity=xmax,
+            roman=roman,
+            xlabel=r"$K(x)$" if idx >= 4 else None,
+            ylabel=r"$P(x)$" if idx % 2 == 0 else None,
+            grid=grid,
+            scatter_size=8,
+        )
+        ax.set_xlim(xmin, xmax)
+        ax.tick_params(labelsize=8)
+        if idx % 2 != 0:
+            ax.set_yticklabels([])
+        if idx < 4:
+            ax.set_xticklabels([])
+    fig.text(0.49, 0.96, "B", ha="left", va="top", fontsize=15, fontweight="bold")
+
+    if out is None:
+        out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_{sample_label_from_data(all_data)}.png"
+    fig.savefig(out, dpi=300)
     return out
 
 
@@ -461,6 +705,7 @@ def main(
     samples: int = 1000,
     seed: int = 1,
     show_wildtype: bool = True,
+    auto_hide_low_wildtype: bool = True,
     min_complexity: float | None = None,
     max_complexity: float | None = None,
 ):
@@ -472,6 +717,7 @@ def main(
     out = plot_complexity_frequency(
         all_data,
         show_wildtype=show_wildtype,
+        auto_hide_low_wildtype=auto_hide_low_wildtype,
         min_complexity=min_complexity,
         max_complexity=max_complexity,
     )
@@ -485,6 +731,7 @@ if __name__ == "__main__":
     parser.add_argument("--samples", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--hide-wildtype", action="store_true")
+    parser.add_argument("--show-low-wildtype", action="store_true")
     parser.add_argument("--min-complexity", type=float, default=None)
     parser.add_argument("--max-complexity", type=float, default=None)
     args = parser.parse_args()
@@ -492,6 +739,7 @@ if __name__ == "__main__":
         samples=args.samples,
         seed=args.seed,
         show_wildtype=not args.hide_wildtype,
+        auto_hide_low_wildtype=not args.show_low_wildtype,
         min_complexity=args.min_complexity,
         max_complexity=args.max_complexity,
     )

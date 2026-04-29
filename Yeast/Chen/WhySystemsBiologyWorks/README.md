@@ -8,6 +8,7 @@ Quick command references:
 
 - Complexity-frequency runs: [INSTRUCTIONS_PIPELINE.md](INSTRUCTIONS_PIPELINE.md)
 - NNSE neutral-set sampling: [INSTRUCTIONS_NNSE.md](INSTRUCTIONS_NNSE.md)
+- Hydra cluster runs: [hydra/README.md](hydra/README.md)
 
 ## Current subset
 
@@ -75,6 +76,15 @@ For very large runs:
 ```bash
 MPLCONFIGDIR="$PWD/.mplconfig" python wsbw_pipeline_parallel.py --samples 100000 --seed 42 --workers 12
 ```
+
+On Hydra, use `hydra/submit_hydra_chunks.sh` to submit many independent
+multiprocessing jobs through `addqueue`, then combine them with
+`hydra/wsbw_merge_hydra_chunks.py`. This uses Hydra in the way it is designed
+to be used: many normal Python jobs in parallel across compute nodes, with each
+job using the cores reserved on its node. Keep large runs on compute nodes, not
+on the login node. Set `WSBW_PAPER_DIR` to the local manuscript checkout if you
+want the largest newly generated no-grid plot to update `Figures/FreqComp.png`
+automatically.
 
 Output:
 

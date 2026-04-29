@@ -116,8 +116,12 @@ def find_representatives(spec, audit, data, seed, max_draws=5000):
 
 def plot_representatives(seed=42):
     audit = prepare_models()
-    fig_low, axes_low = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
-    fig_high, axes_high = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
+    ncols = 3
+    nrows = int(np.ceil(len(SPECS) / ncols))
+    fig_low, axes_low = plt.subplots(nrows, ncols, figsize=(13, 3.3 * nrows), constrained_layout=True)
+    fig_high, axes_high = plt.subplots(nrows, ncols, figsize=(13, 3.3 * nrows), constrained_layout=True)
+    axes_low = np.atleast_1d(axes_low).ravel()
+    axes_high = np.atleast_1d(axes_high).ravel()
     report = {}
     sample_values = set()
 
@@ -134,7 +138,7 @@ def plot_representatives(seed=42):
             ("low", fig_low, axes_low, low),
             ("high", fig_high, axes_high, high),
         ]:
-            ax = axes.ravel()[idx]
+            ax = axes[idx]
             if name in found:
                 t = found[name]["time"]
                 y = found[name]["signal"]
@@ -153,6 +157,10 @@ def plot_representatives(seed=42):
             ax.set_title(f"{spec.label}\nK={target['complexity']:.1f}, n={target['count']}", fontsize=10)
             ax.set_ylabel(spec.output)
             ax.grid(alpha=0.25)
+    for ax in axes_low[len(SPECS) :]:
+        ax.axis("off")
+    for ax in axes_high[len(SPECS) :]:
+        ax.axis("off")
 
     label = sample_label(next(iter(sample_values))) if len(sample_values) == 1 else "N=mixed"
     low_out = PLOTS / f"oscillatory_subset_low_complexity_representatives_trough_windows_{label}.png"

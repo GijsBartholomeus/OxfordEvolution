@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 import matplotlib
@@ -68,10 +69,13 @@ def main() -> Path:
         if path.exists():
             existing[trace["model"]] = json.loads(path.read_text())
 
-    colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2"]
-    fig, axes = plt.subplots(2, 3, figsize=(13, 7), constrained_layout=True)
+    colors = ["#4C78A8", "#F58518", "#54A24B", "#E45756", "#72B7B2", "#B279A2", "#9C755F"]
+    ncols = 3
+    nrows = int(math.ceil(len(traces) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(13, 3.3 * nrows), constrained_layout=True)
+    axes = np.atleast_1d(axes).ravel()
     report = []
-    for ax, trace, color in zip(axes.ravel(), traces, colors):
+    for ax, trace, color in zip(axes, traces, colors):
         spec = next(item for item in SPECS if item.key == trace["model"])
         t = trace["time"]
         y = trace["signal"]
@@ -112,6 +116,9 @@ def main() -> Path:
                 "sampled_count_in_last_run": count,
             }
         )
+
+    for ax in axes[len(traces) :]:
+        ax.axis("off")
 
     out = PLOTS / "oscillatory_subset_wildtype_traces.png"
     fig.savefig(out, dpi=220)

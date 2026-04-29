@@ -174,6 +174,7 @@ def main(
     chunks_per_worker: int,
     models: list[str] | None,
     show_wildtype: bool = True,
+    auto_hide_low_wildtype: bool = True,
     min_complexity: float | None = None,
     max_complexity: float | None = None,
 ) -> Path:
@@ -198,12 +199,13 @@ def main(
             )
         )
 
-    # Keep the standard 2x3 figure only when all models are present.
+    # Keep the publication-style combined figure only when all models are present.
     if len(all_data) == len(SPECS):
         out = plot_complexity_frequency(
             all_data,
             PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_parallel_{sample_label(samples)}.png",
             show_wildtype=show_wildtype,
+            auto_hide_low_wildtype=auto_hide_low_wildtype,
             min_complexity=min_complexity,
             max_complexity=max_complexity,
         )
@@ -227,6 +229,7 @@ if __name__ == "__main__":
     parser.add_argument("--workers", type=int, default=None, help="Worker processes. Default: cpu_count - 1")
     parser.add_argument("--chunks-per-worker", type=int, default=2)
     parser.add_argument("--hide-wildtype", action="store_true")
+    parser.add_argument("--show-low-wildtype", action="store_true")
     parser.add_argument("--min-complexity", type=float, default=None)
     parser.add_argument("--max-complexity", type=float, default=None)
     parser.add_argument(
@@ -243,6 +246,7 @@ if __name__ == "__main__":
         chunks_per_worker=args.chunks_per_worker,
         models=args.models,
         show_wildtype=not args.hide_wildtype,
+        auto_hide_low_wildtype=not args.show_low_wildtype,
         min_complexity=args.min_complexity,
         max_complexity=args.max_complexity,
     )
