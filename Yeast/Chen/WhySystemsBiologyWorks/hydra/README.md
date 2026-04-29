@@ -17,8 +17,8 @@ for heavy temporary output; it is not backed up.
 Create a local Python environment for the pipeline:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv bioevo
+source bioevo/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements-pipeline.txt
 python -c "import numpy, matplotlib, scipy, libsbml, roadrunner; print('pipeline imports ok')"

@@ -18,10 +18,12 @@ mkdir -p logs .mplconfig
 # If needed in a graphical/x2go session, run `source startmodules` first.
 if [[ -n "${WSBW_PYTHON:-}" ]]; then
   PYTHON="${WSBW_PYTHON}"
+elif [[ -x "${PROJECT_DIR}/bioevo/bin/python" ]]; then
+  PYTHON="${PROJECT_DIR}/bioevo/bin/python"
 elif [[ -x "${PROJECT_DIR}/.venv/bin/python" ]]; then
   PYTHON="${PROJECT_DIR}/.venv/bin/python"
-elif [[ -x "${HOME}/.venvs/wsbw/bin/python" ]]; then
-  PYTHON="${HOME}/.venvs/wsbw/bin/python"
+elif [[ -x "${HOME}/.venvs/bioevo/bin/python" ]]; then
+  PYTHON="${HOME}/.venvs/bioevo/bin/python"
 elif [[ -n "${WSBW_ENV:-}" ]] && command -v conda >/dev/null 2>&1; then
   source "$(conda info --base)/etc/profile.d/conda.sh"
   conda activate "${WSBW_ENV}"
