@@ -60,6 +60,10 @@ def sample_label(samples: int | None) -> str:
     return f"N={samples}"
 
 
+def sample_size_label(samples: int | None) -> str:
+    return sample_label(samples).replace("N=", "")
+
+
 def sample_label_from_data(all_data: list[dict]) -> str:
     sample_values = {int(data["samples"]) for data in all_data if "samples" in data}
     if len(sample_values) == 1:
@@ -69,8 +73,12 @@ def sample_label_from_data(all_data: list[dict]) -> str:
     return "N=unknown"
 
 
+def sample_size_label_from_data(all_data: list[dict]) -> str:
+    return sample_label_from_data(all_data).replace("N=", "")
+
+
 def parse_sample_label(text: str) -> int | None:
-    match = re.search(r"N=(\d+(?:e\d+)?)", text)
+    match = re.search(r"N=(\d+(?:e\d+)?)", text) or re.search(r"CompFreq(\d+(?:e\d+)?)", text)
     if not match:
         return None
     value = match.group(1)
@@ -78,6 +86,10 @@ def parse_sample_label(text: str) -> int | None:
         mantissa, exponent = value.split("e", 1)
         return int(float(mantissa) * (10 ** int(exponent)))
     return int(value)
+
+
+def compfreq_plot_path(all_data: list[dict]) -> Path:
+    return PLOTS / f"CompFreq{sample_size_label_from_data(all_data)}.png"
 
 
 def paper_figure_dirs() -> list[Path]:
@@ -523,7 +535,7 @@ def plot_complexity_frequency(
     for ax in axes[len(all_data) :]:
         ax.axis("off")
     if out is None:
-        out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_{sample_label_from_data(all_data)}.png"
+        out = compfreq_plot_path(all_data)
     fig.savefig(out, dpi=220)
     legacy_out = PLOTS / "oscillatory_subset_complexity_frequency.png"
     if out != legacy_out:
@@ -696,7 +708,7 @@ def plot_complexity_frequency_chico_layout(
     fig.text(0.49, 0.96, "B", ha="left", va="top", fontsize=15, fontweight="bold")
 
     if out is None:
-        out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_{sample_label_from_data(all_data)}.png"
+        out = compfreq_plot_path(all_data)
     fig.savefig(out, dpi=300)
     return out
 

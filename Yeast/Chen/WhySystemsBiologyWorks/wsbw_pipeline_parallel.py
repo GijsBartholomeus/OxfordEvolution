@@ -19,7 +19,7 @@ from wsbw_pipeline import (
     clz,
     plot_complexity_frequency,
     prepare_models,
-    sample_label,
+    sample_size_label,
     simulate_encoding,
 )
 
@@ -203,7 +203,7 @@ def main(
     if len(all_data) == len(SPECS):
         out = plot_complexity_frequency(
             all_data,
-            PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_parallel_{sample_label(samples)}.png",
+            PLOTS / f"CompFreq{sample_size_label(samples)}.png",
             show_wildtype=show_wildtype,
             auto_hide_low_wildtype=auto_hide_low_wildtype,
             min_complexity=min_complexity,

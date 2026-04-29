@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from wsbw_pipeline import PLOTS, RESULTS, SPECS, clz, plot_complexity_frequency, sample_label
+from wsbw_pipeline import PLOTS, RESULTS, SPECS, clz, plot_complexity_frequency, sample_size_label
 
 
 CHUNK_DIR = RESULTS / "hydra_chunks"
@@ -80,8 +80,8 @@ def main(
         return out
 
     sample_values = {int(data["samples"]) for data in all_data}
-    sample_text = sample_label(sample_values.pop()) if len(sample_values) == 1 else "N=mixed"
-    out = PLOTS / f"oscillatory_subset_complexity_frequency_trough_windows_hydra_{tag}_{sample_text}.png"
+    sample_text = sample_size_label(sample_values.pop()) if len(sample_values) == 1 else "mixed"
+    out = PLOTS / f"CompFreq{sample_text}.png"
     plot_complexity_frequency(
         all_data,
         out,
