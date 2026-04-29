@@ -143,3 +143,15 @@ python nnse_accessibility.py --model tyson1991 --n-random 10000 --max-cloud 5000
 
 For notebook inspection, use `NNSE/TysonNeutralSetSanityCheck.ipynb` and
 `NNSE/TysonNeutralSetAccessibility.ipynb`.
+
+For the Tyson sloppy-direction geometry analysis, first copy a merged Tyson
+neutral-set `.npz` back to this machine, then open:
+
+```text
+NNSE/TysonSloppySubspaceGeometry.ipynb
+```
+
+This notebook samples neutral-set points, computes the Tyson sensitivity
+Hessian at each point, compares the `k` sloppiest eigenspaces by principal
+angles, and checks whether the local neutral-set tangent directions align with
+the local sloppy subspace.

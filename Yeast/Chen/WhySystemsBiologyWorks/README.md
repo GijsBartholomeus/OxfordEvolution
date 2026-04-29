@@ -113,6 +113,8 @@ analysis, use:
 - `NNSE/TysonNeutralSetSanityCheck.ipynb` and
   `NNSE/TysonNeutralSetAccessibility.ipynb`: the same checks with
   `MODEL_KEY = "tyson1991"`.
+- `NNSE/TysonSloppySubspaceGeometry.ipynb`: compares local Tyson Hessian
+  sloppy subspaces across sampled neutral-set points using principal angles.
 
 The starter NNSE runner is `wsbw_nnse.py`. It ports the mutation/permutation
 logic from the earlier Chen/Tyson NNSE notebooks into a regular Python script
