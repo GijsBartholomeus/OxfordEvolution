@@ -33,7 +33,17 @@ else
 fi
 
 export MPLCONFIGDIR="${PROJECT_DIR}/.mplconfig"
-WORKERS="${SLURM_CPUS_PER_TASK:-${WSBW_WORKERS:-16}}"
+if [[ -n "${WSBW_WORKERS:-}" ]]; then
+  WORKERS="${WSBW_WORKERS}"
+elif [[ -n "${SLURM_CPUS_PER_TASK:-}" && "${SLURM_CPUS_PER_TASK}" != "1" ]]; then
+  WORKERS="${SLURM_CPUS_PER_TASK}"
+elif [[ -n "${SLURM_NTASKS:-}" ]]; then
+  WORKERS="${SLURM_NTASKS}"
+else
+  WORKERS="16"
+fi
+
+echo "Using ${WORKERS} GP-map workers"
 
 # Optional: set this to the manuscript checkout on the cluster, if present.
 # export WSBW_PAPER_DIR=/path/to/PNAS-WhySystemsBiologyWorks-git

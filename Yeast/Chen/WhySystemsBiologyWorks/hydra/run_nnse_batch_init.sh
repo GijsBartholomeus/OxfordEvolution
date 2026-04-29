@@ -25,7 +25,17 @@ else
 fi
 
 export MPLCONFIGDIR="${PROJECT_DIR}/.mplconfig"
-WORKERS="${SLURM_CPUS_PER_TASK:-${WSBW_WORKERS:-16}}"
+if [[ -n "${WSBW_WORKERS:-}" ]]; then
+  WORKERS="${WSBW_WORKERS}"
+elif [[ -n "${SLURM_CPUS_PER_TASK:-}" && "${SLURM_CPUS_PER_TASK}" != "1" ]]; then
+  WORKERS="${SLURM_CPUS_PER_TASK}"
+elif [[ -n "${SLURM_NTASKS:-}" ]]; then
+  WORKERS="${SLURM_NTASKS}"
+else
+  WORKERS="16"
+fi
+
+echo "Using ${WORKERS} NNSE batch workers"
 
 "${PYTHON}" hydra/wsbw_nnse_batch_init.py \
   --model "${WSBW_NNSE_MODEL:-chen2004}" \
