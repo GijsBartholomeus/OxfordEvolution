@@ -112,6 +112,9 @@ the single-job version, but pooled across all chunk jobs.
 After merging an NNSE batch initialisation run, start one or more NNSE chains
 from the merged `.npz`. Each chain evaluates mutation proposals in parallel,
 then applies the NNSE accept/swap logic serially inside the coordinator.
+The current default neutral threshold for saved NNSE coordinates is `15.0`;
+override `WSBW_NNSE_NEUTRAL_THRESHOLD` if you want a stricter or looser saved
+set.
 
 Short test with one chain:
 

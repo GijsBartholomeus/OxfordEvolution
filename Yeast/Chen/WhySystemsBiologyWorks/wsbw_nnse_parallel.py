@@ -34,7 +34,7 @@ class ParallelNNSEConfig:
     seed: int = 42
     chain_id: str = "0"
     tag: str = "nnse_parallel"
-    neutral_threshold: float | None = None
+    neutral_threshold: float | None = 15.0
     checkpoint_every: int = 250
     extra_steps: int = 1000
     target_empty: int = 1
@@ -481,7 +481,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--chain-id", default="0")
     parser.add_argument("--tag", default="nnse_parallel")
-    parser.add_argument("--neutral-threshold", type=float, default=None)
+    parser.add_argument("--neutral-threshold", type=float, default=15.0)
     parser.add_argument("--checkpoint-every", type=int, default=250)
     parser.add_argument("--extra-steps", type=int, default=1000)
     parser.add_argument("--target-empty", type=int, default=1)

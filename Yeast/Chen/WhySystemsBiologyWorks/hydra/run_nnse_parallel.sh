@@ -51,7 +51,7 @@ echo "Using ${WORKERS} parallel NNSE workers"
   --target-empty "${WSBW_NNSE_TARGET_EMPTY:-1}" \
   --extra-steps "${WSBW_NNSE_EXTRA_STEPS:-1000}" \
   --refill-attempts "${WSBW_NNSE_REFILL_ATTEMPTS:-0}" \
-  --neutral-threshold "${WSBW_NNSE_NEUTRAL_THRESHOLD:-0.01}" \
+  --neutral-threshold "${WSBW_NNSE_NEUTRAL_THRESHOLD:-15.0}" \
   --n-bins "${WSBW_NNSE_BINS:-50}" \
   --bin-min "${WSBW_NNSE_BIN_MIN:-1e-2}" \
   --bin-max "${WSBW_NNSE_BIN_MAX:-250.0}" \
