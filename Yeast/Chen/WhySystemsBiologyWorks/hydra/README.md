@@ -106,3 +106,38 @@ python hydra/wsbw_merge_nnse_batch_chunks.py --tag chen_nnse_batch_1e6_chunked -
 The merged `.npz` contains the same `initial_population`,
 `initial_objective_values`, `parameter_names`, and `bin_thresholds` arrays as
 the single-job version, but pooled across all chunk jobs.
+
+## Parallel NNSE chains from a merged initial population
+
+After merging an NNSE batch initialisation run, start one or more NNSE chains
+from the merged `.npz`. Each chain evaluates mutation proposals in parallel,
+then applies the NNSE accept/swap logic serially inside the coordinator.
+
+Short test with one chain:
+
+```bash
+WSBW_TAG=chen_nnse_parallel_smoke \
+WSBW_NNSE_INIT_NPZ=results/nnse_batch_init/chen_nnse_batch_1e6_chunked/chen2004_nnse_batch_init_merged_N=1e6.npz \
+WSBW_NNSE_STEPS=20 \
+  addqueue -q long -s -c "chen nnse parallel smoke" -m 2 -n 1x8 ./hydra/run_nnse_parallel.sh
+```
+
+Larger multi-chain run:
+
+```bash
+bash hydra/submit_nnse_parallel_chains.sh chen_nnse_parallel_25chains \
+  results/nnse_batch_init/chen_nnse_batch_1e6_chunked/chen2004_nnse_batch_init_merged_N=1e6.npz \
+  25 6000 16 2 long
+```
+
+This submits 25 independent chains, each with 16 local workers. Merge the
+neutral samples after all chains finish:
+
+```bash
+python hydra/wsbw_merge_nnse_parallel_chains.py --tag chen_nnse_parallel_25chains --model chen2004
+```
+
+Set `WSBW_NNSE_REFILL_ATTEMPTS` to a small positive number if you want the
+runner to try random refills for newly opened loose bins after swaps. Leave it
+at the default `0` for the cleanest first benchmark from the merged initial
+population.
