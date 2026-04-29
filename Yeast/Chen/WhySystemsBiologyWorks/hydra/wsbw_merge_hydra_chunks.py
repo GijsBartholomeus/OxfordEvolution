@@ -64,6 +64,11 @@ def main(
         data = json.loads(path.read_text())
         grouped[data["model"]].append(data)
 
+    for model, chunks in grouped.items():
+        seeds = [chunk.get("seed") for chunk in chunks if "seed" in chunk]
+        if seeds and len(seeds) != len(set(seeds)):
+            print(f"WARNING: duplicate seeds detected for {model}. This merge may contain repeated chunks.", flush=True)
+
     all_data = []
     selected = [spec for spec in SPECS if models is None or spec.key in models]
     for spec in selected:

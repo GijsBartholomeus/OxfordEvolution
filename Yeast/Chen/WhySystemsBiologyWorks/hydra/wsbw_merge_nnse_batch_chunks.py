@@ -91,6 +91,11 @@ def main(args: argparse.Namespace) -> Path:
                 best_vector = vector.astype(float)
         merge_candidate_lists(candidates, incoming, args.keep_per_bin)
 
+    seeds = [summary.get("seed") for summary in summaries if "seed" in summary]
+    duplicate_seeds = len(seeds) != len(set(seeds))
+    if duplicate_seeds:
+        print("WARNING: duplicate chunk seeds detected. This run may contain repeated candidate streams.", flush=True)
+
     initial_population, initial_values, source_bins = build_initial_population(candidates, len(thresholds), len(params))
     filled_bins = int(np.sum(np.isfinite(initial_values)))
     candidate_counts_kept = np.zeros(len(thresholds), dtype=np.int64)
@@ -138,6 +143,7 @@ def main(args: argparse.Namespace) -> Path:
         "output": spec.output,
         "tag": args.tag,
         "chunks_merged": len(chunk_paths),
+        "duplicate_seeds_detected": duplicate_seeds,
         "candidates": total_candidates,
         "finite_count": finite_count,
         "failed_count": failed_count,

@@ -16,6 +16,14 @@ from wsbw_pipeline_parallel import chunk_sizes, get_spec, process_chunk, wildtyp
 
 CHUNK_DIR = RESULTS / "hydra_chunks"
 CHUNK_DIR.mkdir(parents=True, exist_ok=True)
+CHUNK_SEED_STRIDE = 10_000_019
+
+
+def chunk_seed_offset(chunk_id: str) -> int:
+    try:
+        return int(chunk_id) * CHUNK_SEED_STRIDE
+    except ValueError:
+        return sum((idx + 1) * ord(char) for idx, char in enumerate(chunk_id)) * CHUNK_SEED_STRIDE
 
 
 def run_model_chunk(
@@ -82,16 +90,25 @@ def main(
     out_dir = CHUNK_DIR / tag
     out_dir.mkdir(parents=True, exist_ok=True)
     written = []
+    effective_seed = seed + chunk_seed_offset(chunk_id)
     for idx, spec in enumerate(selected):
-        print(f"Running chunk {chunk_id} for {spec.label} with {samples_per_model} samples", flush=True)
+        model_seed = effective_seed + idx * 1_000_000
+        print(
+            f"Running chunk {chunk_id} for {spec.label} with {samples_per_model} samples "
+            f"(seed {model_seed})",
+            flush=True,
+        )
         data = run_model_chunk(
             spec.key,
             audit,
             samples=samples_per_model,
-            seed=seed + idx * 1_000_000,
+            seed=model_seed,
             workers=workers,
             chunks_per_worker=chunks_per_worker,
         )
+        data["seed"] = model_seed
+        data["base_seed"] = seed
+        data["chunk_seed_offset"] = chunk_seed_offset(chunk_id)
         out = out_dir / f"{spec.key}_chunk-{chunk_id}.json"
         out.write_text(json.dumps(data))
         written.append(out)

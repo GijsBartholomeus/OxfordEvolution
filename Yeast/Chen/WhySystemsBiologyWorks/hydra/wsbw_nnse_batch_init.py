@@ -25,6 +25,16 @@ OUT_ROOT = RESULTS / "nnse_batch_init"
 OUT_ROOT.mkdir(parents=True, exist_ok=True)
 
 _WORKER: dict[str, Any] = {}
+CHUNK_SEED_STRIDE = 10_000_019
+
+
+def chunk_seed_offset(chunk_id: str | None) -> int:
+    if chunk_id is None:
+        return 0
+    try:
+        return int(chunk_id) * CHUNK_SEED_STRIDE
+    except ValueError:
+        return sum((idx + 1) * ord(char) for idx, char in enumerate(chunk_id)) * CHUNK_SEED_STRIDE
 
 
 @contextlib.contextmanager
@@ -215,11 +225,12 @@ def run_batch_init(args: argparse.Namespace) -> Path:
     workers = max(1, args.workers)
     task_count = max(workers, math.ceil(args.candidates / args.batch_size))
     sizes = chunk_sizes(args.candidates, task_count)
-    tasks = [(idx, size, args.seed + idx * 100_003, args.keep_per_bin) for idx, size in enumerate(sizes)]
+    effective_seed = args.seed + chunk_seed_offset(args.chunk_id)
+    tasks = [(idx, size, effective_seed + idx * 100_003, args.keep_per_bin) for idx, size in enumerate(sizes)]
 
     print(
         f"Screening {args.candidates:,} random candidates for {spec.label} "
-        f"with {workers} workers across {len(tasks)} batches",
+        f"with {workers} workers across {len(tasks)} batches (seed {effective_seed})",
         flush=True,
     )
 
@@ -321,7 +332,9 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         "workers": workers,
         "batches": len(tasks),
         "batch_size_target": args.batch_size,
-        "seed": args.seed,
+        "seed": effective_seed,
+        "base_seed": args.seed,
+        "chunk_seed_offset": chunk_seed_offset(args.chunk_id),
         "spacing": args.spacing,
         "n_thresholds": len(thresholds),
         "parameter_count": len(params),
