@@ -34,6 +34,7 @@ leloup1999
 locke2005
 ueda2001
 vilar2002
+tyson1991
 ```
 
 Outputs are written to:
@@ -105,3 +106,40 @@ The output is saved in:
 ```text
 results/nnse_accessibility/
 ```
+
+## Tyson 1991 on Hydra
+
+Tyson uses the same NNSE code paths as Chen. The model key is `tyson1991`.
+
+```bash
+cd ~/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks
+git pull
+
+bash hydra/submit_nnse_batch_chunks.sh tyson_nnse_batch_1e6 tyson1991 25 40000 16 2 long
+```
+
+After all 25 batch chunks finish:
+
+```bash
+python hydra/wsbw_merge_nnse_batch_chunks.py --tag tyson_nnse_batch_1e6 --model tyson1991
+TYSON_INIT_NPZ=$(ls -t results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=*.npz | head -n 1)
+echo "$TYSON_INIT_NPZ"
+```
+
+Then start the parallel NNSE chains:
+
+```bash
+bash hydra/submit_nnse_parallel_chains.sh tyson_nnse_parallel_25chains_100k_thr15 \
+  "$TYSON_INIT_NPZ" \
+  25 100000 16 2 long tyson1991
+```
+
+After the chain jobs finish:
+
+```bash
+python hydra/wsbw_merge_nnse_parallel_chains.py --tag tyson_nnse_parallel_25chains_100k_thr15 --model tyson1991
+python nnse_accessibility.py --model tyson1991 --n-random 10000 --max-cloud 50000
+```
+
+For notebook inspection, use `NNSE/TysonNeutralSetSanityCheck.ipynb` and
+`NNSE/TysonNeutralSetAccessibility.ipynb`.

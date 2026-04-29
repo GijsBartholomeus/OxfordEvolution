@@ -147,6 +147,23 @@ run the first accessibility/null-geometry analysis directly:
 python nnse_accessibility.py --model chen2004 --n-random 10000 --max-cloud 50000
 ```
 
+The same workflow works for Tyson 1991. The batch-initialisation submitter
+takes the model key as its second argument, and the chain submitter takes the
+model key as its final optional argument:
+
+```bash
+bash hydra/submit_nnse_batch_chunks.sh tyson_nnse_batch_1e6 tyson1991 25 40000 16 2 long
+python hydra/wsbw_merge_nnse_batch_chunks.py --tag tyson_nnse_batch_1e6 --model tyson1991
+
+TYSON_INIT_NPZ=$(ls -t results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=*.npz | head -n 1)
+bash hydra/submit_nnse_parallel_chains.sh tyson_nnse_parallel_25chains_100k_thr15 \
+  "$TYSON_INIT_NPZ" \
+  25 100000 16 2 long tyson1991
+
+python hydra/wsbw_merge_nnse_parallel_chains.py --tag tyson_nnse_parallel_25chains_100k_thr15 --model tyson1991
+python nnse_accessibility.py --model tyson1991 --n-random 10000 --max-cloud 50000
+```
+
 Set `WSBW_NNSE_REFILL_ATTEMPTS` to a small positive number if you want the
 runner to try random refills for newly opened loose bins after swaps. Leave it
 at the default `0` for the cleanest first benchmark from the merged initial

@@ -2,13 +2,13 @@
 set -euo pipefail
 
 TAG="${1:-chen_nnse_parallel}"
-INIT_NPZ="${2:?Usage: submit_nnse_parallel_chains.sh TAG INIT_NPZ [CHAINS] [STEPS] [CORES] [MEM_GB] [QUEUE]}"
+INIT_NPZ="${2:?Usage: submit_nnse_parallel_chains.sh TAG INIT_NPZ [CHAINS] [STEPS] [CORES] [MEM_GB] [QUEUE] [MODEL]}"
 CHAINS="${3:-25}"
 STEPS="${4:-6000}"
 CORES="${5:-16}"
 MEM_GB="${6:-2}"
 QUEUE="${7:-long}"
-MODEL="${WSBW_NNSE_MODEL:-chen2004}"
+MODEL="${8:-${WSBW_NNSE_MODEL:-chen2004}}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
@@ -38,4 +38,5 @@ EOF
 done
 
 echo "Submitted ${CHAINS} NNSE chains for ${TAG}."
+echo "Model: ${MODEL}"
 echo "Outputs will appear in results/nnse_parallel/${TAG}/"

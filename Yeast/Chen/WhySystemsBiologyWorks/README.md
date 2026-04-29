@@ -110,6 +110,9 @@ analysis, use:
 - `NNSE/NeutralSetAccessibility.ipynb`: compares random-start distances to the
   NNSE cloud against compact, covariance-matched, shuffled, and tube-like null
   geometries.
+- `NNSE/TysonNeutralSetSanityCheck.ipynb` and
+  `NNSE/TysonNeutralSetAccessibility.ipynb`: the same checks with
+  `MODEL_KEY = "tyson1991"`.
 
 The starter NNSE runner is `wsbw_nnse.py`. It ports the mutation/permutation
 logic from the earlier Chen/Tyson NNSE notebooks into a regular Python script
@@ -128,7 +131,7 @@ MPLCONFIGDIR="$PWD/.mplconfig" python wsbw_nnse.py --model chen2004 --steps 6000
 ```
 
 Other model keys are `kholodenko2000`, `leloup1999`, `locke2005`, `ueda2001`,
-and `vilar2002`. Outputs are written to `results/nnse/`:
+`vilar2002`, and `tyson1991`. Outputs are written to `results/nnse/`:
 
 - `*_nnse_*.npz`: neutral coordinates, final population, objective values, bins,
   swap counts, and reference trace.
