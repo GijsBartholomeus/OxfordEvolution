@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT))
 
 from wsbw_nnse import NNSEConfig, get_spec, make_thresholds, setup_rr
 from wsbw_pipeline import RESULTS, SPECS, prepare_models
-from wsbw_nnse_batch_init import build_initial_population, merge_candidate_lists
+from wsbw_nnse_batch_init import DEFAULT_COUNT_CUTOFFS, build_initial_population, merge_candidate_lists, parse_cutoffs
 
 
 OUT_ROOT = RESULTS / "nnse_batch_init"
@@ -54,9 +54,11 @@ def main(args: argparse.Namespace) -> Path:
         seed=args.seed,
     )
     thresholds = make_thresholds(config)
+    count_cutoffs = parse_cutoffs(args.count_cutoffs)
 
     start = time.time()
     bin_counts = np.zeros(len(thresholds), dtype=np.int64)
+    cutoff_counts = np.zeros(len(count_cutoffs), dtype=np.int64)
     candidate_counts_seen = np.zeros(len(thresholds), dtype=np.int64)
     candidates: dict[int, list[tuple[float, list[float]]]] = {}
     total_candidates = 0
@@ -78,6 +80,13 @@ def main(args: argparse.Namespace) -> Path:
         overflow_count += int(summary.get("overflow_count", 0))
         if "bin_counts" in data:
             bin_counts += np.asarray(data["bin_counts"], dtype=np.int64)
+        if "cutoff_counts" in data:
+            chunk_cutoffs = np.asarray(data["count_cutoffs"], dtype=float) if "count_cutoffs" in data else count_cutoffs
+            chunk_counts = np.asarray(data["cutoff_counts"], dtype=np.int64)
+            if len(chunk_cutoffs) == len(count_cutoffs) and np.allclose(chunk_cutoffs, count_cutoffs):
+                cutoff_counts += chunk_counts
+            else:
+                print(f"WARNING: skipping cutoff counts from {path}; cutoff grid differs.", flush=True)
 
         values = np.asarray(data["candidate_objective_values"], dtype=float)
         vectors = np.asarray(data["candidate_vectors"], dtype=float)
@@ -123,6 +132,8 @@ def main(args: argparse.Namespace) -> Path:
         parameter_names=np.asarray(params, dtype=object),
         bin_thresholds=thresholds,
         bin_counts=bin_counts,
+        count_cutoffs=count_cutoffs,
+        cutoff_counts=cutoff_counts,
         candidate_counts_seen=candidate_counts_seen,
         candidate_counts_kept=candidate_counts_kept,
         best_by_bin=best_by_bin,
@@ -159,6 +170,9 @@ def main(args: argparse.Namespace) -> Path:
         "candidate_counts_seen": candidate_counts_seen.tolist(),
         "candidate_counts_kept": candidate_counts_kept.tolist(),
         "thresholds": thresholds.tolist(),
+        "count_cutoffs": count_cutoffs.tolist(),
+        "cutoff_counts": cutoff_counts.tolist(),
+        "cutoff_fractions": (cutoff_counts / max(1, total_candidates)).tolist(),
     }
     summary_path = out.with_suffix(".json")
     summary_path.write_text(json.dumps(summary, indent=2))
@@ -183,4 +197,5 @@ if __name__ == "__main__":
     parser.add_argument("--bin-max", type=float, default=250.0)
     parser.add_argument("--bin-top", type=float, default=1000.0)
     parser.add_argument("--spacing", choices=["linear", "log"], default="log")
+    parser.add_argument("--count-cutoffs", default=DEFAULT_COUNT_CUTOFFS)
     main(parser.parse_args())

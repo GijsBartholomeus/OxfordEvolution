@@ -51,7 +51,8 @@ ARGS=(
   --bin-min "${WSBW_NNSE_BIN_MIN:-1e-2}" \
   --bin-max "${WSBW_NNSE_BIN_MAX:-250.0}" \
   --bin-top "${WSBW_NNSE_BIN_TOP:-1000.0}" \
-  --spacing "${WSBW_NNSE_SPACING:-log}"
+  --spacing "${WSBW_NNSE_SPACING:-log}" \
+  --count-cutoffs "${WSBW_NNSE_COUNT_CUTOFFS:-15,17.02705732642944,20,25,50,100,250}"
 )
 
 if [[ -n "${WSBW_NNSE_CHUNK_ID:-}" ]]; then

@@ -26,6 +26,7 @@ OUT_ROOT.mkdir(parents=True, exist_ok=True)
 
 _WORKER: dict[str, Any] = {}
 CHUNK_SEED_STRIDE = 10_000_019
+DEFAULT_COUNT_CUTOFFS = "15,17.02705732642944,20,25,50,100,250"
 
 
 def chunk_seed_offset(chunk_id: str | None) -> int:
@@ -35,6 +36,13 @@ def chunk_seed_offset(chunk_id: str | None) -> int:
         return int(chunk_id) * CHUNK_SEED_STRIDE
     except ValueError:
         return sum((idx + 1) * ord(char) for idx, char in enumerate(chunk_id)) * CHUNK_SEED_STRIDE
+
+
+def parse_cutoffs(text: str | None) -> np.ndarray:
+    if text is None or not text.strip():
+        return np.empty(0, dtype=float)
+    values = [float(item.strip()) for item in text.split(",") if item.strip()]
+    return np.asarray(values, dtype=float)
 
 
 @contextlib.contextmanager
@@ -88,6 +96,7 @@ def _init_worker(model_key: str, audit_item: dict, config_dict: dict) -> None:
             "ref_time": ref[0],
             "ref_signal": ref[1],
             "thresholds": thresholds,
+            "count_cutoffs": parse_cutoffs(config_dict.get("count_cutoffs")),
         }
     )
 
@@ -122,7 +131,9 @@ def _evaluate_batch(task: tuple[int, int, int, int]) -> dict:
     rng = np.random.default_rng(seed)
     p0 = _WORKER["p0"]
     thresholds = _WORKER["thresholds"]
+    count_cutoffs = _WORKER["count_cutoffs"]
     bin_counts = np.zeros(len(thresholds), dtype=np.int64)
+    cutoff_counts = np.zeros(len(count_cutoffs), dtype=np.int64)
     candidates: dict[int, list[tuple[float, list[float]]]] = {}
     finite_count = 0
     failed_count = 0
@@ -141,6 +152,8 @@ def _evaluate_batch(task: tuple[int, int, int, int]) -> dict:
             if value < best_value:
                 best_value = float(value)
                 best_vector = vector.astype(float).tolist()
+            if len(count_cutoffs):
+                cutoff_counts += value <= count_cutoffs
             bin_idx = place_in_bin(value, thresholds)
             if bin_idx is None:
                 overflow_count += 1
@@ -155,6 +168,7 @@ def _evaluate_batch(task: tuple[int, int, int, int]) -> dict:
         "failed_count": failed_count,
         "overflow_count": overflow_count,
         "bin_counts": bin_counts.tolist(),
+        "cutoff_counts": cutoff_counts.tolist(),
         "candidates": {str(key): value for key, value in candidates.items()},
         "best_value": best_value,
         "best_vector": best_vector,
@@ -219,6 +233,7 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         seed=args.seed,
     )
     thresholds = make_thresholds(config)
+    count_cutoffs = parse_cutoffs(args.count_cutoffs)
     params = audit_item["free_parameters"]
     _, defaults, _ = setup_rr(spec, audit_item["promoted_sbml"], params)
     p0 = np.array([defaults[pid] for pid in params], dtype=float)
@@ -235,6 +250,7 @@ def run_batch_init(args: argparse.Namespace) -> Path:
     )
 
     bin_counts = np.zeros(len(thresholds), dtype=np.int64)
+    cutoff_counts = np.zeros(len(count_cutoffs), dtype=np.int64)
     candidates: dict[int, list[tuple[float, list[float]]]] = {}
     finite_count = 0
     failed_count = 0
@@ -251,6 +267,7 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         "bin_top": config.bin_top,
         "spacing": config.spacing,
         "seed": config.seed,
+        "count_cutoffs": args.count_cutoffs,
     }
     with ProcessPoolExecutor(
         max_workers=workers,
@@ -261,6 +278,8 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         for done, future in enumerate(as_completed(futures), start=1):
             result = future.result()
             bin_counts += np.asarray(result["bin_counts"], dtype=np.int64)
+            if len(count_cutoffs):
+                cutoff_counts += np.asarray(result["cutoff_counts"], dtype=np.int64)
             finite_count += int(result["finite_count"])
             failed_count += int(result["failed_count"])
             overflow_count += int(result["overflow_count"])
@@ -312,6 +331,8 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         parameter_names=np.asarray(params, dtype=object),
         bin_thresholds=thresholds,
         bin_counts=bin_counts,
+        count_cutoffs=count_cutoffs,
+        cutoff_counts=cutoff_counts,
         candidate_counts_kept=candidate_counts_kept,
         best_by_bin=best_by_bin,
         candidate_bin_indices=np.asarray(candidate_bin_indices, dtype=int),
@@ -352,6 +373,9 @@ def run_batch_init(args: argparse.Namespace) -> Path:
         "bin_counts": bin_counts.tolist(),
         "candidate_counts_kept": candidate_counts_kept.tolist(),
         "thresholds": thresholds.tolist(),
+        "count_cutoffs": count_cutoffs.tolist(),
+        "cutoff_counts": cutoff_counts.tolist(),
+        "cutoff_fractions": (cutoff_counts / max(1, args.candidates)).tolist(),
     }
     summary_path = out.with_suffix(".json")
     summary_path.write_text(json.dumps(summary, indent=2))
@@ -381,6 +405,7 @@ def main() -> None:
     parser.add_argument("--bin-max", type=float, default=250.0)
     parser.add_argument("--bin-top", type=float, default=1000.0)
     parser.add_argument("--spacing", choices=["linear", "log"], default="log")
+    parser.add_argument("--count-cutoffs", default=DEFAULT_COUNT_CUTOFFS)
     args = parser.parse_args()
     run_batch_init(args)
 
