@@ -56,6 +56,7 @@ TYSON_Y0 = np.array([0.9, 0.05, 0.0, 0.005, 0.3, 0.0], dtype=float)
 class SloppySubspaceConfig:
     model: str = "tyson1991"
     npz: str | None = None
+    neutral_threshold: float = 15.0
     n_points: int = 80
     k_sloppy: int = 3
     local_neighbors: int = 12
@@ -241,10 +242,21 @@ def chordal_distance(u: np.ndarray, v: np.ndarray) -> float:
     return float(np.sqrt(max(0.0, min(u.shape[1], v.shape[1]) - np.sum(singular * singular))))
 
 
-def load_neutral_points(npz_path: Path) -> dict:
+def load_neutral_points(npz_path: Path, neutral_threshold: float = 15.0) -> dict:
     data = np.load(npz_path, allow_pickle=True)
-    points = np.asarray(data["neutral_points"], dtype=float)
-    values = np.asarray(data["neutral_objective_values"], dtype=float)
+    if "neutral_points" in data.files:
+        points = np.asarray(data["neutral_points"], dtype=float)
+        values = np.asarray(data["neutral_objective_values"], dtype=float)
+        source = "neutral_points"
+    elif "candidate_vectors" in data.files:
+        all_points = np.asarray(data["candidate_vectors"], dtype=float)
+        all_values = np.asarray(data["candidate_objective_values"], dtype=float)
+        keep = np.isfinite(all_values) & (all_values <= neutral_threshold)
+        points = all_points[keep]
+        values = all_values[keep]
+        source = f"candidate_vectors<= {neutral_threshold:g}"
+    else:
+        raise KeyError(f"{npz_path} contains neither neutral_points nor candidate_vectors")
     if len(values) != len(points):
         n = min(len(values), len(points))
         points = points[:n]
@@ -255,6 +267,7 @@ def load_neutral_points(npz_path: Path) -> dict:
         "parameter_names": [str(x) for x in data["parameter_names"]],
         "p0": np.asarray(data["p0"], dtype=float),
         "bin_thresholds": np.asarray(data["bin_thresholds"], dtype=float),
+        "source": source,
     }
 
 
@@ -289,7 +302,7 @@ def analyze_tyson_sloppy_subspaces(config: SloppySubspaceConfig) -> dict:
     if config.model != "tyson1991":
         raise NotImplementedError("The current Hessian/subspace implementation is Tyson-specific")
     npz_path = Path(config.npz) if config.npz else choose_biggest_neutral_npz(ROOT, config.model)
-    loaded = load_neutral_points(npz_path)
+    loaded = load_neutral_points(npz_path, config.neutral_threshold)
     rng = np.random.default_rng(config.seed)
     selected_idx, selected = select_points(loaded["points"], config.n_points, rng)
 
@@ -357,6 +370,7 @@ def analyze_tyson_sloppy_subspaces(config: SloppySubspaceConfig) -> dict:
     summary = {
         "config": asdict(config),
         "npz": str(npz_path),
+        "point_source": loaded["source"],
         "neutral_points_in_file": int(len(loaded["points"])),
         "neutral_points_sampled": int(len(selected)),
         "valid_hessians": int(n_valid),
@@ -404,6 +418,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Compare local sloppy Hessian subspaces across a Tyson NNSE neutral set")
     parser.add_argument("--model", default="tyson1991")
     parser.add_argument("--npz", default=None)
+    parser.add_argument("--neutral-threshold", type=float, default=15.0)
     parser.add_argument("--n-points", type=int, default=80)
     parser.add_argument("--k-sloppy", type=int, default=3)
     parser.add_argument("--local-neighbors", type=int, default=12)
