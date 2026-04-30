@@ -83,7 +83,8 @@ def _init_worker(model_key: str, audit_item: dict, config_dict: dict) -> None:
     ref = simulate_output(rr, spec, defaults, initials, params, p0)
     if ref is None:
         raise RuntimeError(f"Wildtype reference simulation failed for {model_key}")
-    thresholds = make_thresholds(NNSEConfig(**config_dict))
+    nnse_config_dict = {key: value for key, value in config_dict.items() if key != "count_cutoffs"}
+    thresholds = make_thresholds(NNSEConfig(**nnse_config_dict))
     _WORKER.clear()
     _WORKER.update(
         {
