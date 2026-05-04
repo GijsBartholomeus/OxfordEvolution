@@ -50,6 +50,7 @@ def reservoir_update(
     points: np.ndarray,
     complexities: np.ndarray,
     objectives: np.ndarray,
+    codes: np.ndarray | None,
     max_size: int,
     rng: np.random.Generator,
 ) -> None:
@@ -59,14 +60,18 @@ def reservoir_update(
     current_points = sample.get("points")
     current_complexities = sample.get("complexities")
     current_objectives = sample.get("objectives")
+    current_codes = sample.get("codes")
     if current_points is None:
         current_points = np.empty((0, points.shape[1]), dtype=np.float32)
         current_complexities = np.empty(0, dtype=np.float32)
         current_objectives = np.empty(0, dtype=np.float32)
+        current_codes = np.empty(0, dtype=np.uint64)
 
     current_points = np.asarray(current_points)
     current_complexities = np.asarray(current_complexities)
     current_objectives = np.asarray(current_objectives)
+    current_codes = np.asarray(current_codes, dtype=np.uint64)
+    codes = np.asarray(codes, dtype=np.uint64) if codes is not None else None
 
     for idx in range(len(points)):
         seen += 1
@@ -74,17 +79,22 @@ def reservoir_update(
             current_points = np.vstack([current_points, points[idx : idx + 1].astype(np.float32)])
             current_complexities = np.append(current_complexities, complexities[idx]).astype(np.float32)
             current_objectives = np.append(current_objectives, objectives[idx]).astype(np.float32)
+            if codes is not None:
+                current_codes = np.append(current_codes, codes[idx]).astype(np.uint64)
         else:
             replace = int(rng.integers(0, seen))
             if replace < max_size:
                 current_points[replace] = points[idx]
                 current_complexities[replace] = complexities[idx]
                 current_objectives[replace] = objectives[idx]
+                if codes is not None:
+                    current_codes[replace] = codes[idx]
 
     sample["seen"] = seen
     sample["points"] = current_points
     sample["complexities"] = current_complexities
     sample["objectives"] = current_objectives
+    sample["codes"] = current_codes
 
 
 def normalize_points(points: np.ndarray, p0: np.ndarray) -> np.ndarray:
@@ -277,8 +287,8 @@ def main(args: argparse.Namespace) -> None:
     wildtype_complexity = None
     label = args.model
 
-    all_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None}
-    neutral_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None}
+    all_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
+    neutral_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
 
     out_dir = OUT_ROOT / args.tag
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -308,13 +318,14 @@ def main(args: argparse.Namespace) -> None:
             complexity = float(complexities[int(first_idx)])
             phenotype_counts[(code_int, complexity)] += int(count)
 
-        reservoir_update(all_sample, points, complexities, objectives, args.max_point_sample, rng)
+        reservoir_update(all_sample, points, complexities, objectives, codes, args.max_point_sample, rng)
         neutral_mask = np.isfinite(objectives) & (objectives <= args.neutral_cutoff)
         reservoir_update(
             neutral_sample,
             points[neutral_mask],
             complexities[neutral_mask],
             objectives[neutral_mask],
+            codes[neutral_mask],
             args.max_neutral_sample,
             rng,
         )
@@ -360,9 +371,11 @@ def main(args: argparse.Namespace) -> None:
         all_points=all_points_arr,
         all_complexities=sample_array(all_sample, "complexities", None, np.float32),
         all_objectives=sample_array(all_sample, "objectives", None, np.float32),
+        all_phenotype_codes=sample_array(all_sample, "codes", None, np.uint64),
         neutral_points=neutral_points_arr,
         neutral_complexities=sample_array(neutral_sample, "complexities", None, np.float32),
         neutral_objectives=sample_array(neutral_sample, "objectives", None, np.float32),
+        neutral_phenotype_codes=sample_array(neutral_sample, "codes", None, np.uint64),
         p0=p0,
         parameter_names=np.asarray(parameter_names, dtype=object),
     )
