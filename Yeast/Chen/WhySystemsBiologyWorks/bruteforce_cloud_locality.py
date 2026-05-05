@@ -54,6 +54,10 @@ def load_sample_npz(stats_dir: Path, model: str, tag: str) -> dict[str, np.ndarr
         "neutral_objectives",
         "all_phenotype_codes",
         "neutral_phenotype_codes",
+        "wt_phenotype_points",
+        "wt_phenotype_complexities",
+        "wt_phenotype_objectives",
+        "wt_phenotype_codes",
         "p0",
     ]:
         if key in data.files:
@@ -407,6 +411,10 @@ def main(args: argparse.Namespace) -> None:
     if "neutral_points" in sample and len(sample["neutral_points"]):
         strict_points = normalize_points(np.asarray(sample["neutral_points"], dtype=float), p0)
         strict_points = strict_points[np.all(np.isfinite(strict_points), axis=1)]
+    wt_phenotype_points = np.empty((0, norm_points.shape[1]), dtype=float)
+    if "wt_phenotype_points" in sample and len(sample["wt_phenotype_points"]):
+        wt_phenotype_points = normalize_points(np.asarray(sample["wt_phenotype_points"], dtype=float), p0)
+        wt_phenotype_points = wt_phenotype_points[np.all(np.isfinite(wt_phenotype_points), axis=1)]
 
     if len(norm_points) > args.max_locality_points:
         idx = rng.choice(len(norm_points), size=args.max_locality_points, replace=False)
@@ -449,7 +457,9 @@ def main(args: argparse.Namespace) -> None:
         pairwise_groups[f"WT neutral\nf<={neutral_cutoff:g}"] = pairwise_distribution(norm_points[neutral_mask], rng, args.max_pairwise_points)
     wt_code = summary.get("wildtype_code")
     wt_mask = None
-    if codes is not None and wt_code is not None:
+    if len(wt_phenotype_points):
+        pairwise_groups["WT phenotype\nsame bitstring"] = pairwise_distribution(wt_phenotype_points, rng, args.max_pairwise_points)
+    elif codes is not None and wt_code is not None:
         wt_mask = codes == np.asarray(wt_code, dtype=codes.dtype)
         pairwise_groups["WT phenotype\nsame bitstring"] = pairwise_distribution(norm_points[wt_mask], rng, args.max_pairwise_points)
     elif args.fallback_loose_cutoff is not None:
@@ -493,8 +503,8 @@ def main(args: argparse.Namespace) -> None:
         "points_loaded": int(len(norm_points)),
         "points_used_for_locality": int(len(locality_points)),
         "neutral_cutoff": neutral_cutoff,
-        "wt_phenotype_source": "phenotype_code == wildtype_code" if wt_mask is not None else "unavailable; used fallback cutoff" if args.fallback_loose_cutoff is not None else "unavailable",
-        "wt_phenotype_points_in_sample": int(np.sum(wt_mask)) if wt_mask is not None else None,
+        "wt_phenotype_source": "saved wt_phenotype_points" if len(wt_phenotype_points) else "phenotype_code == wildtype_code" if wt_mask is not None else "unavailable; used fallback cutoff" if args.fallback_loose_cutoff is not None else "unavailable",
+        "wt_phenotype_points_in_sample": int(len(wt_phenotype_points)) if len(wt_phenotype_points) else int(np.sum(wt_mask)) if wt_mask is not None else None,
         "fallback_loose_cutoff": args.fallback_loose_cutoff,
         "phenotype_codes_available_for_radius_growth": bool(locality_codes is not None),
         "local_quartile_neighbor_stats": locality_stats,

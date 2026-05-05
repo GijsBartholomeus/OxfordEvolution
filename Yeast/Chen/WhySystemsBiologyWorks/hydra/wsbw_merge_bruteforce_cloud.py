@@ -289,6 +289,7 @@ def main(args: argparse.Namespace) -> None:
 
     all_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
     neutral_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
+    wt_phenotype_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
 
     out_dir = OUT_ROOT / args.tag
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -329,6 +330,16 @@ def main(args: argparse.Namespace) -> None:
             args.max_neutral_sample,
             rng,
         )
+        wt_mask = codes == np.asarray(wildtype_code, dtype=codes.dtype)
+        reservoir_update(
+            wt_phenotype_sample,
+            points[wt_mask],
+            complexities[wt_mask],
+            objectives[wt_mask],
+            codes[wt_mask],
+            args.max_wt_phenotype_sample,
+            rng,
+        )
         print(f"  merged {idx}/{len(paths)} chunks; attempted={attempted:,}; successes={successes:,}", flush=True)
 
     assert p0 is not None
@@ -349,10 +360,13 @@ def main(args: argparse.Namespace) -> None:
 
     all_points_arr = sample_array(all_sample, "points", len(p0), np.float32)
     neutral_points_arr = sample_array(neutral_sample, "points", len(p0), np.float32)
+    wt_phenotype_points_arr = sample_array(wt_phenotype_sample, "points", len(p0), np.float32)
     all_points_norm = normalize_points(all_points_arr, p0)
     neutral_points_norm = normalize_points(neutral_points_arr, p0)
+    wt_phenotype_points_norm = normalize_points(wt_phenotype_points_arr, p0)
     all_pairwise = pairwise_stats(all_points_norm, rng, args.max_pairwise_points)
     neutral_pairwise = pairwise_stats(neutral_points_norm, rng, args.max_pairwise_points)
+    wt_phenotype_pairwise = pairwise_stats(wt_phenotype_points_norm, rng, args.max_pairwise_points)
 
     plot_path = plot_stats(
         args.model,
@@ -376,6 +390,10 @@ def main(args: argparse.Namespace) -> None:
         neutral_complexities=sample_array(neutral_sample, "complexities", None, np.float32),
         neutral_objectives=sample_array(neutral_sample, "objectives", None, np.float32),
         neutral_phenotype_codes=sample_array(neutral_sample, "codes", None, np.uint64),
+        wt_phenotype_points=wt_phenotype_points_arr,
+        wt_phenotype_complexities=sample_array(wt_phenotype_sample, "complexities", None, np.float32),
+        wt_phenotype_objectives=sample_array(wt_phenotype_sample, "objectives", None, np.float32),
+        wt_phenotype_codes=sample_array(wt_phenotype_sample, "codes", None, np.uint64),
         p0=p0,
         parameter_names=np.asarray(parameter_names, dtype=object),
     )
@@ -396,8 +414,11 @@ def main(args: argparse.Namespace) -> None:
         "all_point_sample_saved": int(len(all_points_arr)),
         "neutral_point_sample_seen": int(neutral_sample["seen"]),
         "neutral_point_sample_saved": int(len(neutral_points_arr)),
+        "wt_phenotype_sample_seen": int(wt_phenotype_sample["seen"]),
+        "wt_phenotype_sample_saved": int(len(wt_phenotype_points_arr)),
         "pairwise_distance_normalized_cube_all_sample": all_pairwise,
         "pairwise_distance_normalized_cube_neutral_sample": neutral_pairwise,
+        "pairwise_distance_normalized_cube_wt_phenotype_sample": wt_phenotype_pairwise,
         "wildtype_code": wildtype_code,
         "wildtype_complexity": wildtype_complexity,
         "parameter_names": parameter_names,
@@ -421,6 +442,7 @@ if __name__ == "__main__":
     parser.add_argument("--neutral-cutoff", type=float, required=True)
     parser.add_argument("--max-point-sample", type=int, default=100000)
     parser.add_argument("--max-neutral-sample", type=int, default=100000)
+    parser.add_argument("--max-wt-phenotype-sample", type=int, default=100000)
     parser.add_argument("--max-plot-points", type=int, default=50000)
     parser.add_argument("--max-pairwise-points", type=int, default=3000)
     parser.add_argument("--seed", type=int, default=42)
