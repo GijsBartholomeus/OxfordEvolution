@@ -3,7 +3,7 @@
   "tag": "tyson_bfc_1e8",
   "source": {
     "source": "stats_sample",
-    "sample_npz": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz",
+    "sample_npz": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz",
     "points_seen": 100000
   },
   "min_count": 200,
@@ -29,26 +29,6 @@
   ],
   "equal_n_per_complexity": 306,
   "high_complexity_counts": [
-    {
-      "complexity": 17,
-      "count": 13556
-    },
-    {
-      "complexity": 20,
-      "count": 166
-    },
-    {
-      "complexity": 22,
-      "count": 6204
-    },
-    {
-      "complexity": 25,
-      "count": 3898
-    },
-    {
-      "complexity": 28,
-      "count": 8551
-    },
     {
       "complexity": 31,
       "count": 8816
@@ -484,5 +464,5 @@
       "max": 2.5834174156188965
     }
   },
-  "plot": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.png"
+  "plot": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.png"
 }
