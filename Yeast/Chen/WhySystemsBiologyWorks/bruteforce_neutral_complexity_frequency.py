@@ -47,13 +47,19 @@ def main(args: argparse.Namespace) -> None:
         raise FileNotFoundError(sample_npz)
 
     data = np.load(sample_npz, allow_pickle=True)
-    if "all_complexities" not in data or "all_objectives" not in data:
-        raise KeyError("Expected all_complexities and all_objectives in sample NPZ")
-
-    complexities = np.asarray(data["all_complexities"], dtype=float)
-    objectives = np.asarray(data["all_objectives"], dtype=float)
-    mask = np.isfinite(complexities) & np.isfinite(objectives) & (objectives <= args.neutral_cutoff)
-    neutral_complexities = complexities[mask]
+    if "neutral_complexities" in data and len(data["neutral_complexities"]):
+        neutral_complexities = np.asarray(data["neutral_complexities"], dtype=float)
+        source = "saved neutral_complexities"
+        points_in_sample = int(len(neutral_complexities))
+    elif "all_complexities" in data and "all_objectives" in data:
+        complexities = np.asarray(data["all_complexities"], dtype=float)
+        objectives = np.asarray(data["all_objectives"], dtype=float)
+        mask = np.isfinite(complexities) & np.isfinite(objectives) & (objectives <= args.neutral_cutoff)
+        neutral_complexities = complexities[mask]
+        source = "filtered all_complexities by all_objectives"
+        points_in_sample = int(len(complexities))
+    else:
+        raise KeyError("Expected neutral_complexities or all_complexities/all_objectives in sample NPZ")
 
     if len(neutral_complexities) == 0:
         counts = np.empty(0, dtype=int)
@@ -85,7 +91,8 @@ def main(args: argparse.Namespace) -> None:
         "tag": args.tag,
         "sample_npz": str(sample_npz),
         "neutral_cutoff": float(args.neutral_cutoff),
-        "points_in_sample": int(len(complexities)),
+        "complexity_source": source,
+        "points_in_sample": points_in_sample,
         "points_passing_cutoff": int(len(neutral_complexities)),
         "complexity_stats": summarize(neutral_complexities),
         "counts_by_rounded_complexity": {str(int(k)): int(v) for k, v in zip(bins, counts)},
