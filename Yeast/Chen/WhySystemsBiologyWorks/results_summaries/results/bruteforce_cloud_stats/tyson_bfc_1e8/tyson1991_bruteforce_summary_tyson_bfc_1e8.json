@@ -1,0 +1,55 @@
+{
+  "model": "tyson1991",
+  "label": "Tyson 1991",
+  "tag": "tyson_bfc_1e8",
+  "chunks_merged": 100,
+  "samples_attempted": 100000000,
+  "successes": 100000000,
+  "failures": 0,
+  "success_fraction": 1.0,
+  "unique_phenotypes": 7495643,
+  "neutral_cutoff": 0.05,
+  "all_point_sample_seen": 100000000,
+  "all_point_sample_saved": 100000,
+  "neutral_point_sample_seen": 4345,
+  "neutral_point_sample_saved": 4345,
+  "wt_phenotype_sample_seen": 740,
+  "wt_phenotype_sample_saved": 740,
+  "pairwise_distance_normalized_cube_all_sample": {
+    "n": 3000,
+    "mean": 1.1317291172201123,
+    "median": 1.1361736847467032,
+    "q95": 1.5286627983459418,
+    "max": 2.2632138086881612
+  },
+  "pairwise_distance_normalized_cube_neutral_sample": {
+    "n": 3000,
+    "mean": 0.8693000069672687,
+    "median": 0.8713880523235444,
+    "q95": 1.252415410753332,
+    "max": 1.872676018848968
+  },
+  "pairwise_distance_normalized_cube_wt_phenotype_sample": {
+    "n": 740,
+    "mean": 0.8359510118149,
+    "median": 0.8391795058553657,
+    "q95": 1.2207781442217494,
+    "max": 1.7834559750235885
+  },
+  "wildtype_code": 532150736647166,
+  "wildtype_complexity": 30.880903244018555,
+  "parameter_names": [
+    "k6",
+    "k8notP",
+    "k9",
+    "k3",
+    "k1aa",
+    "k7",
+    "k4",
+    "k4prime"
+  ],
+  "elapsed_seconds": 360.0380916595459,
+  "complexity_frequency_json": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_complexity_frequency_tyson_bfc_1e8.json",
+  "sample_npz": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz",
+  "plot": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_stats_tyson_bfc_1e8.png"
+}

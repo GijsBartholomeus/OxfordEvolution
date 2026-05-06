@@ -1,0 +1,35 @@
+{
+  "config": {
+    "model": "tyson1991",
+    "npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+    "neutral_threshold": 1.0,
+    "n_points": 2000,
+    "k_sloppy": 3,
+    "local_neighbors": 20,
+    "seed": 42,
+    "t_end": 100.0,
+    "n_time": 501,
+    "tag": "tyson_init_thr1_sloppy_all_k3"
+  },
+  "npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+  "point_source": "candidate_vectors<= 1",
+  "neutral_points_in_file": 948,
+  "neutral_points_sampled": 948,
+  "valid_hessians": 948,
+  "failed_hessians": [],
+  "supported_parameter_names": [
+    "k6",
+    "k8_minusP",
+    "k9",
+    "k3_CT",
+    "k1_aa_over_CT",
+    "k7",
+    "k4",
+    "k4prime"
+  ],
+  "unsupported_parameter_names": [],
+  "elapsed_seconds": 275.49328780174255,
+  "pairwise_chordal_median": 0.039147295108065513,
+  "wt_chordal_median": 0.014514902793703485,
+  "tangent_chordal_median": 1.3026993108078146
+}

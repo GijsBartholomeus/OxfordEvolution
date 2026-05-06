@@ -22,5 +22,15 @@ Yeast/Chen/WhySystemsBiologyWorks/results/*
 !Yeast/Chen/WhySystemsBiologyWorks/plots/.gitkeep
 !Yeast/Chen/WhySystemsBiologyWorks/results/.gitkeep
 
+# Curated WhySystemsBiologyWorks outputs that are small enough for Git.
+# These are mirrors of selected results, not the raw analysis store.
+!Yeast/Chen/WhySystemsBiologyWorks/figures/
+!Yeast/Chen/WhySystemsBiologyWorks/figures/**
+!Yeast/Chen/WhySystemsBiologyWorks/results_summaries/
+!Yeast/Chen/WhySystemsBiologyWorks/results_summaries/**
+Yeast/Chen/WhySystemsBiologyWorks/results_summaries/**/*.npz
+Yeast/Chen/WhySystemsBiologyWorks/results_summaries/**/*.npy
+Yeast/Chen/WhySystemsBiologyWorks/results_summaries/**/*complexity_frequency*.json
+
 # Large outputs
 *.pkl

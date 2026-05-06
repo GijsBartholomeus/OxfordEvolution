@@ -1,0 +1,109 @@
+{
+  "config": {
+    "model": "tyson1991",
+    "npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+    "neutral_threshold": 1.0,
+    "k_sloppy": 3,
+    "n_points": null,
+    "seed": 42,
+    "t_end": 100.0,
+    "n_time": 501,
+    "tag": "tyson_init_thr1_projection_k3"
+  },
+  "npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+  "point_source": "candidate_vectors<= 1",
+  "points_in_file": 948,
+  "points_sampled": 948,
+  "supported_parameter_names": [
+    "k6",
+    "k8_minusP",
+    "k9",
+    "k3_CT",
+    "k1_aa_over_CT",
+    "k7",
+    "k4",
+    "k4prime"
+  ],
+  "unsupported_parameter_names": [],
+  "wt_hessian_eigenvalues_descending": [
+    8.926982572950685,
+    0.11001391747955949,
+    0.00041555420903961694,
+    0.0002763170230686537,
+    0.00015421401371846835,
+    3.675781146484653e-07,
+    3.4286109515574112e-09,
+    1.783942511841255e-16
+  ],
+  "residual_fraction": {
+    "name": "orthogonal_norm / total_norm",
+    "n": 948,
+    "min": 0.06583391619981564,
+    "q05": 0.23080301982582518,
+    "q25": 0.47858939638643305,
+    "median": 0.7291844296857224,
+    "q75": 0.87100459155739,
+    "q95": 0.97574156799195,
+    "max": 0.997686282636349
+  },
+  "explained_fraction": {
+    "name": "parallel_norm^2 / total_norm^2",
+    "n": 948,
+    "min": 0.004622081439263539,
+    "q05": 0.04792838686104268,
+    "q25": 0.24135100037976048,
+    "median": 0.46829001401320924,
+    "q75": 0.7709521640386043,
+    "q95": 0.9467291869415856,
+    "max": 0.9956658954777967
+  },
+  "total_log_distance_to_wt": {
+    "name": "||log(theta)-log(theta_wt)||",
+    "n": 948,
+    "min": 0.4871234644876974,
+    "q05": 0.9534400972852323,
+    "q25": 1.3827912136445932,
+    "median": 1.900058042952352,
+    "q75": 2.820455029315878,
+    "q95": 4.4944446677180325,
+    "max": 8.824932669370888
+  },
+  "parallel_log_distance": {
+    "name": "||projection onto WT sloppy subspace||",
+    "n": 948,
+    "min": 0.17459494091402508,
+    "q05": 0.4791541682840134,
+    "q25": 0.7542297741624386,
+    "median": 1.079651070123516,
+    "q75": 1.9532677144235338,
+    "q95": 3.6831142491703552,
+    "max": 8.26214266138747
+  },
+  "orthogonal_log_distance": {
+    "name": "||orthogonal residual||",
+    "n": 948,
+    "min": 0.1100707272448702,
+    "q05": 0.48713024764136736,
+    "q25": 0.8511593384399736,
+    "median": 1.1674377114498524,
+    "q75": 1.700407848528628,
+    "q95": 3.2574353779777288,
+    "max": 6.791960291759819
+  },
+  "pca_top_vs_wt_sloppy_chordal": 0.9203923290142495,
+  "pca_top_vs_wt_sloppy_angles_degrees": [
+    3.3221330283524977,
+    5.455993453988528,
+    66.01219450158356
+  ],
+  "pca_explained_fraction": [
+    0.20288577822819948,
+    0.1760612577363391,
+    0.171144867907661,
+    0.1615995879886984,
+    0.09927720343339952,
+    0.08620125170440268,
+    0.06306966869718962,
+    0.0397603843041102
+  ]
+}

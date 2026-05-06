@@ -51,6 +51,42 @@ Merge after all chunks are done:
 python hydra/wsbw_merge_hydra_chunks.py --tag hydra_1e5
 ```
 
+## Curated outputs for Git
+
+Analysis scripts write raw outputs into `results/` and `plots/`. Those folders
+may contain raw chunks, merged `.npz` files, and very large JSON files, so they
+are intentionally ignored by Git. After producing a useful result, mirror the
+small paper-facing outputs into the tracked folders:
+
+```bash
+python hydra/collect_tracked_outputs.py
+```
+
+This copies figures into:
+
+```text
+figures/
+```
+
+and small JSON/CSV/TSV summaries into:
+
+```text
+results_summaries/
+```
+
+It skips raw chunks, per-chain files, `.npz`/`.npy` arrays, launcher scripts,
+smoke/local test outputs, and giant complexity-frequency JSONs. It does not move
+or delete the originals. Commit the curated mirror, not the raw result store:
+
+```bash
+git add figures results_summaries hydra/collect_tracked_outputs.py
+git commit -m "Collect curated analysis outputs"
+git push
+```
+
+Use `--dry-run` to inspect what would be mirrored, and `--include-smoke` only if
+you deliberately want local/smoke-test artifacts in the mirror.
+
 ## NNSE batch initialisation benchmark
 
 Before running a full NNSE chain, test whether random parallel screening can
