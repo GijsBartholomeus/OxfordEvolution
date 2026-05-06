@@ -13,12 +13,12 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "hydra"))
 
-from wsbw_merge_bruteforce_cloud import STATS_ROOT, plot_summary
+from wsbw_merge_bruteforce_cloud import OUT_ROOT, plot_summary
 from wsbw_pipeline import SPECS
 
 
 def main(args: argparse.Namespace) -> None:
-    stats_dir = STATS_ROOT / args.tag
+    stats_dir = OUT_ROOT / args.tag
     freq_json = stats_dir / f"{args.model}_complexity_frequency_{args.tag}.json"
     sample_npz = stats_dir / f"{args.model}_bruteforce_samples_{args.tag}.npz"
     if not freq_json.exists():
