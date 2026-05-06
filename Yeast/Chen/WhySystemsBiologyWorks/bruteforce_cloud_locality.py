@@ -161,6 +161,18 @@ def equalized_pairwise_groups(
     return out, meta
 
 
+def add_random_pairwise_controls(
+    candidates: dict[str, np.ndarray],
+    points: np.ndarray,
+    n_controls: int,
+) -> None:
+    if n_controls <= 1:
+        candidates["all random"] = points
+        return
+    for idx in range(n_controls):
+        candidates[f"random cube control {idx + 1}"] = points
+
+
 def local_quartile_stats(
     points: np.ndarray,
     complexities: np.ndarray,
@@ -409,7 +421,6 @@ def plot_analysis(
         q75 = np.asarray([row[y_key]["q75"] for row in growth["rows"]], dtype=float)
         ax_growth.plot(radii, med, color="black", lw=2)
         ax_growth.fill_between(radii, q25, q75, color="#9ecae1", alpha=0.45)
-        ax_growth.set_xscale("log")
         ax_growth.set_yscale("log")
         ax_growth.set_xlabel("radius in normalized cube")
         ax_growth.set_ylabel(y_key.replace("_", " "))
@@ -503,7 +514,7 @@ def main(args: argparse.Namespace) -> None:
 
     neutral_cutoff = args.neutral_cutoff
     pairwise_candidates: dict[str, np.ndarray] = {}
-    pairwise_candidates["all random"] = norm_points
+    add_random_pairwise_controls(pairwise_candidates, norm_points, args.random_pairwise_controls)
     neutral_mask = objectives <= neutral_cutoff
     if len(strict_points):
         pairwise_candidates[f"WT neutral\nf<={neutral_cutoff:g}"] = strict_points
@@ -511,11 +522,12 @@ def main(args: argparse.Namespace) -> None:
         pairwise_candidates[f"WT neutral\nf<={neutral_cutoff:g}"] = norm_points[neutral_mask]
     wt_code = summary.get("wildtype_code")
     wt_mask = None
-    if len(wt_phenotype_points):
-        pairwise_candidates["WT phenotype\nsame bitstring"] = wt_phenotype_points
-    elif codes is not None and wt_code is not None:
-        wt_mask = codes == np.asarray(wt_code, dtype=codes.dtype)
-        pairwise_candidates["WT phenotype\nsame bitstring"] = norm_points[wt_mask]
+    if not args.exclude_wt_phenotype_pairwise:
+        if len(wt_phenotype_points):
+            pairwise_candidates["WT phenotype\nsame bitstring"] = wt_phenotype_points
+        elif codes is not None and wt_code is not None:
+            wt_mask = codes == np.asarray(wt_code, dtype=codes.dtype)
+            pairwise_candidates["WT phenotype\nsame bitstring"] = norm_points[wt_mask]
     if args.fallback_loose_cutoff is not None:
         loose_mask = objectives <= args.fallback_loose_cutoff
         loose_name = f"WT loose neutral\nf<={args.fallback_loose_cutoff:g}"
@@ -598,6 +610,8 @@ if __name__ == "__main__":
     parser.add_argument("--always-include-loose-cutoff", action="store_true")
     parser.add_argument("--min-pairwise-group-points", type=int, default=2)
     parser.add_argument("--pairwise-equal-n", type=int, default=None)
+    parser.add_argument("--random-pairwise-controls", type=int, default=1)
+    parser.add_argument("--exclude-wt-phenotype-pairwise", action="store_true")
     parser.add_argument("--pairgrid", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--max-pairgrid-dims", type=int, default=12)
     parser.add_argument("--max-pairgrid-points", type=int, default=30000)

@@ -86,11 +86,34 @@ def is_smoke_or_local_output(path: Path, root: Path) -> bool:
     return False
 
 
+def is_unwanted_pipeline_plot(path: Path, root: Path) -> bool:
+    if not path_is_relative_to(path, root / "plots"):
+        return False
+    name = path.name
+    if not name.endswith(".png"):
+        return False
+    return not (name.startswith("CompFreq1e7") or name.startswith("FreqComp1e7"))
+
+
 def destination_for(source: Path, root: Path, kind: str) -> Path:
     if path_is_relative_to(source, root / "plots"):
-        rel = Path("plots") / source.relative_to(root / "plots")
+        name = source.name
+        if name.startswith("CompFreq"):
+            name = "FreqComp" + name[len("CompFreq") :]
+        rel = Path("pipeline") / name
     elif path_is_relative_to(source, root / "results"):
-        rel = Path("results") / source.relative_to(root / "results")
+        raw_rel = source.relative_to(root / "results")
+        parts = raw_rel.parts
+        if parts and parts[0] == "bruteforce_cloud_stats":
+            rel = Path("bruteforce_cloud").joinpath(*parts[1:])
+        elif parts and parts[0] == "neutral_geometry":
+            rel = Path("neutral_geometry").joinpath(*parts[1:])
+        elif parts and parts[0] in {"sloppy_projection", "sloppy_random_cube", "sloppy_subspace", "ellipsoid_check"}:
+            rel = Path("sloppy_geometry") / parts[0]
+            if len(parts) > 1:
+                rel = rel.joinpath(*parts[1:])
+        else:
+            rel = Path("analysis") / raw_rel
     else:
         rel = source.relative_to(root)
 
@@ -136,6 +159,8 @@ def mirror_outputs(
 
     for source in iter_candidate_files(root):
         if not include_smoke and is_smoke_or_local_output(source, root):
+            continue
+        if is_unwanted_pipeline_plot(source, root):
             continue
         suffix = source.suffix.lower()
         if suffix in FIGURE_EXTENSIONS:

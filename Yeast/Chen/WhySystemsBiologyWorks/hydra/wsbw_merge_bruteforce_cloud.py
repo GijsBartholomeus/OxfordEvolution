@@ -196,14 +196,12 @@ def plot_stats(
     quartiles, edges = complexity_quartile_labels(complexities)
     palette = np.array(["#3b4cc0", "#78b7ff", "#f6c85f", "#c44e52"])
 
-    fig = plt.figure(figsize=(15, 10), constrained_layout=True)
-    gs = fig.add_gridspec(2, 3)
+    fig = plt.figure(figsize=(13, 10), constrained_layout=True)
+    gs = fig.add_gridspec(2, 2)
     ax_hist = fig.add_subplot(gs[0, 0])
     ax_panel = fig.add_subplot(gs[0, 1])
-    ax_pca12 = fig.add_subplot(gs[0, 2])
-    ax_pca34 = fig.add_subplot(gs[1, 0])
-    ax_obj = fig.add_subplot(gs[1, 1])
-    ax_info = fig.add_subplot(gs[1, 2])
+    ax_pca12 = fig.add_subplot(gs[1, 0])
+    ax_pca34 = fig.add_subplot(gs[1, 1])
 
     phenos = data["phenotypes"]
     unique_complexities = np.asarray([p["complexity"] for p in phenos], dtype=float)
@@ -244,13 +242,6 @@ def plot_stats(
             ax_pca34.set_ylabel(f"PC4 ({explained[3]:.1%})")
             ax_pca34.set_title("Parameter PCA")
 
-    ax_obj.scatter(complexities, objectives, s=4, color="black", alpha=0.35, linewidths=0)
-    ax_obj.set_yscale("log")
-    ax_obj.set_xlabel("phenotype complexity K(x)")
-    ax_obj.set_ylabel("WT distance f")
-    ax_obj.set_title("Complexity versus WT distance")
-
-    ax_info.axis("off")
     info = [
         f"model: {data['label']}",
         f"attempted: {data['samples']:,}",
@@ -259,7 +250,16 @@ def plot_stats(
         f"plot sample: {len(points):,}",
         f"K quartile edges: {', '.join(f'{x:.2f}' for x in edges)}",
     ]
-    ax_info.text(0.02, 0.98, "\n".join(info), ha="left", va="top", fontsize=10)
+    ax_hist.text(
+        0.98,
+        0.98,
+        "\n".join(info),
+        ha="right",
+        va="top",
+        fontsize=8,
+        transform=ax_hist.transAxes,
+        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.75},
+    )
 
     out = out_dir / f"{model}_bruteforce_stats_{tag}.png"
     fig.savefig(out, dpi=220)
