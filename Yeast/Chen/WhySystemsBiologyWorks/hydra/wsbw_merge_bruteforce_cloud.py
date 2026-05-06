@@ -270,6 +270,7 @@ def plot_stats(
 def main(args: argparse.Namespace) -> None:
     start = time.time()
     in_dir = IN_ROOT / args.tag
+    out_tag = args.out_tag or args.tag
     if not in_dir.exists():
         raise FileNotFoundError(in_dir)
     paths = sorted(in_dir.glob(f"{args.model}_bruteforce_cloud_N=*chunk-*.npz"))
@@ -291,7 +292,7 @@ def main(args: argparse.Namespace) -> None:
     neutral_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
     wt_phenotype_sample: dict[str, np.ndarray | int | None] = {"seen": 0, "points": None, "complexities": None, "objectives": None, "codes": None}
 
-    out_dir = OUT_ROOT / args.tag
+    out_dir = OUT_ROOT / out_tag
     out_dir.mkdir(parents=True, exist_ok=True)
 
     for idx, path in enumerate(paths, start=1):
@@ -356,7 +357,7 @@ def main(args: argparse.Namespace) -> None:
         wildtype_code,
         wildtype_complexity,
     )
-    freq_json = save_complexity_frequency_json(panel_data, out_dir, args.tag)
+    freq_json = save_complexity_frequency_json(panel_data, out_dir, out_tag)
 
     all_points_arr = sample_array(all_sample, "points", len(p0), np.float32)
     neutral_points_arr = sample_array(neutral_sample, "points", len(p0), np.float32)
@@ -374,12 +375,12 @@ def main(args: argparse.Namespace) -> None:
         all_sample,
         p0,
         out_dir,
-        args.tag,
+        out_tag,
         rng,
         args.max_plot_points,
     )
 
-    sample_npz = out_dir / f"{args.model}_bruteforce_samples_{args.tag}.npz"
+    sample_npz = out_dir / f"{args.model}_bruteforce_samples_{out_tag}.npz"
     np.savez_compressed(
         sample_npz,
         all_points=all_points_arr,
@@ -402,7 +403,8 @@ def main(args: argparse.Namespace) -> None:
     summary = {
         "model": args.model,
         "label": label,
-        "tag": args.tag,
+        "tag": out_tag,
+        "input_tag": args.tag,
         "chunks_merged": len(paths),
         "samples_attempted": attempted,
         "successes": successes,
@@ -427,7 +429,7 @@ def main(args: argparse.Namespace) -> None:
         "sample_npz": str(sample_npz),
         "plot": str(plot_path),
     }
-    summary_path = out_dir / f"{args.model}_bruteforce_summary_{args.tag}.json"
+    summary_path = out_dir / f"{args.model}_bruteforce_summary_{out_tag}.json"
     summary_path.write_text(json.dumps(summary, indent=2))
     print(f"Saved {summary_path}")
     print(f"Saved {plot_path}")
@@ -438,6 +440,7 @@ def main(args: argparse.Namespace) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge/analyze brute-force point/complexity/objective cloud chunks")
     parser.add_argument("--tag", required=True)
+    parser.add_argument("--out-tag", default=None)
     parser.add_argument("--model", required=True, choices=[spec.key for spec in SPECS])
     parser.add_argument("--neutral-cutoff", type=float, required=True)
     parser.add_argument("--max-point-sample", type=int, default=100000)

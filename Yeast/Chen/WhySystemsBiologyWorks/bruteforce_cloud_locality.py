@@ -114,6 +114,53 @@ def pairwise_distribution(points: np.ndarray, rng: np.random.Generator, max_poin
     return distances, stats
 
 
+def finite_point_rows(points: np.ndarray) -> np.ndarray:
+    points = np.asarray(points, dtype=float)
+    if points.ndim != 2:
+        return np.empty((0, 0), dtype=float)
+    return points[np.all(np.isfinite(points), axis=1)]
+
+
+def equalized_pairwise_groups(
+    candidates: dict[str, np.ndarray],
+    rng: np.random.Generator,
+    max_points: int,
+    min_points: int,
+    equal_n: int | None,
+) -> tuple[dict[str, tuple[np.ndarray, dict]], dict]:
+    filtered = {
+        name: finite_point_rows(points)
+        for name, points in candidates.items()
+        if len(finite_point_rows(points)) >= min_points
+    }
+    available = {name: int(len(finite_point_rows(points))) for name, points in candidates.items()}
+    if not filtered:
+        return {}, {
+            "available_points_before_filter": available,
+            "min_points_required": int(min_points),
+            "equal_n_points": 0,
+        }
+    inferred_n = min(len(points) for points in filtered.values())
+    if equal_n is not None and equal_n > 0:
+        inferred_n = min(inferred_n, int(equal_n))
+    inferred_n = min(inferred_n, int(max_points))
+    out: dict[str, tuple[np.ndarray, dict]] = {}
+    for name, points in filtered.items():
+        distances, stats = pairwise_distribution(points, rng, inferred_n)
+        stats["n_points_available"] = int(len(points))
+        stats["equalized_n_points"] = int(inferred_n)
+        out[name] = (distances, stats)
+    meta = {
+        "available_points_before_filter": available,
+        "included_groups": list(out),
+        "min_points_required": int(min_points),
+        "equal_n_points": int(inferred_n),
+        "requested_equal_n_points": int(equal_n) if equal_n is not None else None,
+        "max_pairwise_points": int(max_points),
+    }
+    return out, meta
+
+
 def local_quartile_stats(
     points: np.ndarray,
     complexities: np.ndarray,
@@ -331,21 +378,28 @@ def plot_analysis(
 
     names = list(pairwise_groups)
     distributions = [pairwise_groups[name][0] for name in names]
-    ax_dist.boxplot(
-        distributions,
-        tick_labels=[f"{name}\n(n={pairwise_groups[name][1].get('n_points', 0):,})" for name in names],
-        showfliers=False,
-        patch_artist=True,
-        boxprops={"facecolor": "#d7e6f5", "edgecolor": "black"},
-        medianprops={"color": "black"},
-    )
-    for idx, values in enumerate(distributions, start=1):
-        if len(values):
-            ax_dist.scatter([idx], [np.max(values)], color="#c44e52", s=24, zorder=3, label="max" if idx == 1 else None)
+    if distributions:
+        ax_dist.boxplot(
+            distributions,
+            tick_labels=[
+                f"{name}\n(n={pairwise_groups[name][1].get('n_points', 0):,}"
+                f"; avail={pairwise_groups[name][1].get('n_points_available', pairwise_groups[name][1].get('n_points', 0)):,})"
+                for name in names
+            ],
+            showfliers=False,
+            patch_artist=True,
+            boxprops={"facecolor": "#d7e6f5", "edgecolor": "black"},
+            medianprops={"color": "black"},
+        )
+        for idx, values in enumerate(distributions, start=1):
+            if len(values):
+                ax_dist.scatter([idx], [np.max(values)], color="#c44e52", s=24, zorder=3, label="max" if idx == 1 else None)
+        if any(len(values) for values in distributions):
+            ax_dist.legend(frameon=False, fontsize=8)
+    else:
+        ax_dist.text(0.5, 0.5, "No pairwise groups passed filters", ha="center", va="center", transform=ax_dist.transAxes)
     ax_dist.set_ylabel("Euclidean distance in normalized cube")
     ax_dist.set_title("Pairwise distance distributions")
-    if any(len(values) for values in distributions):
-        ax_dist.legend(frameon=False, fontsize=8)
 
     if growth:
         radii = np.asarray([row["radius"] for row in growth["rows"]])
@@ -448,23 +502,37 @@ def main(args: argparse.Namespace) -> None:
     )
 
     neutral_cutoff = args.neutral_cutoff
-    pairwise_groups: dict[str, tuple[np.ndarray, dict]] = {}
-    pairwise_groups["all random"] = pairwise_distribution(norm_points, rng, args.max_pairwise_points)
+    pairwise_candidates: dict[str, np.ndarray] = {}
+    pairwise_candidates["all random"] = norm_points
     neutral_mask = objectives <= neutral_cutoff
     if len(strict_points):
-        pairwise_groups[f"WT neutral\nf<={neutral_cutoff:g}"] = pairwise_distribution(strict_points, rng, args.max_pairwise_points)
+        pairwise_candidates[f"WT neutral\nf<={neutral_cutoff:g}"] = strict_points
     else:
-        pairwise_groups[f"WT neutral\nf<={neutral_cutoff:g}"] = pairwise_distribution(norm_points[neutral_mask], rng, args.max_pairwise_points)
+        pairwise_candidates[f"WT neutral\nf<={neutral_cutoff:g}"] = norm_points[neutral_mask]
     wt_code = summary.get("wildtype_code")
     wt_mask = None
     if len(wt_phenotype_points):
-        pairwise_groups["WT phenotype\nsame bitstring"] = pairwise_distribution(wt_phenotype_points, rng, args.max_pairwise_points)
+        pairwise_candidates["WT phenotype\nsame bitstring"] = wt_phenotype_points
     elif codes is not None and wt_code is not None:
         wt_mask = codes == np.asarray(wt_code, dtype=codes.dtype)
-        pairwise_groups["WT phenotype\nsame bitstring"] = pairwise_distribution(norm_points[wt_mask], rng, args.max_pairwise_points)
-    elif args.fallback_loose_cutoff is not None:
+        pairwise_candidates["WT phenotype\nsame bitstring"] = norm_points[wt_mask]
+    if args.fallback_loose_cutoff is not None:
         loose_mask = objectives <= args.fallback_loose_cutoff
-        pairwise_groups[f"fallback WT-like\nf<={args.fallback_loose_cutoff:g}"] = pairwise_distribution(norm_points[loose_mask], rng, args.max_pairwise_points)
+        loose_name = f"WT loose neutral\nf<={args.fallback_loose_cutoff:g}"
+        if (
+            "WT phenotype\nsame bitstring" not in pairwise_candidates
+            or len(pairwise_candidates["WT phenotype\nsame bitstring"]) < args.min_pairwise_group_points
+            or args.always_include_loose_cutoff
+        ):
+            pairwise_candidates[loose_name] = norm_points[loose_mask]
+
+    pairwise_groups, pairwise_meta = equalized_pairwise_groups(
+        pairwise_candidates,
+        rng,
+        args.max_pairwise_points,
+        args.min_pairwise_group_points,
+        args.pairwise_equal_n,
+    )
 
     out_dir = stats_dir / "locality"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -506,6 +574,7 @@ def main(args: argparse.Namespace) -> None:
         "wt_phenotype_source": "saved wt_phenotype_points" if len(wt_phenotype_points) else "phenotype_code == wildtype_code" if wt_mask is not None else "unavailable; used fallback cutoff" if args.fallback_loose_cutoff is not None else "unavailable",
         "wt_phenotype_points_in_sample": int(len(wt_phenotype_points)) if len(wt_phenotype_points) else int(np.sum(wt_mask)) if wt_mask is not None else None,
         "fallback_loose_cutoff": args.fallback_loose_cutoff,
+        "pairwise_equalization": pairwise_meta,
         "phenotype_codes_available_for_radius_growth": bool(locality_codes is not None),
         "local_quartile_neighbor_stats": locality_stats,
         "radius_growth": growth,
@@ -526,6 +595,9 @@ if __name__ == "__main__":
     parser.add_argument("--model", required=True, choices=[spec.key for spec in SPECS])
     parser.add_argument("--neutral-cutoff", type=float, required=True)
     parser.add_argument("--fallback-loose-cutoff", type=float, default=None)
+    parser.add_argument("--always-include-loose-cutoff", action="store_true")
+    parser.add_argument("--min-pairwise-group-points", type=int, default=2)
+    parser.add_argument("--pairwise-equal-n", type=int, default=None)
     parser.add_argument("--pairgrid", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--max-pairgrid-dims", type=int, default=12)
     parser.add_argument("--max-pairgrid-points", type=int, default=30000)
