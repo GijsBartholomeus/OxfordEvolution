@@ -1,8 +1,8 @@
 {
   "chen2004": {
     "label": "Chen 2004",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000056.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/chen2004.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000056.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/chen2004.xml",
     "output": "CLB2",
     "free_parameter_count": 136,
     "free_parameters": [
@@ -179,8 +179,8 @@
   },
   "kholodenko2000": {
     "label": "Kholodenko 2000",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000010.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/kholodenko2000.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000010.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/kholodenko2000.xml",
     "output": "MKK_PP",
     "free_parameter_count": 21,
     "free_parameters": [
@@ -210,8 +210,8 @@
   },
   "leloup1999": {
     "label": "Leloup 1999",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000021.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/leloup1999.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000021.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/leloup1999.xml",
     "output": "Cn",
     "free_parameter_count": 37,
     "free_parameters": [
@@ -261,8 +261,8 @@
   },
   "locke2005": {
     "label": "Locke 2005",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000055.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/locke2005.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000055.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/locke2005.xml",
     "output": "cXn",
     "free_parameter_count": 61,
     "free_parameters": [
@@ -332,8 +332,8 @@
   },
   "ueda2001": {
     "label": "Ueda 2001",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000022.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/ueda2001.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000022.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/ueda2001.xml",
     "output": "CCc",
     "free_parameter_count": 46,
     "free_parameters": [
@@ -396,8 +396,8 @@
   },
   "vilar2002": {
     "label": "Vilar 2002",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000035.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/vilar2002.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000035.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/vilar2002.xml",
     "output": "C",
     "free_parameter_count": 15,
     "free_parameters": [
@@ -421,8 +421,8 @@
   },
   "tyson1991": {
     "label": "Tyson 1991",
-    "source_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000005.xml",
-    "promoted_sbml": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/tyson1991.xml",
+    "source_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models/BIOMD0000000005.xml",
+    "promoted_sbml": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/models_promoted/tyson1991.xml",
     "output": "M",
     "free_parameter_count": 8,
     "free_parameters": [

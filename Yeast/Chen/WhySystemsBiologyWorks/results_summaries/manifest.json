@@ -1,58 +1,114 @@
 [
   {
     "kind": "figure",
+    "source": "plots/CompFreq1e7.png",
+    "destination": "figures/plots/CompFreq1e7.png",
+    "size_bytes": 509141,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/CompFreq1e7_grid.png",
+    "destination": "figures/plots/CompFreq1e7_grid.png",
+    "size_bytes": 518127,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency.png",
+    "size_bytes": 509141,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows.png",
+    "size_bytes": 509141,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e5_N=1e5.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e5_N=1e5.png",
+    "size_bytes": 418750,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e5_N=1e5_grid.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e5_N=1e5_grid.png",
+    "size_bytes": 426664,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e6_N=1e6.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e6_N=1e6.png",
+    "size_bytes": 475263,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e6_N=1e6_grid.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_1e6_N=1e6_grid.png",
+    "size_bytes": 484357,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_smoke_N=1e1.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_smoke_N=1e1.png",
+    "size_bytes": 220073,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_smoke_N=1e1_grid.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_smoke_N=1e1_grid.png",
+    "size_bytes": 222227,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_test_1e3_N=1e3.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_test_1e3_N=1e3.png",
+    "size_bytes": 314474,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_test_1e3_N=1e3_grid.png",
+    "destination": "figures/plots/oscillatory_subset_complexity_frequency_trough_windows_hydra_hydra_test_1e3_N=1e3_grid.png",
+    "size_bytes": 320442,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
     "source": "results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_stats_chen_bfc_1e8.png",
     "destination": "figures/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_stats_chen_bfc_1e8.png",
     "size_bytes": 1957724,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_summary_chen_bfc_1e8.json",
     "destination": "results_summaries/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_summary_chen_bfc_1e8.json",
     "size_bytes": 3670,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/bruteforce_cloud_stats/chen_bfc_1e8/locality/chen2004_locality_chen_bfc_1e8.json",
     "destination": "results_summaries/results/bruteforce_cloud_stats/chen_bfc_1e8/locality/chen2004_locality_chen_bfc_1e8.json",
-    "size_bytes": 45927,
+    "size_bytes": 45786,
     "action": "copied"
   },
   {
     "kind": "figure",
     "source": "results/bruteforce_cloud_stats/chen_bfc_1e8/locality/chen2004_locality_chen_bfc_1e8.png",
     "destination": "figures/results/bruteforce_cloud_stats/chen_bfc_1e8/locality/chen2004_locality_chen_bfc_1e8.png",
-    "size_bytes": 9546780,
-    "action": "copied"
-  },
-  {
-    "kind": "summary",
-    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8.json",
-    "destination": "results_summaries/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8.json",
-    "size_bytes": 12006,
-    "action": "copied"
-  },
-  {
-    "kind": "figure",
-    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8.png",
-    "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8.png",
-    "size_bytes": 450241,
-    "action": "copied"
-  },
-  {
-    "kind": "summary",
-    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.json",
-    "destination": "results_summaries/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.json",
-    "size_bytes": 12032,
-    "action": "copied"
-  },
-  {
-    "kind": "figure",
-    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.png",
-    "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/complexity_distance/tyson1991_complexity_distance_equalN_tyson_bfc_1e8_stats_sample_min200_eq306.png",
-    "size_bytes": 450241,
+    "size_bytes": 13845831,
     "action": "copied"
   },
   {
@@ -60,20 +116,34 @@
     "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_pairgrid_tyson_bfc_1e8.png",
     "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_pairgrid_tyson_bfc_1e8.png",
     "size_bytes": 11791364,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_tyson_bfc_1e8.json",
     "destination": "results_summaries/results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_tyson_bfc_1e8.json",
-    "size_bytes": 44706,
+    "size_bytes": 46476,
     "action": "copied"
   },
   {
     "kind": "figure",
     "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_tyson_bfc_1e8.png",
     "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_tyson_bfc_1e8.png",
-    "size_bytes": 7253531,
+    "size_bytes": 10530123,
+    "action": "copied"
+  },
+  {
+    "kind": "summary",
+    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/phenotype_spread/tyson1991_phenotype_spread_tyson_bfc_1e8_top3_min100_pts1000.json",
+    "destination": "results_summaries/results/bruteforce_cloud_stats/tyson_bfc_1e8/phenotype_spread/tyson1991_phenotype_spread_tyson_bfc_1e8_top3_min100_pts1000.json",
+    "size_bytes": 27537,
+    "action": "copied"
+  },
+  {
+    "kind": "figure",
+    "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/phenotype_spread/tyson1991_phenotype_spread_tyson_bfc_1e8_top3_min100_pts1000.png",
+    "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/phenotype_spread/tyson1991_phenotype_spread_tyson_bfc_1e8_top3_min100_pts1000.png",
+    "size_bytes": 494851,
     "action": "copied"
   },
   {
@@ -81,55 +151,41 @@
     "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_stats_tyson_bfc_1e8.png",
     "destination": "figures/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_stats_tyson_bfc_1e8.png",
     "size_bytes": 2225493,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_summary_tyson_bfc_1e8.json",
     "destination": "results_summaries/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_summary_tyson_bfc_1e8.json",
     "size_bytes": 1894,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/ellipsoid_check/tyson_init_1e6_thr005_ellipsoid_k3.json",
     "destination": "results_summaries/results/ellipsoid_check/tyson_init_1e6_thr005_ellipsoid_k3.json",
-    "size_bytes": 6843,
+    "size_bytes": 6645,
     "action": "copied"
   },
   {
     "kind": "figure",
     "source": "results/ellipsoid_check/tyson_init_1e6_thr005_ellipsoid_k3.png",
     "destination": "figures/results/ellipsoid_check/tyson_init_1e6_thr005_ellipsoid_k3.png",
-    "size_bytes": 255601,
-    "action": "copied"
-  },
-  {
-    "kind": "summary",
-    "source": "results/neutral_geometry/chen_nnse_25chains_thr15_geometry/chen2004_neutral_geometry_chen_nnse_25chains_thr15_geometry.json",
-    "destination": "results_summaries/results/neutral_geometry/chen_nnse_25chains_thr15_geometry/chen2004_neutral_geometry_chen_nnse_25chains_thr15_geometry.json",
-    "size_bytes": 27953,
-    "action": "copied"
-  },
-  {
-    "kind": "figure",
-    "source": "results/neutral_geometry/chen_nnse_25chains_thr15_geometry/chen2004_neutral_geometry_chen_nnse_25chains_thr15_geometry.png",
-    "destination": "figures/results/neutral_geometry/chen_nnse_25chains_thr15_geometry/chen2004_neutral_geometry_chen_nnse_25chains_thr15_geometry.png",
-    "size_bytes": 412637,
+    "size_bytes": 252139,
     "action": "copied"
   },
   {
     "kind": "summary",
     "source": "results/neutral_geometry/tyson_bfc_1e8_thr005_geometry/tyson1991_neutral_geometry_tyson_bfc_1e8_thr005_geometry.json",
     "destination": "results_summaries/results/neutral_geometry/tyson_bfc_1e8_thr005_geometry/tyson1991_neutral_geometry_tyson_bfc_1e8_thr005_geometry.json",
-    "size_bytes": 17433,
+    "size_bytes": 17383,
     "action": "copied"
   },
   {
     "kind": "figure",
     "source": "results/neutral_geometry/tyson_bfc_1e8_thr005_geometry/tyson1991_neutral_geometry_tyson_bfc_1e8_thr005_geometry.png",
     "destination": "figures/results/neutral_geometry/tyson_bfc_1e8_thr005_geometry/tyson1991_neutral_geometry_tyson_bfc_1e8_thr005_geometry.png",
-    "size_bytes": 380618,
+    "size_bytes": 383125,
     "action": "copied"
   },
   {
@@ -137,6 +193,13 @@
     "source": "results/nnse_accessibility/chen2004_accessibility_chen_nnse_parallel_25chains_100k_thr15_Nrand10000.json",
     "destination": "results_summaries/results/nnse_accessibility/chen2004_accessibility_chen_nnse_parallel_25chains_100k_thr15_Nrand10000.json",
     "size_bytes": 2197,
+    "action": "unchanged"
+  },
+  {
+    "kind": "summary",
+    "source": "results/nnse_batch_init/chen_nnse_batch_1e5/chen2004_nnse_batch_init_N=100000.json",
+    "destination": "results_summaries/results/nnse_batch_init/chen_nnse_batch_1e5/chen2004_nnse_batch_init_N=100000.json",
+    "size_bytes": 2743,
     "action": "copied"
   },
   {
@@ -144,13 +207,20 @@
     "source": "results/nnse_batch_init/chen_nnse_batch_1e6_chunked/chen2004_nnse_batch_init_merged_N=1e6.json",
     "destination": "results_summaries/results/nnse_batch_init/chen_nnse_batch_1e6_chunked/chen2004_nnse_batch_init_merged_N=1e6.json",
     "size_bytes": 3042,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/nnse_batch_init/chen_nnse_batch_1e6_seeded/chen2004_nnse_batch_init_merged_N=960000.json",
     "destination": "results_summaries/results/nnse_batch_init/chen_nnse_batch_1e6_seeded/chen2004_nnse_batch_init_merged_N=960000.json",
     "size_bytes": 3107,
+    "action": "unchanged"
+  },
+  {
+    "kind": "summary",
+    "source": "results/nnse_batch_init/chen_nnse_batch_smoke/chen2004_nnse_batch_init_N=1000.json",
+    "destination": "results_summaries/results/nnse_batch_init/chen_nnse_batch_smoke/chen2004_nnse_batch_init_N=1000.json",
+    "size_bytes": 2710,
     "action": "copied"
   },
   {
@@ -158,20 +228,20 @@
     "source": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.json",
     "destination": "results_summaries/results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.json",
     "size_bytes": 3252,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/nnse_parallel/chen_nnse_parallel_25chains_100k_thr15/chen2004_nnse_parallel_merged_25chains.json",
     "destination": "results_summaries/results/nnse_parallel/chen_nnse_parallel_25chains_100k_thr15/chen2004_nnse_parallel_merged_25chains.json",
     "size_bytes": 731,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/parameter_audit.json",
     "destination": "results_summaries/results/parameter_audit.json",
-    "size_bytes": 8475,
+    "size_bytes": 8181,
     "action": "copied"
   },
   {
@@ -179,41 +249,27 @@
     "source": "results/sloppy_projection/tyson_init_thr1_projection_k3.json",
     "destination": "results_summaries/results/sloppy_projection/tyson_init_thr1_projection_k3.json",
     "size_bytes": 2906,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "figure",
     "source": "results/sloppy_projection/tyson_init_thr1_projection_k3.png",
     "destination": "figures/results/sloppy_projection/tyson_init_thr1_projection_k3.png",
     "size_bytes": 361728,
-    "action": "copied"
-  },
-  {
-    "kind": "summary",
-    "source": "results/sloppy_random_cube/tyson_random_cube_n50_k3.json",
-    "destination": "results_summaries/results/sloppy_random_cube/tyson_random_cube_n50_k3.json",
-    "size_bytes": 2890,
-    "action": "copied"
-  },
-  {
-    "kind": "figure",
-    "source": "results/sloppy_random_cube/tyson_random_cube_n50_k3.png",
-    "destination": "figures/results/sloppy_random_cube/tyson_random_cube_n50_k3.png",
-    "size_bytes": 128270,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/sloppy_subspace/tyson_init_thr1_sloppy_all_k3.json",
     "destination": "results_summaries/results/sloppy_subspace/tyson_init_thr1_sloppy_all_k3.json",
     "size_bytes": 969,
-    "action": "copied"
+    "action": "unchanged"
   },
   {
     "kind": "summary",
     "source": "results/sloppy_subspace/tyson_init_thr1_sloppy_n50_k3.json",
     "destination": "results_summaries/results/sloppy_subspace/tyson_init_thr1_sloppy_n50_k3.json",
     "size_bytes": 965,
-    "action": "copied"
+    "action": "unchanged"
   }
 ]
