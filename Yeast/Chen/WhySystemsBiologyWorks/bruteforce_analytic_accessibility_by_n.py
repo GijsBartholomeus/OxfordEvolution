@@ -163,7 +163,14 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
             n_current = int(np.sum(counts))
             y_current = expected_unique_finite_current_sample(counts, n_current, q)
             model_rows["finite_current_sample_curve"] = y_current.tolist()
-            ax.plot(radii, y_current, color="black", lw=2.0, ls="--", label=f"finite current N={n_current:,}")
+            ax.plot(
+                radii,
+                y_current,
+                color="black",
+                lw=2.0,
+                ls="--",
+                label=f"current sample support\nN={n_current:,}",
+            )
 
         ax.axvline(math.sqrt(dim / 6.0), color="0.55", lw=1.2, ls=":", label=r"$\sqrt{d/6}$")
         ax.set_yscale("log")
@@ -193,7 +200,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--n-values", default="100000,1000000,10000000,100000000,1000000000,10000000000")
+    parser.add_argument("--n-values", default="1000000,10000000,100000000,1000000000,10000000000")
     parser.add_argument("--panel-dims", default="136,100,75,50")
     parser.add_argument("--radii", type=int, default=240)
     parser.add_argument("--mc-samples", type=int, default=500_000)
