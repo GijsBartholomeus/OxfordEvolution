@@ -59,6 +59,7 @@ def load_sample_npz(stats_dir: Path, model: str, tag: str) -> dict[str, np.ndarr
         "wt_phenotype_objectives",
         "wt_phenotype_codes",
         "p0",
+        "parameter_names",
     ]:
         if key in data.files:
             out[key] = np.asarray(data[key])
@@ -290,6 +291,7 @@ def plot_pair_grid(
     tag: str,
     points: np.ndarray,
     labels: np.ndarray,
+    parameter_names: list[str] | None,
     max_points: int,
     rng: np.random.Generator,
 ) -> Path:
@@ -300,6 +302,12 @@ def plot_pair_grid(
     dim = points.shape[1]
     fig, axes = plt.subplots(dim - 1, dim - 1, figsize=(2.2 * (dim - 1), 2.2 * (dim - 1)), constrained_layout=True)
     axes = np.asarray(axes)
+    axis_labels = []
+    for idx in range(dim):
+        if parameter_names is not None and idx < len(parameter_names):
+            axis_labels.append(f"u{idx + 1} ({parameter_names[idx]})")
+        else:
+            axis_labels.append(f"u{idx + 1}")
     for i in range(dim - 1):
         for j in range(dim - 1):
             ax = axes[i, j]
@@ -312,11 +320,11 @@ def plot_pair_grid(
             ax.set_xlim(0, 1)
             ax.set_ylim(0, 1)
             if i == dim - 2:
-                ax.set_xlabel(f"u{x_dim + 1}", fontsize=8)
+                ax.set_xlabel(axis_labels[x_dim], fontsize=7)
             else:
                 ax.set_xticks([])
             if j == 0:
-                ax.set_ylabel(f"u{y_dim + 1}", fontsize=8)
+                ax.set_ylabel(axis_labels[y_dim], fontsize=7)
             else:
                 ax.set_yticks([])
     fig.suptitle(f"{model} {tag}: all normalized parameter pairs colored by K quartile (n={len(points):,})")
@@ -466,6 +474,9 @@ def main(args: argparse.Namespace) -> None:
     objectives = np.asarray(sample["all_objectives"], dtype=float)
     points, complexities, objectives, mask = finite_rows(points, complexities, objectives)
     p0 = np.asarray(sample["p0"], dtype=float)
+    parameter_names = None
+    if "parameter_names" in sample:
+        parameter_names = [str(x) for x in np.asarray(sample["parameter_names"], dtype=object)]
     norm_points = normalize_points(points, p0)
     codes = None
     if "all_phenotype_codes" in sample:
@@ -569,6 +580,7 @@ def main(args: argparse.Namespace) -> None:
             args.tag,
             locality_points,
             locality_labels,
+            parameter_names,
             args.max_pairgrid_points,
             rng,
         )
