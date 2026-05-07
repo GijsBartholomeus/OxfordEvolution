@@ -124,10 +124,10 @@ def parse_n_values(text: str) -> list[int]:
 def make_radii(dim: int, points: int) -> np.ndarray:
     # Dense enough around the transition while still showing small/large-radius limits.
     if dim >= 30:
-        lo = max(0.03, math.sqrt(dim / 6.0) - 5.5 * (math.sqrt(7.0 * dim / 180.0) / (2.0 * math.sqrt(dim / 6.0))))
-        hi = min(math.sqrt(dim), math.sqrt(dim / 6.0) + 5.5 * (math.sqrt(7.0 * dim / 180.0) / (2.0 * math.sqrt(dim / 6.0))))
+        lo = 0.0
+        hi = min(6.0, math.sqrt(dim))
         return np.linspace(lo, hi, points)
-    return np.linspace(0.03, math.sqrt(dim), points)
+    return np.linspace(0.0, math.sqrt(dim), points)
 
 
 def run(args: argparse.Namespace) -> tuple[Path, Path]:
@@ -154,6 +154,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
             "dimensions": dim,
             "phenotypes_in_reference_sample": int(len(counts)),
             "reference_sample_size": int(np.sum(counts)),
+            "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
             "q_method": q_method,
             "radii": radii.tolist(),
             "curves": {},
@@ -174,7 +175,9 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
         ax.set_yscale("log")
         ax.set_xlabel("radius in normalized cube")
         ax.set_ylabel("expected unique phenotypes")
-        ax.set_title(f"{config['label']} analytical accessibility\n{q_method}, d={dim}")
+        if config["model"] == "chen2004":
+            ax.set_xlim(0.0, 6.0)
+        ax.set_title(f"{config['label']} analytical accessibility\nfixed $p_\\phi$, {q_method}, d={dim}")
         ax.grid(True, axis="y", alpha=0.2)
         ax.legend(frameon=False, fontsize=8)
         output["models"][config["model"]] = model_rows
@@ -191,8 +194,8 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--n-values", default="1000,10000,100000,1000000,10000000,100000000")
-    parser.add_argument("--radii", type=int, default=160)
+    parser.add_argument("--n-values", default="100000,1000000,10000000,100000000,1000000000,10000000000")
+    parser.add_argument("--radii", type=int, default=240)
     parser.add_argument("--mc-samples", type=int, default=500_000)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--show-current-finite", action="store_true")
