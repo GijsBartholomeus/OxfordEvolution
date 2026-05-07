@@ -5,6 +5,7 @@
     "n_centers": 250,
     "n_shuffles": 5,
     "total_unique_phenotypes": 4639,
+    "analytic_uniform_cube_q_method": "normal approximation to cube pairwise-distance CDF",
     "rows": [
       {
         "radius": 0.03,
@@ -26,6 +27,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -48,6 +50,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -70,6 +73,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -92,6 +96,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -114,6 +119,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -136,6 +142,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -158,6 +165,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -180,6 +188,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -202,6 +211,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -224,6 +234,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -246,6 +257,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -268,6 +280,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -290,6 +303,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -312,6 +326,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -334,6 +349,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -356,6 +372,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -378,6 +395,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -400,6 +418,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -422,6 +441,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.000000018426336,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -444,6 +464,7 @@
           "q95": 178.35999999999996,
           "mean": 63.1728
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 73.11006820748077,
         "observed_over_shuffled_median": 0.9929078014184398
       },
       {
@@ -466,6 +487,7 @@
           "q95": 4638.8,
           "mean": 4619.437599999999
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 4622.739207627779,
         "observed_over_shuffled_median": 1.0003456918157463
       },
       {
@@ -488,6 +510,7 @@
           "q95": 4639.0,
           "mean": 4639.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 4639.0,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -510,6 +533,7 @@
           "q95": 4639.0,
           "mean": 4639.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 4639.0,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -532,6 +556,7 @@
           "q95": 4639.0,
           "mean": 4639.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 4639.0,
         "observed_over_shuffled_median": 1.0
       }
     ]
@@ -542,6 +567,7 @@
     "n_centers": 250,
     "n_shuffles": 5,
     "total_unique_phenotypes": 9933,
+    "analytic_uniform_cube_q_method": "Monte Carlo cube pairwise-distance CDF",
     "rows": [
       {
         "radius": 0.03,
@@ -563,6 +589,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -585,6 +612,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -607,6 +635,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -629,6 +658,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -651,6 +681,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -673,6 +704,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -695,6 +727,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -717,6 +750,7 @@
           "q95": 1.0,
           "mean": 1.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -739,6 +773,7 @@
           "q95": 1.0,
           "mean": 1.008
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -761,6 +796,7 @@
           "q95": 1.0,
           "mean": 1.0272000000000001
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -783,6 +819,7 @@
           "q95": 2.0,
           "mean": 1.2008
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.0000000407709453,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -805,6 +842,7 @@
           "q95": 4.0,
           "mean": 1.9784000000000002
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1.9463426554493486,
         "observed_over_shuffled_median": 0.5
       },
       {
@@ -827,6 +865,7 @@
           "q95": 9.219999999999994,
           "mean": 4.8376
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 5.376409579328448,
         "observed_over_shuffled_median": 0.8695652173913044
       },
       {
@@ -849,6 +888,7 @@
           "q95": 29.419999999999995,
           "mean": 15.656799999999999
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 16.44698081055445,
         "observed_over_shuffled_median": 0.8843537414965987
       },
       {
@@ -871,6 +911,7 @@
           "q95": 106.02,
           "mean": 52.7632
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 52.79108289820571,
         "observed_over_shuffled_median": 0.9240246406570841
       },
       {
@@ -893,6 +934,7 @@
           "q95": 392.96999999999997,
           "mean": 182.35520000000002
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 183.53846408756078,
         "observed_over_shuffled_median": 0.9987317691819912
       },
       {
@@ -915,6 +957,7 @@
           "q95": 1245.0999999999992,
           "mean": 596.2824
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 609.1126844395101,
         "observed_over_shuffled_median": 0.9518456061457747
       },
       {
@@ -937,6 +980,7 @@
           "q95": 3336.579999999997,
           "mean": 1721.4616
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 1756.6351870652054,
         "observed_over_shuffled_median": 0.9665047302480183
       },
       {
@@ -959,6 +1003,7 @@
           "q95": 6794.569999999996,
           "mean": 4139.212800000001
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 4213.340908012734,
         "observed_over_shuffled_median": 0.9805983226937038
       },
       {
@@ -981,6 +1026,7 @@
           "q95": 9469.639999999998,
           "mean": 7515.2408
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 7569.472016276556,
         "observed_over_shuffled_median": 1.0056137675348067
       },
       {
@@ -1003,6 +1049,7 @@
           "q95": 9930.349999999999,
           "mean": 9620.331199999999
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 9625.397679552849,
         "observed_over_shuffled_median": 1.0019882957026167
       },
       {
@@ -1025,6 +1072,7 @@
           "q95": 9933.0,
           "mean": 9929.5216
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 9929.600270343246,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -1047,6 +1095,7 @@
           "q95": 9933.0,
           "mean": 9933.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 9933.0,
         "observed_over_shuffled_median": 1.0
       },
       {
@@ -1069,6 +1118,7 @@
           "q95": 9933.0,
           "mean": 9933.0
         },
+        "analytic_uniform_cube_shuffled_unique_phenotypes": 9933.0,
         "observed_over_shuffled_median": 1.0
       }
     ]

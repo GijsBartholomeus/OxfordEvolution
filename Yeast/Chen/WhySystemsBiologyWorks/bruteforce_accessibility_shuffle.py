@@ -18,6 +18,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.spatial import cKDTree
+from scipy.special import gammaln
 
 
 ROOT = Path(__file__).resolve().parent
@@ -87,9 +88,10 @@ def compute_growth(
     centers = points[center_idx]
     shuffled_codes = [rng.permutation(codes) for _ in range(n_shuffles)]
     total_unique = int(len(np.unique(codes)))
+    analytic_unique, q_method = analytic_uniform_cube_unique(radii, codes, points.shape[1])
 
     rows = []
-    for radius in radii:
+    for radius, analytic in zip(radii, analytic_unique):
         neighborhoods = tree.query_ball_point(centers, r=float(radius))
         observed = np.asarray([len(np.unique(codes[idx])) for idx in neighborhoods], dtype=float)
         shuffled = np.asarray(
@@ -105,6 +107,7 @@ def compute_growth(
                 "radius": float(radius),
                 "observed_unique_phenotypes": summary(observed),
                 "shuffled_unique_phenotypes": summary(shuffled_by_center),
+                "analytic_uniform_cube_shuffled_unique_phenotypes": float(analytic),
                 "observed_over_shuffled_median": float(
                     np.median(observed) / max(np.median(shuffled_by_center), np.finfo(float).tiny)
                 ),
@@ -116,8 +119,81 @@ def compute_growth(
         "n_centers": int(len(centers)),
         "n_shuffles": int(n_shuffles),
         "total_unique_phenotypes": total_unique,
+        "analytic_uniform_cube_q_method": q_method,
         "rows": rows,
     }
+
+
+def normal_cdf(x: np.ndarray) -> np.ndarray:
+    x = np.asarray(x, dtype=float)
+    return 0.5 * (1.0 + np.vectorize(math.erf)(x / math.sqrt(2.0)))
+
+
+def cube_distance_cdf_normal(radii: np.ndarray, dim: int) -> np.ndarray:
+    """High-dimensional normal approximation for P(||X-Y|| <= r) in [0, 1]^d."""
+    radii = np.asarray(radii, dtype=float)
+    mean_sq = dim / 6.0
+    sd_sq = math.sqrt(7.0 * dim / 180.0)
+    q = normal_cdf((radii * radii - mean_sq) / sd_sq)
+    return np.clip(q, 0.0, 1.0)
+
+
+def cube_distance_cdf_mc(radii: np.ndarray, dim: int, samples: int = 300_000, seed: int = 12345) -> np.ndarray:
+    rng = np.random.default_rng(seed + dim)
+    batch = 100_000
+    dists = np.empty(samples, dtype=np.float32)
+    write_at = 0
+    while write_at < samples:
+        n = min(batch, samples - write_at)
+        x = rng.random((n, dim), dtype=np.float32)
+        y = rng.random((n, dim), dtype=np.float32)
+        diff = x - y
+        dists[write_at : write_at + n] = np.sqrt(np.einsum("ij,ij->i", diff, diff))
+        write_at += n
+    dists.sort()
+    return np.searchsorted(dists, radii, side="right") / float(samples)
+
+
+def expected_unique_without_replacement(counts: np.ndarray, draws: int) -> float:
+    counts = np.asarray(counts, dtype=np.int64)
+    n = int(np.sum(counts))
+    m = int(np.clip(draws, 0, n))
+    if m <= 0:
+        return 0.0
+    if m >= n:
+        return float(len(counts))
+
+    absent = np.zeros(len(counts), dtype=float)
+    ok = (n - counts) >= m
+    # P(phenotype absent) = C(N-n_phi, m) / C(N, m)
+    absent[ok] = np.exp(
+        gammaln(n - counts[ok] + 1)
+        - gammaln(n - counts[ok] - m + 1)
+        + gammaln(n - m + 1)
+        - gammaln(n + 1)
+    )
+    return float(np.sum(1.0 - absent))
+
+
+def analytic_uniform_cube_unique(radii: np.ndarray, codes: np.ndarray, dim: int) -> tuple[np.ndarray, str]:
+    """Expected unique phenotypes for shuffled labels in an ideal uniform cube cloud.
+
+    The neighborhood size is approximated by M(r)=1+(N-1)q_d(r), then phenotype
+    richness is computed with the finite-frequency hypergeometric expectation.
+    This is the finite-sample version of the iid formula and reaches all saved
+    phenotypes when q_d(r)=1.
+    """
+    _, counts = np.unique(codes, return_counts=True)
+    n = int(len(codes))
+    if dim >= 30:
+        q = cube_distance_cdf_normal(radii, dim)
+        method = "normal approximation to cube pairwise-distance CDF"
+    else:
+        q = cube_distance_cdf_mc(radii, dim)
+        method = "Monte Carlo cube pairwise-distance CDF"
+    draws = np.rint(1.0 + (n - 1.0) * q).astype(int)
+    out = np.asarray([expected_unique_without_replacement(counts, m) for m in draws], dtype=float)
+    return out, method
 
 
 def plot_panel(ax, result: dict, label: str) -> None:
@@ -129,11 +205,13 @@ def plot_panel(ax, result: dict, label: str) -> None:
     shuf = np.asarray([row["shuffled_unique_phenotypes"]["median"] for row in rows])
     shuf05 = np.asarray([row["shuffled_unique_phenotypes"]["q05"] for row in rows])
     shuf95 = np.asarray([row["shuffled_unique_phenotypes"]["q95"] for row in rows])
+    analytic = np.asarray([row["analytic_uniform_cube_shuffled_unique_phenotypes"] for row in rows])
 
     ax.fill_between(x, obs05, obs95, color="black", alpha=0.10, linewidth=0)
     ax.plot(x, obs, color="black", linewidth=2.2, label="observed")
     ax.fill_between(x, shuf05, shuf95, color="#d55e00", alpha=0.16, linewidth=0)
     ax.plot(x, shuf, color="#d55e00", linestyle="--", linewidth=2.0, label="shuffled labels")
+    ax.plot(x, analytic, color="#009e73", linestyle=":", linewidth=2.4, label="uniform-cube analytic")
     ax.set_yscale("log")
     ax.set_xlabel("radius in normalized cube")
     ax.set_ylabel("unique phenotypes")
