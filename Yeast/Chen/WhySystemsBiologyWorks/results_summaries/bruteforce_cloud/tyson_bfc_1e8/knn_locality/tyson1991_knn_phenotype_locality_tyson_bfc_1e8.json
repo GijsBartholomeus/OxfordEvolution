@@ -1,0 +1,806 @@
+{
+  "model": "tyson1991",
+  "label": "Tyson 1991",
+  "tag": "tyson_bfc_1e8",
+  "dimensions": 8,
+  "points_used": 50000,
+  "centers": 5000,
+  "unique_phenotypes": 21086,
+  "same_random_baseline_sum_p2": 0.0546440544,
+  "m_values": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200,
+    500,
+    1000,
+    2000,
+    5000
+  ],
+  "shuffles": 10,
+  "rows": [
+    {
+      "m": 1,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 1.0,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "max": 1.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 1.0,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "max": 1.0
+      },
+      "observed_same_phenotype_purity": {
+        "n": 0
+      },
+      "observed_same_phenotype_enrichment": null,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 1.0,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "max": 1.0
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_enrichment_mean": NaN,
+      "theoretical_random_label_expected_unique": 1.0000000000003837
+    },
+    {
+      "m": 2,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 1.789,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 2.0,
+        "median": 2.0,
+        "q75": 2.0,
+        "q95": 2.0,
+        "max": 2.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 1.789,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 2.0,
+        "median": 2.0,
+        "q75": 2.0,
+        "q95": 2.0,
+        "max": 2.0
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.211,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.0,
+        "q95": 1.0,
+        "max": 1.0
+      },
+      "observed_same_phenotype_enrichment": 3.8613533039744574,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 1.94424,
+        "min": 1.939,
+        "q05": 1.93936,
+        "q25": 1.9438,
+        "median": 1.9449,
+        "q75": 1.9459,
+        "q95": 1.9474099999999999,
+        "max": 1.9484
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.05576000000000001,
+        "min": 0.0516,
+        "q05": 0.05259,
+        "q25": 0.054099999999999995,
+        "median": 0.055099999999999996,
+        "q75": 0.0562,
+        "q95": 0.06064,
+        "max": 0.061
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0204220863962834,
+      "theoretical_random_label_expected_unique": 1.9453559456001872
+    },
+    {
+      "m": 5,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 4.0792,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 3.0,
+        "median": 5.0,
+        "q75": 5.0,
+        "q95": 5.0,
+        "max": 5.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 3.993297096848926,
+        "min": 1.0,
+        "q05": 1.0,
+        "q25": 2.586409289858933,
+        "median": 5.000000000000001,
+        "q75": 5.000000000000001,
+        "q95": 5.000000000000001,
+        "max": 5.000000000000001
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.1948,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.25,
+        "q95": 1.0,
+        "max": 1.0
+      },
+      "observed_same_phenotype_enrichment": 3.5648892114418214,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 4.55092,
+        "min": 4.5388,
+        "q05": 4.53916,
+        "q25": 4.54175,
+        "median": 4.5497,
+        "q75": 4.55945,
+        "q95": 4.56391,
+        "max": 4.564
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.05508999999999999,
+        "min": 0.05245,
+        "q05": 0.0531025,
+        "q25": 0.0542125,
+        "median": 0.055,
+        "q75": 0.055625,
+        "q95": 0.057604999999999996,
+        "max": 0.059
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0081609171372172,
+      "theoretical_random_label_expected_unique": 4.552044524854125
+    },
+    {
+      "m": 10,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 7.7128,
+        "min": 1.0,
+        "q05": 2.0,
+        "q25": 6.0,
+        "median": 9.0,
+        "q75": 10.0,
+        "q95": 10.0,
+        "max": 10.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 7.333181302758167,
+        "min": 1.0,
+        "q05": 1.384145488461686,
+        "q25": 4.472135954999579,
+        "median": 8.705505632961243,
+        "q75": 9.999999999999998,
+        "q95": 9.999999999999998,
+        "max": 9.999999999999998
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.1856,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.3333333333333333,
+        "q95": 0.8888888888888888,
+        "max": 1.0
+      },
+      "observed_same_phenotype_enrichment": 3.3965268872874845,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 8.469359999999998,
+        "min": 8.4586,
+        "q05": 8.4595,
+        "q25": 8.46185,
+        "median": 8.465499999999999,
+        "q75": 8.47655,
+        "q95": 8.48299,
+        "max": 8.4838
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.05513777777777777,
+        "min": 0.05248888888888889,
+        "q05": 0.05264888888888889,
+        "q25": 0.05368888888888889,
+        "median": 0.0552,
+        "q75": 0.05640555555555554,
+        "q95": 0.05795,
+        "max": 0.059
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0090352625404342,
+      "theoretical_random_label_expected_unique": 8.471750727193552
+    },
+    {
+      "m": 20,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 14.7326,
+        "min": 1.0,
+        "q05": 3.0,
+        "q25": 11.0,
+        "median": 18.0,
+        "q75": 20.0,
+        "q95": 20.0,
+        "max": 20.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 13.40480100236577,
+        "min": 1.0,
+        "q05": 1.7547653506033232,
+        "q25": 6.357503851834015,
+        "median": 16.961404344273667,
+        "q75": 19.999999999999996,
+        "q95": 19.999999999999996,
+        "max": 19.999999999999996
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.17586315789473683,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.3157894736842105,
+        "q95": 0.8421052631578947,
+        "max": 1.0
+      },
+      "observed_same_phenotype_enrichment": 3.2183402169868423,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 15.716159999999999,
+        "min": 15.6702,
+        "q05": 15.67623,
+        "q25": 15.70815,
+        "median": 15.7144,
+        "q75": 15.738150000000001,
+        "q95": 15.74541,
+        "max": 15.7464
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.054802105263157895,
+        "min": 0.05163157894736842,
+        "q05": 0.052261578947368416,
+        "q25": 0.053539473684210526,
+        "median": 0.05503157894736842,
+        "q75": 0.05574736842105263,
+        "q95": 0.05719473684210526,
+        "max": 0.05781052631578948
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0028923707234632,
+      "theoretical_random_label_expected_unique": 15.71013924673444
+    },
+    {
+      "m": 50,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 35.0394,
+        "min": 1.0,
+        "q05": 5.0,
+        "q25": 25.0,
+        "median": 41.0,
+        "q75": 47.0,
+        "q95": 50.0,
+        "max": 50.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 29.360421790349776,
+        "min": 1.0,
+        "q05": 2.225183413220821,
+        "q25": 11.802087077865945,
+        "median": 33.853004894623986,
+        "q75": 45.530406654785345,
+        "q95": 49.99999999999997,
+        "max": 49.99999999999997
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.16245714285714286,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.2653061224489796,
+        "q95": 0.7755102040816326,
+        "max": 1.0
+      },
+      "observed_same_phenotype_enrichment": 2.973006755098005,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 36.14567999999999,
+        "min": 36.0142,
+        "q05": 36.03301,
+        "q25": 36.1317,
+        "median": 36.167699999999996,
+        "q75": 36.1829,
+        "q95": 36.20526,
+        "max": 36.2184
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.054853877551020405,
+        "min": 0.05171836734693877,
+        "q05": 0.05214816326530612,
+        "q25": 0.05418775510204081,
+        "median": 0.05505102040816326,
+        "q75": 0.055634693877551024,
+        "q95": 0.05717,
+        "max": 0.05743265306122449
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0038398166703457,
+      "theoretical_random_label_expected_unique": 36.142780047083235
+    },
+    {
+      "m": 100,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 68.146,
+        "min": 2.0,
+        "q05": 10.0,
+        "q25": 49.0,
+        "median": 79.0,
+        "q75": 91.0,
+        "q95": 98.0,
+        "max": 100.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 52.56682645248794,
+        "min": 1.250315503391206,
+        "q05": 2.755417576498248,
+        "q25": 17.623343552521828,
+        "median": 59.0336315689687,
+        "q75": 83.79303586332418,
+        "q95": 96.7578840354192,
+        "max": 99.99999999999987
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.15157575757575759,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.24242424242424243,
+        "q95": 0.7171717171717171,
+        "max": 0.9595959595959596
+      },
+      "observed_same_phenotype_enrichment": 2.7738746555335685,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 69.09603999999999,
+        "min": 68.8714,
+        "q05": 68.91225999999999,
+        "q25": 69.04475000000001,
+        "median": 69.1188,
+        "q75": 69.14305,
+        "q95": 69.24202,
+        "max": 69.2584
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.0546549494949495,
+        "min": 0.05096969696969697,
+        "q05": 0.051853333333333335,
+        "q25": 0.054270707070707074,
+        "median": 0.05488686868686869,
+        "q75": 0.05525707070707071,
+        "q95": 0.05688090909090909,
+        "max": 0.05694545454545455
+      },
+      "shuffled_same_phenotype_enrichment_mean": 1.0001993829899543,
+      "theoretical_random_label_expected_unique": 69.07043517349334
+    },
+    {
+      "m": 200,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 133.0866,
+        "min": 3.0,
+        "q05": 24.0,
+        "q25": 98.0,
+        "median": 152.5,
+        "q75": 176.0,
+        "q95": 191.0,
+        "max": 200.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 93.02192819495436,
+        "min": 1.456537321936898,
+        "q05": 3.676152943665388,
+        "q25": 27.466205628663815,
+        "median": 98.59843589648997,
+        "q75": 150.46640180432752,
+        "q95": 186.1190286044301,
+        "max": 200.0000000000001
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.14082613065326632,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.23115577889447236,
+        "q95": 0.6633165829145728,
+        "max": 0.9396984924623115
+      },
+      "observed_same_phenotype_enrichment": 2.57715376722241,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 133.9478,
+        "min": 133.627,
+        "q05": 133.65805,
+        "q25": 133.84755,
+        "median": 133.9528,
+        "q75": 134.076,
+        "q95": 134.19054,
+        "max": 134.2008
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.054640301507537695,
+        "min": 0.05109748743718592,
+        "q05": 0.05199974874371859,
+        "q25": 0.054036432160804025,
+        "median": 0.05470854271356784,
+        "q75": 0.05545879396984924,
+        "q95": 0.05684778894472362,
+        "max": 0.05690251256281407
+      },
+      "shuffled_same_phenotype_enrichment_mean": 0.9999313211198635,
+      "theoretical_random_label_expected_unique": 133.73053522849963
+    },
+    {
+      "m": 500,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 321.9496,
+        "min": 4.0,
+        "q05": 83.0,
+        "q25": 242.0,
+        "median": 358.0,
+        "q75": 421.0,
+        "q95": 457.0,
+        "max": 478.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 191.65570998447464,
+        "min": 2.086487306468132,
+        "q05": 6.271072402749498,
+        "q25": 49.490066280997134,
+        "median": 181.19954163156808,
+        "q75": 313.79177259383044,
+        "q95": 424.9107781098218,
+        "max": 467.6401402029229
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.12692825651302606,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0,
+        "q75": 0.20841683366733466,
+        "q95": 0.593186372745491,
+        "max": 0.8677354709418837
+      },
+      "observed_same_phenotype_enrichment": 2.3228191594990077,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 324.11463999999995,
+        "min": 323.5888,
+        "q05": 323.6311,
+        "q25": 323.8892,
+        "median": 324.0592,
+        "q75": 324.2846,
+        "q95": 324.704,
+        "max": 324.7472
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.0546085370741483,
+        "min": 0.05140841683366734,
+        "q05": 0.052241322645290585,
+        "q25": 0.053747394789579156,
+        "median": 0.05470901803607214,
+        "q75": 0.055385170340681356,
+        "q95": 0.05672529058116233,
+        "max": 0.05697995991983969
+      },
+      "shuffled_same_phenotype_enrichment_mean": 0.9993500239643326,
+      "theoretical_random_label_expected_unique": 322.6106335031201
+    },
+    {
+      "m": 1000,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 626.1398,
+        "min": 22.0,
+        "q05": 207.95000000000002,
+        "q25": 483.0,
+        "median": 681.0,
+        "q75": 808.0,
+        "q95": 878.0,
+        "max": 924.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 321.55766778911715,
+        "min": 2.580309629580768,
+        "q05": 10.765963270062242,
+        "q25": 80.37570845397042,
+        "median": 274.7886096644944,
+        "q75": 530.8964463654802,
+        "q95": 768.1220872885733,
+        "max": 879.7904486784885
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.11599139139139138,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.001001001001001001,
+        "q75": 0.19044044044044042,
+        "q95": 0.5405405405405406,
+        "max": 0.8068068068068068
+      },
+      "observed_same_phenotype_enrichment": 2.1226717648423863,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 631.44142,
+        "min": 630.0616,
+        "q05": 630.11272,
+        "q25": 631.0398,
+        "median": 631.5242000000001,
+        "q75": 631.9687,
+        "q95": 632.57999,
+        "max": 632.6906
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.054612932932932935,
+        "min": 0.0514016016016016,
+        "q05": 0.05224871871871872,
+        "q25": 0.05376826826826826,
+        "median": 0.05471641641641642,
+        "q75": 0.05540175175175176,
+        "q95": 0.056656006006006,
+        "max": 0.05686726726726726
+      },
+      "shuffled_same_phenotype_enrichment_mean": 0.9994304692905974,
+      "theoretical_random_label_expected_unique": 625.5733588728181
+    },
+    {
+      "m": 2000,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 1210.2256,
+        "min": 104.0,
+        "q05": 499.95000000000005,
+        "q25": 955.0,
+        "median": 1283.0,
+        "q75": 1528.0,
+        "q95": 1678.0500000000002,
+        "max": 1768.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 519.8053203032866,
+        "min": 3.6396203291942664,
+        "q05": 19.87826014873677,
+        "q25": 129.92101361800115,
+        "median": 409.97576280470287,
+        "q75": 863.8566791997025,
+        "q95": 1315.0798761365902,
+        "max": 1559.7299127983167
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.10521790895447725,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.0005002501250625312,
+        "q75": 0.176088044022011,
+        "q95": 0.4882691345672837,
+        "max": 0.7548774387193596
+      },
+      "observed_same_phenotype_enrichment": 1.925514314590779,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 1221.7362399999997,
+        "min": 1217.934,
+        "q05": 1218.46257,
+        "q25": 1220.7778,
+        "median": 1222.1331,
+        "q75": 1223.4084,
+        "q95": 1223.92184,
+        "max": 1224.0446
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.054614087043521754,
+        "min": 0.05132676338169084,
+        "q05": 0.05223203101550775,
+        "q25": 0.053788594297148565,
+        "median": 0.05470465232616308,
+        "q75": 0.05533776888444222,
+        "q95": 0.05668856928464231,
+        "max": 0.05694227113556778
+      },
+      "shuffled_same_phenotype_enrichment_mean": 0.9994515898059305,
+      "theoretical_random_label_expected_unique": 1199.0989968021727
+    },
+    {
+      "m": 5000,
+      "observed_unique_phenotypes": {
+        "n": 5000,
+        "mean": 2853.2394,
+        "min": 563.0,
+        "q05": 1523.95,
+        "q25": 2339.0,
+        "median": 2939.5,
+        "q75": 3452.0,
+        "q95": 3891.0,
+        "max": 4049.0
+      },
+      "observed_effective_phenotypes": {
+        "n": 5000,
+        "mean": 904.5046778614172,
+        "min": 8.0485538566716,
+        "q05": 54.87763068283991,
+        "q25": 247.8476066472173,
+        "median": 663.5755069527177,
+        "q75": 1410.6201140553385,
+        "q95": 2469.993665414743,
+        "max": 3215.559092290919
+      },
+      "observed_same_phenotype_purity": {
+        "n": 5000,
+        "mean": 0.09108157631526305,
+        "min": 0.0,
+        "q05": 0.0,
+        "q25": 0.0,
+        "median": 0.00020004000800160032,
+        "q75": 0.15403080616123224,
+        "q95": 0.4202940588117624,
+        "max": 0.6479295859171834
+      },
+      "observed_same_phenotype_enrichment": 1.666815856095463,
+      "shuffled_unique_phenotypes_mean_over_reps": {
+        "n": 10,
+        "mean": 2870.29954,
+        "min": 2861.7308,
+        "q05": 2862.37997,
+        "q25": 2865.67885,
+        "median": 2870.8331,
+        "q75": 2874.70565,
+        "q95": 2877.04865,
+        "max": 2878.4504
+      },
+      "shuffled_effective_phenotypes_mean_over_reps": {
+        "n": 0
+      },
+      "shuffled_same_phenotype_purity_mean_over_reps": {
+        "n": 10,
+        "mean": 0.05458852570514102,
+        "min": 0.05129949989997999,
+        "q05": 0.05223968393678735,
+        "q25": 0.05371622324464892,
+        "median": 0.05470864172834567,
+        "q75": 0.055286417283456686,
+        "q95": 0.05666787557511502,
+        "max": 0.05691418283656731
+      },
+      "shuffled_same_phenotype_enrichment_mean": 0.9989838108561179,
+      "theoretical_random_label_expected_unique": 2742.6193305090724
+    }
+  ],
+  "within_between_distance": {
+    "same_pairs": {
+      "n": 50000,
+      "mean": 0.9838723734437849,
+      "min": 0.14258131654185233,
+      "q05": 0.5273258912416876,
+      "q25": 0.7896069538198465,
+      "median": 0.9813918103303815,
+      "q75": 1.173964973706431,
+      "q95": 1.446798471719057,
+      "max": 2.086139617381129
+    },
+    "different_pairs": {
+      "n": 50000,
+      "mean": 1.1300810821794212,
+      "min": 0.2560069251045354,
+      "q05": 0.7149372858968761,
+      "q25": 0.9641601238655118,
+      "median": 1.1357511707497814,
+      "q75": 1.2995580605381853,
+      "q95": 1.5268225340651367,
+      "max": 2.0707934445519323
+    },
+    "same_minus_different_mean": -0.1462087087356363,
+    "labels_eligible_for_same_pairs": 4168,
+    "min_label_count": 2
+  }
+}
