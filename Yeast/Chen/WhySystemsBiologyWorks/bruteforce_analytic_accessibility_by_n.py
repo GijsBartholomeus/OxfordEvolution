@@ -21,20 +21,12 @@ STATS_ROOT = ROOT / "results/bruteforce_cloud_stats"
 FIGURE_ROOT = ROOT / "figures/bruteforce_cloud/model_comparisons"
 SUMMARY_ROOT = ROOT / "results_summaries/bruteforce_cloud/model_comparisons"
 
-MODELS = [
-    {
-        "model": "chen2004",
-        "label": "Chen 2004",
-        "tag": "chen_bfc_1e8",
-        "sample": STATS_ROOT / "chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
-    },
-    {
-        "model": "tyson1991",
-        "label": "Tyson 1991",
-        "tag": "tyson_bfc_1e8",
-        "sample": STATS_ROOT / "tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz",
-    },
-]
+CHEN_CONFIG = {
+    "model": "chen2004",
+    "label": "Chen 2004",
+    "tag": "chen_bfc_1e8",
+    "sample": STATS_ROOT / "chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
+}
 
 
 def normal_cdf(x: np.ndarray) -> np.ndarray:
@@ -132,26 +124,25 @@ def make_radii(dim: int, points: int) -> np.ndarray:
 
 def run(args: argparse.Namespace) -> tuple[Path, Path]:
     n_values = parse_n_values(args.n_values)
+    panel_dims = parse_n_values(args.panel_dims)
     output = {"n_values": n_values, "models": {}}
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.4), constrained_layout=True)
 
     cmap = plt.get_cmap("viridis")
     colors = [cmap(i / max(1, len(n_values) - 1)) for i in range(len(n_values))]
 
-    for ax, config in zip(axes, MODELS):
-        counts, p, dim = load_label_distribution(config["sample"])
+    counts, p, reference_dim = load_label_distribution(CHEN_CONFIG["sample"])
+    for ax, dim in zip(axes, panel_dims):
+        config = CHEN_CONFIG
         radii = make_radii(dim, args.radii)
-        if dim >= 30:
-            q = cube_distance_cdf_normal(radii, dim)
-            q_method = "normal approximation"
-        else:
-            q = cube_distance_cdf_mc(radii, dim, args.mc_samples, args.seed)
-            q_method = "Monte Carlo cube distance CDF"
+        q = cube_distance_cdf_normal(radii, dim)
+        q_method = "normal approximation"
 
         model_rows = {
             "label": config["label"],
             "tag": config["tag"],
             "dimensions": dim,
+            "reference_dimensions": reference_dim,
             "phenotypes_in_reference_sample": int(len(counts)),
             "reference_sample_size": int(np.sum(counts)),
             "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
@@ -175,17 +166,20 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
         ax.set_yscale("log")
         ax.set_xlabel("radius in normalized cube")
         ax.set_ylabel("expected unique phenotypes")
-        if config["model"] == "chen2004":
-            ax.set_xlim(0.0, 6.0)
-        ax.set_title(f"{config['label']} analytical accessibility\nfixed $p_\\phi$, {q_method}, d={dim}")
+        ax.set_xlim(0.0, 6.0)
+        if dim == reference_dim:
+            title_dim = f"actual d={dim}"
+        else:
+            title_dim = f"hypothetical d={dim}"
+        ax.set_title(f"{config['label']} analytical accessibility\nfixed $p_\\phi$, {q_method}, {title_dim}")
         ax.grid(True, axis="y", alpha=0.2)
         ax.legend(frameon=False, fontsize=8)
-        output["models"][config["model"]] = model_rows
+        output["models"][f"{config['model']}_d{dim}"] = model_rows
 
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     SUMMARY_ROOT.mkdir(parents=True, exist_ok=True)
-    fig_path = FIGURE_ROOT / "analytic_accessibility_by_N_chen_tyson.png"
-    json_path = SUMMARY_ROOT / "analytic_accessibility_by_N_chen_tyson.json"
+    fig_path = FIGURE_ROOT / "chen_analytic_accessibility_by_N_dimensions.png"
+    json_path = SUMMARY_ROOT / "chen_analytic_accessibility_by_N_dimensions.json"
     fig.savefig(fig_path, dpi=220)
     plt.close(fig)
     json_path.write_text(json.dumps(output, indent=2))
@@ -195,6 +189,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-values", default="100000,1000000,10000000,100000000,1000000000,10000000000")
+    parser.add_argument("--panel-dims", default="136,125")
     parser.add_argument("--radii", type=int, default=240)
     parser.add_argument("--mc-samples", type=int, default=500_000)
     parser.add_argument("--seed", type=int, default=42)
