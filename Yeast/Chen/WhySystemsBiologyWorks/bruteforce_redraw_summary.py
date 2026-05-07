@@ -13,7 +13,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "hydra"))
 
-from wsbw_merge_bruteforce_cloud import OUT_ROOT, plot_summary
+from wsbw_merge_bruteforce_cloud import OUT_ROOT, plot_stats
 from wsbw_pipeline import SPECS
 
 
@@ -34,7 +34,7 @@ def main(args: argparse.Namespace) -> None:
         "objectives": np.asarray(sample["all_objectives"], dtype=float),
     }
     rng = np.random.default_rng(args.seed)
-    plot_path = plot_summary(
+    plot_path = plot_stats(
         stats_dir,
         args.model,
         data,
