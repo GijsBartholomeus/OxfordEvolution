@@ -1,0 +1,48 @@
+{
+  "model": "tyson1991",
+  "tag": "tyson_bfc_1e8",
+  "seed": 42,
+  "sample": {
+    "sample_npz": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz",
+    "finite_positive_points_loaded": 100000,
+    "points_plotted": 50000
+  },
+  "complexity_quartile_edges": [
+    16.84412956237793,
+    28.073549270629883,
+    36.49561309814453
+  ],
+  "coordinate_system": "log(theta)-log(theta_WT), rotated into WT Hessian eigenvectors",
+  "supported_parameter_names": [
+    "k6",
+    "k8_minusP",
+    "k9",
+    "k3_CT",
+    "k1_aa_over_CT",
+    "k7",
+    "k4",
+    "k4prime"
+  ],
+  "unsupported_parameter_names": [],
+  "hessian_eigenvalues_descending_stiff_to_sloppy": [
+    8.926987521051187,
+    0.11001393370072694,
+    0.00041555422192687727,
+    0.00027631701097473896,
+    0.0001542139833599477,
+    3.6757812963323215e-07,
+    3.428610587280061e-09,
+    -4.616465466575365e-16
+  ],
+  "axis_loadings_top3": {
+    "hessian_axis_1": "k6 +0.67, k1_aa_over_CT -0.59, k4 -0.42",
+    "hessian_axis_2": "k1_aa_over_CT +0.77, k4prime -0.41, k6 +0.39",
+    "hessian_axis_3": "k4prime +0.88, k6 +0.36, k1_aa_over_CT +0.24",
+    "hessian_axis_4": "k7 +0.99, k4prime -0.08, k6 -0.07",
+    "hessian_axis_5": "k4 +0.85, k6 +0.52, k7 +0.07",
+    "hessian_axis_6": "k8_minusP +0.71, k9 -0.71, k3_CT -0.03",
+    "hessian_axis_7": "k3_CT +1.00, k8_minusP +0.02, k9 -0.02",
+    "hessian_axis_8": "k9 +0.71, k8_minusP +0.71, k3_CT -0.00"
+  },
+  "axis_order": "descending Hessian eigenvalue: axis 1 stiffest, final axis sloppiest"
+}

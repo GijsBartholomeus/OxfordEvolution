@@ -126,7 +126,10 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
     n_values = parse_n_values(args.n_values)
     panel_dims = parse_n_values(args.panel_dims)
     output = {"n_values": n_values, "models": {}}
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5.4), constrained_layout=True)
+    ncols = 2
+    nrows = int(math.ceil(len(panel_dims) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(6.8 * ncols, 5.2 * nrows), constrained_layout=True)
+    axes = np.asarray(axes).ravel()
 
     cmap = plt.get_cmap("viridis")
     colors = [cmap(i / max(1, len(n_values) - 1)) for i in range(len(n_values))]
@@ -165,16 +168,18 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
         ax.axvline(math.sqrt(dim / 6.0), color="0.55", lw=1.2, ls=":", label=r"$\sqrt{d/6}$")
         ax.set_yscale("log")
         ax.set_xlabel("radius in normalized cube")
-        ax.set_ylabel("expected unique phenotypes")
+        ax.set_ylabel("expected unique phenotypes in a new sample")
         ax.set_xlim(0.0, 6.0)
         if dim == reference_dim:
             title_dim = f"actual d={dim}"
         else:
             title_dim = f"hypothetical d={dim}"
-        ax.set_title(f"{config['label']} analytical accessibility\nfixed $p_\\phi$, {q_method}, {title_dim}")
+        ax.set_title(f"{config['label']} analytical accessibility\nnew iid samples from fixed $p_\\phi$, {q_method}, {title_dim}")
         ax.grid(True, axis="y", alpha=0.2)
         ax.legend(frameon=False, fontsize=8)
         output["models"][f"{config['model']}_d{dim}"] = model_rows
+    for ax in axes[len(panel_dims):]:
+        ax.axis("off")
 
     FIGURE_ROOT.mkdir(parents=True, exist_ok=True)
     SUMMARY_ROOT.mkdir(parents=True, exist_ok=True)
@@ -189,7 +194,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-values", default="100000,1000000,10000000,100000000,1000000000,10000000000")
-    parser.add_argument("--panel-dims", default="136,125")
+    parser.add_argument("--panel-dims", default="136,100,75,50")
     parser.add_argument("--radii", type=int, default=240)
     parser.add_argument("--mc-samples", type=int, default=500_000)
     parser.add_argument("--seed", type=int, default=42)
