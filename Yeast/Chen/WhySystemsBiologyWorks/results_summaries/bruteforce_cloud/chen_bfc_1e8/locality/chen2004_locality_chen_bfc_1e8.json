@@ -11,6 +11,22 @@
   "wt_phenotype_source": "saved wt_phenotype_points",
   "wt_phenotype_points_in_sample": 8,
   "fallback_loose_cutoff": null,
+  "pairwise_equalization": {
+    "available_points_before_filter": {
+      "random cube control 1": 100000,
+      "random cube control 2": 100000,
+      "WT neutral\nf<=15": 57
+    },
+    "included_groups": [
+      "random cube control 1",
+      "random cube control 2",
+      "WT neutral\nf<=15"
+    ],
+    "min_points_required": 57,
+    "equal_n_points": 57,
+    "requested_equal_n_points": 57,
+    "max_pairwise_points": 57
+  },
   "phenotype_codes_available_for_radius_growth": true,
   "local_quartile_neighbor_stats": {
     "k=5": {
@@ -1636,18 +1652,35 @@
     ]
   },
   "pairwise_distance_distributions_normalized_cube": {
-    "all random": {
-      "n": 4498500,
-      "mean": 4.747441363004756,
-      "min": 3.3285300755765874,
-      "q05": 4.347594102221054,
-      "q25": 4.5843073676657,
-      "median": 4.7482923965737225,
-      "q75": 4.911408345204319,
-      "q95": 5.144340018942146,
-      "max": 6.0095186452029346,
-      "n_points": 3000,
-      "n_distances": 4498500
+    "random cube control 1": {
+      "n": 1596,
+      "mean": 4.78269832018255,
+      "min": 3.900857124174406,
+      "q05": 4.375931161485424,
+      "q25": 4.62638200115169,
+      "median": 4.784857276576932,
+      "q75": 4.945908487268806,
+      "q95": 5.18023061051837,
+      "max": 5.498748829030988,
+      "n_points": 57,
+      "n_distances": 1596,
+      "n_points_available": 100000,
+      "equalized_n_points": 57
+    },
+    "random cube control 2": {
+      "n": 1596,
+      "mean": 4.736515876721061,
+      "min": 4.043745651232375,
+      "q05": 4.363499227819661,
+      "q25": 4.56939779174564,
+      "median": 4.736294341500185,
+      "q75": 4.898200991755596,
+      "q95": 5.114814444398289,
+      "max": 5.416612936648068,
+      "n_points": 57,
+      "n_distances": 1596,
+      "n_points_available": 100000,
+      "equalized_n_points": 57
     },
     "WT neutral\nf<=15": {
       "n": 1596,
@@ -1660,20 +1693,9 @@
       "q95": 5.0242356095580325,
       "max": 5.397327968253236,
       "n_points": 57,
-      "n_distances": 1596
-    },
-    "WT phenotype\nsame bitstring": {
-      "n": 28,
-      "mean": 4.595678921405264,
-      "min": 4.146815555543823,
-      "q05": 4.25662174634441,
-      "q25": 4.4628593691437874,
-      "median": 4.597281610822797,
-      "q75": 4.747999204568941,
-      "q95": 4.892620488788949,
-      "max": 4.912377632592808,
-      "n_points": 8,
-      "n_distances": 28
+      "n_distances": 1596,
+      "n_points_available": 57,
+      "equalized_n_points": 57
     }
   },
   "plot": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/chen_bfc_1e8/locality/chen2004_locality_chen_bfc_1e8.png",

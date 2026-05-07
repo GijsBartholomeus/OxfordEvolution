@@ -11,6 +11,22 @@
   "wt_phenotype_source": "saved wt_phenotype_points",
   "wt_phenotype_points_in_sample": 740,
   "fallback_loose_cutoff": null,
+  "pairwise_equalization": {
+    "available_points_before_filter": {
+      "all random": 100000,
+      "WT neutral\nf<=0.05": 4345,
+      "WT phenotype\nsame bitstring": 740
+    },
+    "included_groups": [
+      "all random",
+      "WT neutral\nf<=0.05",
+      "WT phenotype\nsame bitstring"
+    ],
+    "min_points_required": 740,
+    "equal_n_points": 740,
+    "requested_equal_n_points": 740,
+    "max_pairwise_points": 740
+  },
   "phenotype_codes_available_for_radius_growth": true,
   "local_quartile_neighbor_stats": {
     "k=5": {
@@ -1637,30 +1653,34 @@
   },
   "pairwise_distance_distributions_normalized_cube": {
     "all random": {
-      "n": 4498500,
-      "mean": 1.1247911490387155,
-      "min": 0.1193720458108046,
-      "q05": 0.7132824778669652,
-      "q25": 0.9587732296029688,
-      "median": 1.1285092857152426,
-      "q75": 1.294342460790241,
-      "q95": 1.5222878150645822,
-      "max": 2.227445244817939,
-      "n_points": 3000,
-      "n_distances": 4498500
+      "n": 273430,
+      "mean": 1.1393479733721552,
+      "min": 0.1760806395774566,
+      "q05": 0.7217917767386001,
+      "q25": 0.9701431016171722,
+      "median": 1.1438475992085848,
+      "q75": 1.3116301453401114,
+      "q95": 1.5430339214106568,
+      "max": 2.118428680269176,
+      "n_points": 740,
+      "n_distances": 273430,
+      "n_points_available": 100000,
+      "equalized_n_points": 740
     },
     "WT neutral\nf<=0.05": {
-      "n": 4498500,
-      "mean": 0.8725131123605436,
-      "min": 0.04021020359413349,
-      "q05": 0.4815128488076376,
-      "q25": 0.7078159953357794,
-      "median": 0.8748752402924722,
-      "q75": 1.0368272561267708,
-      "q95": 1.257221499572398,
-      "max": 1.8780090921625756,
-      "n_points": 3000,
-      "n_distances": 4498500
+      "n": 273430,
+      "mean": 0.8642097798823154,
+      "min": 0.0692490189850255,
+      "q05": 0.47404557978580675,
+      "q25": 0.6975041126586026,
+      "median": 0.8640576472339445,
+      "q75": 1.0289322488884634,
+      "q95": 1.2549080360085607,
+      "max": 1.837918468806706,
+      "n_points": 740,
+      "n_distances": 273430,
+      "n_points_available": 4345,
+      "equalized_n_points": 740
     },
     "WT phenotype\nsame bitstring": {
       "n": 273430,
@@ -1673,7 +1693,9 @@
       "q95": 1.2207781369735071,
       "max": 1.7834559513049975,
       "n_points": 740,
-      "n_distances": 273430
+      "n_distances": 273430,
+      "n_points_available": 740,
+      "equalized_n_points": 740
     }
   },
   "plot": "/mnt/users/bartholomeusg/OxfordEvolution/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/locality/tyson1991_locality_tyson_bfc_1e8.png",
