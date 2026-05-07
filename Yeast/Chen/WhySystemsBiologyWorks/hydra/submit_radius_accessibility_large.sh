@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [[ "$#" -lt 8 ]]; then
-  echo "Usage: submit_radius_accessibility_large.sh OUTPUT_TAG MODEL SOURCE_TAG MAX_POINTS CENTERS CORES MEM_GB QUEUE [X_LOG=0]" >&2
+  echo "Usage: submit_radius_accessibility_large.sh OUTPUT_TAG MODEL SOURCE_TAG MAX_POINTS CENTERS CORES MEM_GB_PER_CORE QUEUE [X_LOG=0]" >&2
   exit 2
 fi
 
@@ -12,7 +12,7 @@ SOURCE_TAG="$3"
 MAX_POINTS="$4"
 CENTERS="$5"
 CORES="$6"
-MEM_GB="$7"
+MEM_GB_PER_CORE="$7"
 QUEUE="$8"
 X_LOG="${9:-0}"
 
@@ -37,7 +37,7 @@ exec ./hydra/run_radius_accessibility_large.sh
 EOF
 
 chmod u+x "${LAUNCHER}"
-addqueue -q "${QUEUE}" -s -c "${OUTPUT_TAG}" -m "${MEM_GB}" -n "1x${CORES}" "./${LAUNCHER}"
+addqueue -q "${QUEUE}" -s -c "${OUTPUT_TAG}" -m "${MEM_GB_PER_CORE}" -n "1x${CORES}" "./${LAUNCHER}"
 
 echo "Submitted radius accessibility job ${OUTPUT_TAG}."
 echo "Outputs will appear in:"
