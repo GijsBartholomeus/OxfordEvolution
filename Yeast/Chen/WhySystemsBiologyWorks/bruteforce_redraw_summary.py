@@ -35,11 +35,11 @@ def main(args: argparse.Namespace) -> None:
     }
     rng = np.random.default_rng(args.seed)
     plot_path = plot_stats(
-        stats_dir,
         args.model,
         data,
-        np.asarray(sample["p0"], dtype=float),
         point_sample,
+        np.asarray(sample["p0"], dtype=float),
+        stats_dir,
         args.tag,
         rng,
         args.max_plot_points,
