@@ -79,6 +79,38 @@ def load_cloud(path: Path, max_points: int | None, seed: int) -> tuple[np.ndarra
     return points, codes
 
 
+def top_phenotype_family_labels(codes: np.ndarray, top_n: int | None) -> tuple[np.ndarray, dict]:
+    """Map phenotype codes to top-N families plus one pooled other family."""
+    codes = np.asarray(codes)
+    labels, counts = np.unique(codes, return_counts=True)
+    order = np.argsort(-counts, kind="mergesort")
+    if top_n is None or top_n <= 0 or top_n >= len(labels):
+        return codes, {
+            "mode": "all phenotype codes",
+            "top_n": None,
+            "families": int(len(labels)),
+            "other_count": 0,
+        }
+
+    top_order = order[:top_n]
+    top_labels = labels[top_order]
+    top_counts = counts[top_order]
+    mapping = {label: i for i, label in enumerate(top_labels)}
+    other_label = int(top_n)
+    family = np.full(len(codes), other_label, dtype=np.int32)
+    for label, mapped in mapping.items():
+        family[codes == label] = int(mapped)
+
+    return family, {
+        "mode": f"top {top_n} phenotype families plus pooled other",
+        "top_n": int(top_n),
+        "families": int(top_n + 1),
+        "original_unique_phenotypes": int(len(labels)),
+        "top_counts": [int(x) for x in top_counts],
+        "other_count": int(len(codes) - int(np.sum(top_counts))),
+    }
+
+
 def kd_spatial_order(points: np.ndarray, leaf_size: int = 256) -> np.ndarray:
     """Return a deterministic ordering where nearby rows are often spatially close.
 
@@ -175,6 +207,7 @@ def radius_curves(
     seed: int,
     leaf_size: int,
     pieces_per_phenotype: int,
+    label_metadata: dict,
 ) -> dict:
     rng = np.random.default_rng(seed)
     center_idx = rng.choice(len(points), size=min(n_centers, len(points)), replace=False)
@@ -259,6 +292,7 @@ def radius_curves(
         "n_centers": int(n_used_centers),
         "n_shuffles": int(n_shuffles),
         "total_unique_phenotypes": int(len(labels)),
+        "label_metadata": label_metadata,
         "phenotype_count_distribution": {
             "min": int(np.min(counts)),
             "q25": float(np.quantile(counts, 0.25)),
@@ -296,13 +330,14 @@ def plot_model(ax: plt.Axes, result: dict, title: str) -> None:
 
     ax.set_yscale("log")
     ax.set_xlabel("radius in normalized cube")
-    ax.set_ylabel("unique phenotypes")
+    ylabel = "unique phenotype families" if result.get("label_metadata", {}).get("top_n") else "unique phenotypes"
+    ax.set_ylabel(ylabel)
     ax.set_title(title)
     ax.grid(True, axis="y", alpha=0.2)
     ax.text(
         0.02,
         0.96,
-        f"d={result['dimensions']}\npoints={result['n_points']:,}\nphenotypes={result['total_unique_phenotypes']:,}",
+        f"d={result['dimensions']}\npoints={result['n_points']:,}\nfamilies={result['total_unique_phenotypes']:,}",
         transform=ax.transAxes,
         va="top",
         ha="left",
@@ -313,6 +348,7 @@ def plot_model(ax: plt.Axes, result: dict, title: str) -> None:
 def run_model(model: str, args: argparse.Namespace) -> tuple[dict, Path, Path]:
     config = MODEL_CONFIGS[model]
     points, codes = load_cloud(config["sample"], max_points=args.max_points, seed=args.seed)
+    codes, label_metadata = top_phenotype_family_labels(codes, args.top_phenotypes)
     locality = json.loads(config["locality"].read_text())
     radii = np.asarray([row["radius"] for row in locality["radius_growth"]["rows"]], dtype=float)
 
@@ -325,6 +361,7 @@ def run_model(model: str, args: argparse.Namespace) -> tuple[dict, Path, Path]:
         seed=args.seed,
         leaf_size=args.leaf_size,
         pieces_per_phenotype=args.pieces_per_phenotype,
+        label_metadata=label_metadata,
     )
     result.update({"model": model, "label": config["label"], "tag": config["tag"], "sample_npz": str(config["sample"])})
 
@@ -333,7 +370,8 @@ def run_model(model: str, args: argparse.Namespace) -> tuple[dict, Path, Path]:
     fig_dir.mkdir(parents=True, exist_ok=True)
     sum_dir.mkdir(parents=True, exist_ok=True)
 
-    stem = f"{model}_structured_accessibility_{config['tag']}"
+    suffix = f"_top{args.top_phenotypes}" if args.top_phenotypes else ""
+    stem = f"{model}_structured_accessibility_{config['tag']}{suffix}"
     json_path = sum_dir / f"{stem}.json"
     json_path.write_text(json.dumps(result, indent=2))
 
@@ -355,6 +393,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--leaf-size", type=int, default=256)
     parser.add_argument("--pieces-per-phenotype", type=int, default=1)
+    parser.add_argument("--top-phenotypes", type=int, default=None)
     args = parser.parse_args()
 
     combined: dict[str, dict] = {}
@@ -377,13 +416,14 @@ def main() -> None:
         axes[-1].legend(fontsize=8, loc="lower right")
         out_dir = FIGURE_ROOT / "model_comparisons"
         out_dir.mkdir(parents=True, exist_ok=True)
-        fig_path = out_dir / "structured_accessibility_chen_tyson.png"
+        suffix = f"_top{args.top_phenotypes}" if args.top_phenotypes else ""
+        fig_path = out_dir / f"structured_accessibility_chen_tyson{suffix}.png"
         fig.savefig(fig_path, dpi=220)
         plt.close(fig)
 
         out_json_dir = SUMMARY_ROOT / "model_comparisons"
         out_json_dir.mkdir(parents=True, exist_ok=True)
-        json_path = out_json_dir / "structured_accessibility_chen_tyson.json"
+        json_path = out_json_dir / f"structured_accessibility_chen_tyson{suffix}.json"
         json_path.write_text(json.dumps(combined, indent=2))
         print(f"Saved {fig_path}")
         print(f"Saved {json_path}")

@@ -1,0 +1,78 @@
+{
+  "config": {
+    "model": "tyson1991",
+    "neutral_npz": null,
+    "bruteforce_tag": "tyson_bfc_1e9",
+    "neutral_threshold": 0.05,
+    "n_neutral": 2000,
+    "n_random": 2000,
+    "pair_samples": 200000,
+    "k_sloppy": 3,
+    "seed": 42,
+    "t_end": 100.0,
+    "n_time": 501,
+    "tag": "tyson_bfc_1e9_f005_sloppy_angle_n2000_rand2000_k3"
+  },
+  "neutral_source": {
+    "source": "bruteforce_raw_chunks",
+    "bruteforce_tag": "tyson_bfc_1e9",
+    "raw_chunks": 500,
+    "samples_attempted": 1000000000,
+    "successes_saved_in_chunks": 1000000000,
+    "neutral_points_seen": 43668,
+    "neutral_points_sampled": 2000
+  },
+  "elapsed_seconds": 3140.6735887527466,
+  "neutral_valid_hessians": 2000,
+  "random_valid_hessians": 2000,
+  "neutral_failed_hessians": [],
+  "random_failed_hessians": [],
+  "neutral_pairwise_max_angle_degrees": {
+    "name": "neutral pairwise",
+    "n": 200000,
+    "min": 0.005995510101559299,
+    "q05": 0.12982652869568745,
+    "q25": 0.3525374659238447,
+    "median": 0.7431974244122395,
+    "q75": 1.9399718843762153,
+    "q95": 79.19287089895526,
+    "max": 89.99998945788138,
+    "mean": 6.954453524559379
+  },
+  "neutral_wt_max_angle_degrees": {
+    "name": "neutral vs WT",
+    "n": 2000,
+    "min": 0.03385853043778571,
+    "q05": 0.09903773853888168,
+    "q25": 0.2146965933337771,
+    "median": 0.3315386855885841,
+    "q75": 0.864428632204747,
+    "q95": 8.429445842761798,
+    "max": 89.9971164296288,
+    "mean": 3.753325601764867
+  },
+  "random_pairwise_max_angle_degrees": {
+    "name": "random pairwise",
+    "n": 200000,
+    "min": 0.02179814130487298,
+    "q05": 0.5168172245509696,
+    "q25": 2.2427350310534404,
+    "median": 12.169888623611415,
+    "q75": 84.67419304764368,
+    "q95": 89.69589053742688,
+    "max": 89.99998568733184,
+    "mean": 37.357861951476714
+  },
+  "random_wt_max_angle_degrees": {
+    "name": "random vs WT",
+    "n": 2000,
+    "min": 0.07189017124799024,
+    "q05": 0.32224209067367354,
+    "q25": 0.6945171853916344,
+    "median": 2.3996955723658786,
+    "q75": 35.06070087921398,
+    "q95": 89.60368713172491,
+    "max": 89.99885665270253,
+    "mean": 23.083330743613608
+  }
+}
