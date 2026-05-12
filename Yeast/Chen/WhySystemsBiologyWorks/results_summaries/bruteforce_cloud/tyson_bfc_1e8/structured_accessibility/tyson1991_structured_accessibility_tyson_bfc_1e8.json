@@ -1,0 +1,1371 @@
+{
+  "n_points": 50000,
+  "dimensions": 8,
+  "n_centers": 250,
+  "n_shuffles": 3,
+  "total_unique_phenotypes": 21086,
+  "phenotype_count_distribution": {
+    "min": 1,
+    "q25": 1.0,
+    "median": 1.0,
+    "q75": 1.0,
+    "q95": 4.0,
+    "max": 10997
+  },
+  "structured_control": {
+    "compact_blocks": "same phenotype counts assigned to contiguous blocks in recursive KD spatial order",
+    "random_projection_slabs": "same phenotype counts assigned to contiguous slabs along one random projection",
+    "pieces_per_phenotype": 1,
+    "leaf_size": 256
+  },
+  "rows": [
+    {
+      "radius": 0.03,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.03655659733621505,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.044546160293405544,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.05428186815735061,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.06614534656285934,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.08060162666542822,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.0982173736883998,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.11968309937824653,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.004,
+        "max": 2.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0,
+        "max": 1.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.1458402290640257,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.036,
+        "max": 2.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.024,
+        "max": 2.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.0346666666666666,
+        "max": 2.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.024,
+        "max": 2.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 1.0,
+        "mean": 1.028,
+        "max": 2.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.17771408431049854,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 2.0,
+        "mean": 1.152,
+        "max": 3.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 2.0,
+        "mean": 1.116,
+        "max": 3.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 2.0,
+        "mean": 1.1466666666666665,
+        "max": 3.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 2.0,
+        "mean": 1.108,
+        "max": 3.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 1.0,
+        "q95": 2.0,
+        "mean": 1.116,
+        "max": 3.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.21655407403710236,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 2.0,
+        "q95": 3.0,
+        "mean": 1.68,
+        "max": 5.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 2.0,
+        "q95": 3.0,
+        "mean": 1.544,
+        "max": 5.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 2.0,
+        "q95": 3.0,
+        "mean": 1.6306666666666665,
+        "max": 4.666666666666667
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 2.0,
+        "q95": 3.0,
+        "mean": 1.508,
+        "max": 5.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 1.0,
+        "q75": 2.0,
+        "q95": 3.0,
+        "mean": 1.556,
+        "max": 5.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.2638826695363752,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 2.0,
+        "median": 3.0,
+        "q75": 5.0,
+        "q95": 7.0,
+        "mean": 3.584,
+        "max": 11.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 3.0,
+        "q75": 4.0,
+        "q95": 6.0,
+        "mean": 2.968,
+        "max": 11.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 2.0,
+        "median": 3.0,
+        "q75": 4.333333333333333,
+        "q95": 6.0,
+        "mean": 3.305333333333333,
+        "max": 10.333333333333334
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 1.0,
+        "median": 2.0,
+        "q75": 4.0,
+        "q95": 6.0,
+        "mean": 2.812,
+        "max": 8.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 2.0,
+        "median": 3.0,
+        "q75": 4.0,
+        "q95": 7.0,
+        "mean": 3.068,
+        "max": 8.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 0.6666666666666666,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 0.321555083141559,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 3.450000000000001,
+        "q25": 8.0,
+        "median": 11.0,
+        "q75": 16.0,
+        "q95": 22.0,
+        "mean": 12.092,
+        "max": 30.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 2.0,
+        "q25": 4.0,
+        "median": 8.5,
+        "q75": 13.0,
+        "q95": 20.0,
+        "mean": 9.3,
+        "max": 29.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 3.0,
+        "q25": 6.666666666666667,
+        "median": 9.666666666666666,
+        "q75": 13.0,
+        "q95": 16.849999999999994,
+        "mean": 9.919999999999998,
+        "max": 24.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 3.0,
+        "median": 8.0,
+        "q75": 13.0,
+        "q95": 18.549999999999983,
+        "mean": 8.416,
+        "max": 27.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 1.0,
+        "q25": 5.0,
+        "median": 8.5,
+        "q75": 14.0,
+        "q95": 20.0,
+        "mean": 9.468,
+        "max": 27.0
+      },
+      "observed_over_shuffled_median": 0.8793103448275863,
+      "compact_over_shuffled_median": 0.8275862068965518,
+      "slab_over_shuffled_median": 0.8793103448275863
+    },
+    {
+      "radius": 0.39183198986063783,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 15.450000000000001,
+        "q25": 30.0,
+        "median": 43.5,
+        "q75": 62.0,
+        "q95": 82.09999999999997,
+        "mean": 46.464,
+        "max": 109.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 3.0,
+        "q25": 16.25,
+        "median": 30.0,
+        "q75": 45.0,
+        "q95": 75.54999999999998,
+        "mean": 33.356,
+        "max": 106.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 12.15,
+        "q25": 22.666666666666668,
+        "median": 33.0,
+        "q75": 44.25,
+        "q95": 57.36666666666665,
+        "mean": 33.696,
+        "max": 74.33333333333333
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 2.0,
+        "q25": 12.0,
+        "median": 25.5,
+        "q75": 42.0,
+        "q95": 68.54999999999998,
+        "mean": 29.204,
+        "max": 109.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 2.0,
+        "q25": 16.0,
+        "median": 31.5,
+        "q75": 47.0,
+        "q95": 74.54999999999998,
+        "mean": 33.852,
+        "max": 101.0
+      },
+      "observed_over_shuffled_median": 0.9090909090909091,
+      "compact_over_shuffled_median": 0.7727272727272727,
+      "slab_over_shuffled_median": 0.9545454545454546
+    },
+    {
+      "radius": 0.47746814255944126,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 63.45,
+        "q25": 110.5,
+        "median": 164.5,
+        "q75": 237.75,
+        "q95": 337.54999999999995,
+        "mean": 181.98,
+        "max": 470.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 10.0,
+        "q25": 60.25,
+        "median": 114.5,
+        "q75": 167.75,
+        "q95": 283.65,
+        "mean": 123.404,
+        "max": 412.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 44.81666666666666,
+        "q25": 76.75,
+        "median": 111.83333333333334,
+        "q75": 159.33333333333334,
+        "q95": 221.91666666666663,
+        "mean": 122.108,
+        "max": 302.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 8.900000000000002,
+        "q25": 41.0,
+        "median": 91.5,
+        "q75": 144.75,
+        "q95": 244.09999999999997,
+        "mean": 104.172,
+        "max": 454.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 8.0,
+        "q25": 57.5,
+        "median": 110.0,
+        "q75": 173.0,
+        "q95": 274.2999999999999,
+        "mean": 124.388,
+        "max": 394.0
+      },
+      "observed_over_shuffled_median": 1.0238450074515648,
+      "compact_over_shuffled_median": 0.8181818181818181,
+      "slab_over_shuffled_median": 0.983606557377049
+    },
+    {
+      "radius": 0.5818203542805344,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 228.0,
+        "q25": 406.5,
+        "median": 609.5,
+        "q75": 889.5,
+        "q95": 1278.7999999999997,
+        "mean": 677.536,
+        "max": 1997.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 54.45,
+        "q25": 231.5,
+        "median": 389.0,
+        "q75": 588.0,
+        "q95": 1008.1999999999999,
+        "mean": 433.26,
+        "max": 1509.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 150.29999999999998,
+        "q25": 264.66666666666663,
+        "median": 394.5,
+        "q75": 561.6666666666666,
+        "q95": 803.8333333333333,
+        "mean": 431.98,
+        "max": 1240.6666666666667
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 37.45,
+        "q25": 142.0,
+        "median": 327.5,
+        "q75": 497.75,
+        "q95": 842.0999999999999,
+        "mean": 362.432,
+        "max": 1642.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 49.900000000000006,
+        "q25": 221.25,
+        "median": 394.0,
+        "q75": 591.0,
+        "q95": 970.5999999999998,
+        "mean": 436.992,
+        "max": 1403.0
+      },
+      "observed_over_shuffled_median": 0.9860583016476553,
+      "compact_over_shuffled_median": 0.8301647655259823,
+      "slab_over_shuffled_median": 0.9987325728770595
+    },
+    {
+      "radius": 0.7089790804482494,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 806.9,
+        "q25": 1409.25,
+        "median": 2083.5,
+        "q75": 2994.0,
+        "q95": 4587.55,
+        "mean": 2335.928,
+        "max": 7341.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 305.9,
+        "q25": 772.0,
+        "median": 1249.0,
+        "q75": 1811.5,
+        "q95": 2924.8499999999995,
+        "mean": 1392.896,
+        "max": 4253.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 511.7,
+        "q25": 880.75,
+        "median": 1277.1666666666665,
+        "q75": 1786.0,
+        "q95": 2662.5833333333335,
+        "mean": 1398.408,
+        "max": 4063.6666666666665
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 158.45,
+        "q25": 540.5,
+        "median": 1059.5,
+        "q75": 1594.0,
+        "q95": 2699.2,
+        "mean": 1184.236,
+        "max": 4861.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 200.90000000000003,
+        "q25": 735.75,
+        "median": 1254.0,
+        "q75": 1915.25,
+        "q95": 2982.3999999999996,
+        "mean": 1397.204,
+        "max": 4394.0
+      },
+      "observed_over_shuffled_median": 0.9779459741615556,
+      "compact_over_shuffled_median": 0.8295706642307191,
+      "slab_over_shuffled_median": 0.9818608899908653
+    },
+    {
+      "radius": 0.863928758791556,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 2639.05,
+        "q25": 4621.5,
+        "median": 6446.0,
+        "q75": 9073.25,
+        "q95": 13283.349999999995,
+        "mean": 7198.868,
+        "max": 20663.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 1163.3,
+        "q25": 2476.5,
+        "median": 3608.5,
+        "q75": 5105.5,
+        "q95": 7486.549999999994,
+        "mean": 3947.684,
+        "max": 9865.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 1585.2833333333333,
+        "q25": 2690.4166666666665,
+        "median": 3618.0,
+        "q75": 4924.833333333333,
+        "q95": 6914.083333333331,
+        "mean": 3945.169333333333,
+        "max": 10112.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 818.85,
+        "q25": 1922.75,
+        "median": 3199.0,
+        "q75": 4636.75,
+        "q95": 7274.199999999999,
+        "mean": 3488.572,
+        "max": 11386.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 950.0,
+        "q25": 2292.5,
+        "median": 3670.0,
+        "q75": 5147.5,
+        "q95": 7595.299999999999,
+        "mean": 3918.228,
+        "max": 10265.0
+      },
+      "observed_over_shuffled_median": 0.9973742399115534,
+      "compact_over_shuffled_median": 0.8841901603095633,
+      "slab_over_shuffled_median": 1.0143725815367606
+    },
+    {
+      "radius": 1.0527431920772996,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 8823.85,
+        "q25": 13675.5,
+        "median": 17820.0,
+        "q75": 22954.5,
+        "q95": 29905.499999999996,
+        "mean": 18693.628,
+        "max": 39722.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 4371.35,
+        "q25": 6820.5,
+        "median": 9018.0,
+        "q75": 11586.5,
+        "q95": 14372.749999999996,
+        "mean": 9282.564,
+        "max": 17263.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 4805.666666666667,
+        "q25": 7072.833333333333,
+        "median": 8918.166666666668,
+        "q75": 11105.416666666666,
+        "q95": 13830.149999999998,
+        "mean": 9199.721333333335,
+        "max": 17500.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 3493.0,
+        "q25": 5977.75,
+        "median": 8595.0,
+        "q75": 10946.5,
+        "q95": 14728.649999999998,
+        "mean": 8637.908,
+        "max": 18667.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 3848.25,
+        "q25": 6598.75,
+        "median": 8872.0,
+        "q75": 11606.25,
+        "q95": 14851.349999999999,
+        "mean": 9088.832,
+        "max": 17512.0
+      },
+      "observed_over_shuffled_median": 1.0111943785157635,
+      "compact_over_shuffled_median": 0.9637631052720101,
+      "slab_over_shuffled_median": 0.9948233007531442
+    },
+    {
+      "radius": 1.2828236323737183,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 24073.65,
+        "q25": 31792.25,
+        "median": 36802.0,
+        "q75": 41640.25,
+        "q95": 46063.55,
+        "mean": 36410.424,
+        "max": 49440.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 11430.35,
+        "q25": 14514.25,
+        "median": 16767.5,
+        "q75": 18616.5,
+        "q95": 19950.0,
+        "mean": 16392.94,
+        "max": 20866.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 11576.65,
+        "q25": 14577.083333333334,
+        "median": 16454.666666666664,
+        "q75": 18181.25,
+        "q95": 19734.033333333333,
+        "mean": 16233.856,
+        "max": 20896.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 10379.6,
+        "q25": 13895.75,
+        "median": 16622.0,
+        "q75": 18333.0,
+        "q95": 20247.6,
+        "mean": 16027.704,
+        "max": 21044.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 10222.4,
+        "q25": 14210.75,
+        "median": 16577.5,
+        "q75": 18562.25,
+        "q95": 20223.8,
+        "mean": 16116.756,
+        "max": 20938.0
+      },
+      "observed_over_shuffled_median": 1.0190118304837534,
+      "compact_over_shuffled_median": 1.0101693541852363,
+      "slab_over_shuffled_median": 1.0074649542176486
+    },
+    {
+      "radius": 1.5631888994022274,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 43762.4,
+        "q25": 47458.0,
+        "median": 48890.0,
+        "q75": 49644.75,
+        "q95": 49961.55,
+        "mean": 48202.412,
+        "max": 50000.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 19163.0,
+        "q25": 20298.75,
+        "median": 20806.0,
+        "q75": 21017.0,
+        "q95": 21081.1,
+        "mean": 20520.24,
+        "max": 21086.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 18931.8,
+        "q25": 20232.0,
+        "median": 20709.0,
+        "q75": 20965.0,
+        "q95": 21072.25,
+        "mean": 20469.516,
+        "max": 21086.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 18876.35,
+        "q25": 20238.75,
+        "median": 20820.0,
+        "q75": 21016.75,
+        "q95": 21084.0,
+        "mean": 20493.988,
+        "max": 21086.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 18447.6,
+        "q25": 20260.75,
+        "median": 20794.5,
+        "q75": 21015.75,
+        "q95": 21083.1,
+        "mean": 20443.7,
+        "max": 21086.0
+      },
+      "observed_over_shuffled_median": 1.0046839538364962,
+      "compact_over_shuffled_median": 1.005359988410836,
+      "slab_over_shuffled_median": 1.00412863972186
+    },
+    {
+      "radius": 1.9048289051962806,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 49890.05,
+        "q25": 49992.0,
+        "median": 50000.0,
+        "q75": 50000.0,
+        "q95": 50000.0,
+        "mean": 49980.772,
+        "max": 50000.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 21061.0,
+        "q25": 21084.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21081.016,
+        "max": 21086.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 21047.68333333333,
+        "q25": 21083.083333333332,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21079.409333333337,
+        "max": 21086.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 21065.35,
+        "q25": 21085.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21081.22,
+        "max": 21086.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 21051.15,
+        "q25": 21084.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21079.58,
+        "max": 21086.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 2.32113544272146,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 50000.0,
+        "q25": 50000.0,
+        "median": 50000.0,
+        "q75": 50000.0,
+        "q95": 50000.0,
+        "mean": 50000.0,
+        "max": 50000.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    },
+    {
+      "radius": 2.8284271247461903,
+      "points_in_ball": {
+        "n": 250,
+        "q05": 50000.0,
+        "q25": 50000.0,
+        "median": 50000.0,
+        "q75": 50000.0,
+        "q95": 50000.0,
+        "mean": 50000.0,
+        "max": 50000.0
+      },
+      "observed": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "shuffled": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "compact_blocks": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "random_projection_slabs": {
+        "n": 250,
+        "q05": 21086.0,
+        "q25": 21086.0,
+        "median": 21086.0,
+        "q75": 21086.0,
+        "q95": 21086.0,
+        "mean": 21086.0,
+        "max": 21086.0
+      },
+      "observed_over_shuffled_median": 1.0,
+      "compact_over_shuffled_median": 1.0,
+      "slab_over_shuffled_median": 1.0
+    }
+  ],
+  "model": "tyson1991",
+  "label": "Tyson 1991",
+  "tag": "tyson_bfc_1e8",
+  "sample_npz": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/tyson_bfc_1e8/tyson1991_bruteforce_samples_tyson_bfc_1e8.npz"
+}
