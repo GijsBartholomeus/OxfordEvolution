@@ -1,0 +1,122 @@
+{
+  "Chen 2004": {
+    "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results_summaries/bruteforce_cloud/chen_bfc_1e8/knn_locality/chen2004_knn_phenotype_locality_chen_bfc_1e8.json",
+    "points_used": 50000,
+    "dimensions": 136,
+    "unique_phenotypes": 9561,
+    "same_random_baseline_sum_p2": 0.03377286640000001,
+    "selected_rows": {
+      "10": {
+        "observed_unique_mean": 8.6304,
+        "shuffled_unique_mean": 8.718419999999998,
+        "observed_same_phenotype_enrichment": 1.316638811169035,
+        "shuffled_same_phenotype_enrichment": 1.003369576787437
+      },
+      "100": {
+        "observed_unique_mean": 53.333,
+        "shuffled_unique_mean": 52.079600000000006,
+        "observed_same_phenotype_enrichment": 1.2173420765117913,
+        "shuffled_same_phenotype_enrichment": 0.9937808619889094
+      },
+      "1000": {
+        "observed_unique_mean": 365.503,
+        "shuffled_unique_mean": 350.65524000000005,
+        "observed_same_phenotype_enrichment": 1.1459347584871116,
+        "shuffled_same_phenotype_enrichment": 0.9965632291370089
+      },
+      "5000": {
+        "observed_unique_mean": 1490.45,
+        "shuffled_unique_mean": 1444.99892,
+        "observed_same_phenotype_enrichment": 1.0947721843042548,
+        "shuffled_same_phenotype_enrichment": 0.9967412349018837
+      }
+    },
+    "within_between_distance": {
+      "same_pairs": {
+        "n": 50000,
+        "mean": 4.733190603396817,
+        "min": 3.7976027143145954,
+        "q05": 4.331571649837811,
+        "q25": 4.571389621615033,
+        "median": 4.735722014966033,
+        "q75": 4.896776205494396,
+        "q95": 5.128255032931436,
+        "max": 5.753384479171789
+      },
+      "different_pairs": {
+        "n": 50000,
+        "mean": 4.746875060818163,
+        "min": 3.7775143922286945,
+        "q05": 4.348837993041715,
+        "q25": 4.582853218479174,
+        "median": 4.748595967235305,
+        "q75": 4.9105391923559925,
+        "q95": 5.142029989580298,
+        "max": 5.758370799583035
+      },
+      "same_minus_different_mean": -0.01368445742134572,
+      "labels_eligible_for_same_pairs": 1695,
+      "min_label_count": 2
+    }
+  },
+  "Tyson 1991": {
+    "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results_summaries/bruteforce_cloud/tyson_bfc_1e8/knn_locality/tyson1991_knn_phenotype_locality_tyson_bfc_1e8.json",
+    "points_used": 50000,
+    "dimensions": 8,
+    "unique_phenotypes": 21086,
+    "same_random_baseline_sum_p2": 0.0546440544,
+    "selected_rows": {
+      "10": {
+        "observed_unique_mean": 7.7128,
+        "shuffled_unique_mean": 8.469359999999998,
+        "observed_same_phenotype_enrichment": 3.3965268872874845,
+        "shuffled_same_phenotype_enrichment": 1.0090352625404342
+      },
+      "100": {
+        "observed_unique_mean": 68.146,
+        "shuffled_unique_mean": 69.09603999999999,
+        "observed_same_phenotype_enrichment": 2.7738746555335685,
+        "shuffled_same_phenotype_enrichment": 1.0001993829899543
+      },
+      "1000": {
+        "observed_unique_mean": 626.1398,
+        "shuffled_unique_mean": 631.44142,
+        "observed_same_phenotype_enrichment": 2.1226717648423863,
+        "shuffled_same_phenotype_enrichment": 0.9994304692905974
+      },
+      "5000": {
+        "observed_unique_mean": 2853.2394,
+        "shuffled_unique_mean": 2870.29954,
+        "observed_same_phenotype_enrichment": 1.666815856095463,
+        "shuffled_same_phenotype_enrichment": 0.9989838108561179
+      }
+    },
+    "within_between_distance": {
+      "same_pairs": {
+        "n": 50000,
+        "mean": 0.9838723734437849,
+        "min": 0.14258131654185233,
+        "q05": 0.5273258912416876,
+        "q25": 0.7896069538198465,
+        "median": 0.9813918103303815,
+        "q75": 1.173964973706431,
+        "q95": 1.446798471719057,
+        "max": 2.086139617381129
+      },
+      "different_pairs": {
+        "n": 50000,
+        "mean": 1.1300810821794212,
+        "min": 0.2560069251045354,
+        "q05": 0.7149372858968761,
+        "q25": 0.9641601238655118,
+        "median": 1.1357511707497814,
+        "q75": 1.2995580605381853,
+        "q95": 1.5268225340651367,
+        "max": 2.0707934445519323
+      },
+      "same_minus_different_mean": -0.1462087087356363,
+      "labels_eligible_for_same_pairs": 4168,
+      "min_label_count": 2
+    }
+  }
+}
