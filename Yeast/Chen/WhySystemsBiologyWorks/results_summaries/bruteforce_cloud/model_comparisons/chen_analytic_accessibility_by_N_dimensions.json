@@ -14,6 +14,11 @@
       "reference_dimensions": 136,
       "phenotypes_in_reference_sample": 16991,
       "reference_sample_size": 100000,
+      "reference_distribution": {
+        "source": "summary_sample_npz",
+        "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
+        "reference_sample_size": 100000
+      },
       "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
       "q_method": "normal approximation",
       "radii": [
@@ -1720,6 +1725,11 @@
       "reference_dimensions": 136,
       "phenotypes_in_reference_sample": 16991,
       "reference_sample_size": 100000,
+      "reference_distribution": {
+        "source": "summary_sample_npz",
+        "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
+        "reference_sample_size": 100000
+      },
       "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
       "q_method": "normal approximation",
       "radii": [
@@ -3426,6 +3436,11 @@
       "reference_dimensions": 136,
       "phenotypes_in_reference_sample": 16991,
       "reference_sample_size": 100000,
+      "reference_distribution": {
+        "source": "summary_sample_npz",
+        "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
+        "reference_sample_size": 100000
+      },
       "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
       "q_method": "normal approximation",
       "radii": [
@@ -5132,6 +5147,11 @@
       "reference_dimensions": 136,
       "phenotypes_in_reference_sample": 16991,
       "reference_sample_size": 100000,
+      "reference_distribution": {
+        "source": "summary_sample_npz",
+        "path": "/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Yeast/Chen/WhySystemsBiologyWorks/results/bruteforce_cloud_stats/chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
+        "reference_sample_size": 100000
+      },
       "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
       "q_method": "normal approximation",
       "radii": [

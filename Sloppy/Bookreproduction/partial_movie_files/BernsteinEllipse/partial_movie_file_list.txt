@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Sloppy/Bookreproduction/partial_movie_files/BernsteinEllipse/3113625927_1722455107_2181705360.mp4'
+file 'file:/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Sloppy/Bookreproduction/partial_movie_files/BernsteinEllipse/1230605165_1433877407_2818535955.mp4'
+file 'file:/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Sloppy/Bookreproduction/partial_movie_files/BernsteinEllipse/1230605165_3887485747_3761441232.mp4'
+file 'file:/Users/gijsbartholomeus/Documents/STUDIE/OxfordEvolution/code/Sloppy/Bookreproduction/partial_movie_files/BernsteinEllipse/1230605165_2950721455_2009079220.mp4'

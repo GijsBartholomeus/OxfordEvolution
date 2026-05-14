@@ -213,6 +213,8 @@ def local_parameter_values(sbml: Path) -> dict[str, list[tuple[str, float]]]:
 def promote_local_parameters(spec: ModelSpec) -> Path:
     keys = {canonical_key(k) for k in hessian_keys(spec)}
     out = PROMOTED / f"{spec.key}.xml"
+    if out.exists() and out.stat().st_size > 0:
+        return out
     doc = libsbml.readSBML(str(spec.sbml))
     model = doc.getModel()
 
@@ -241,7 +243,9 @@ def promote_local_parameters(spec: ModelSpec) -> Path:
                 if hasattr(kl, "getParameter") and kl.getParameter(pid) is not None:
                     kl.removeParameter(pid)
 
-    libsbml.writeSBMLToFile(doc, str(out))
+    tmp = out.with_name(f"{out.name}.tmp.{os.getpid()}")
+    libsbml.writeSBMLToFile(doc, str(tmp))
+    os.replace(tmp, out)
     return out
 
 

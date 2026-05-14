@@ -27,6 +27,7 @@ CHEN_CONFIG = {
     "tag": "chen_bfc_1e8",
     "sample": STATS_ROOT / "chen_bfc_1e8/chen2004_bruteforce_samples_chen_bfc_1e8.npz",
 }
+RAW_ROOT = ROOT / "results/bruteforce_cloud"
 
 
 def normal_cdf(x: np.ndarray) -> np.ndarray:
@@ -94,13 +95,81 @@ def expected_unique_finite_current_sample(counts: np.ndarray, n: int, q: np.ndar
     return np.asarray([expected_unique_hypergeom(counts, m) for m in draws], dtype=float)
 
 
-def load_label_distribution(path: Path) -> tuple[np.ndarray, np.ndarray, int]:
+def chunk_files(tag: str, model: str) -> list[Path]:
+    return sorted((RAW_ROOT / tag).glob(f"{model}_bruteforce_cloud_N=*chunk-*.npz"))
+
+
+def chunk_count(path: Path) -> int:
+    with np.load(path, allow_pickle=True) as data:
+        return int(data["phenotype_codes"].shape[0])
+
+
+def load_label_distribution_from_sample(path: Path) -> tuple[np.ndarray, np.ndarray, int, dict]:
     with np.load(path, allow_pickle=True) as data:
         codes = np.asarray(data["all_phenotype_codes"])
         p0 = np.asarray(data["p0"], dtype=float)
     _, counts = np.unique(codes, return_counts=True)
     p = counts.astype(float) / float(np.sum(counts))
-    return counts, p, int(len(p0))
+    meta = {"source": "summary_sample_npz", "path": str(path), "reference_sample_size": int(len(codes))}
+    return counts, p, int(len(p0)), meta
+
+
+def load_label_distribution_from_raw(tag: str, model: str, n_sample: int, seed: int) -> tuple[np.ndarray, np.ndarray, int, dict]:
+    files = chunk_files(tag, model)
+    if not files:
+        raise FileNotFoundError(f"No raw chunk files for {model} in {RAW_ROOT / tag}")
+    rng = np.random.default_rng(seed)
+    counts_by_chunk = np.asarray([chunk_count(path) for path in files], dtype=np.int64)
+    offsets = np.concatenate([[0], np.cumsum(counts_by_chunk)])
+    total = int(offsets[-1])
+    n = min(int(n_sample), total)
+    selected = np.sort(rng.choice(total, size=n, replace=False).astype(np.int64))
+    codes = np.empty(n, dtype=np.uint64)
+    write_at = 0
+    p0 = None
+    nonempty = 0
+    for chunk_idx, path in enumerate(files):
+        start = offsets[chunk_idx]
+        stop = offsets[chunk_idx + 1]
+        left = np.searchsorted(selected, start, side="left")
+        right = np.searchsorted(selected, stop, side="left")
+        if right <= left:
+            continue
+        local_idx = selected[left:right] - start
+        with np.load(path, allow_pickle=True) as data:
+            if p0 is None:
+                p0 = np.asarray(data["p0"], dtype=float)
+            chunk_codes = np.asarray(data["phenotype_codes"], dtype=np.uint64)
+            m = len(local_idx)
+            codes[write_at : write_at + m] = chunk_codes[local_idx]
+            write_at += m
+        nonempty += 1
+        if nonempty % 50 == 0:
+            print(f"  sampled labels from {nonempty} chunks; rows={write_at:,}/{n:,}", flush=True)
+    codes = codes[:write_at]
+    _, counts = np.unique(codes, return_counts=True)
+    p = counts.astype(float) / float(np.sum(counts))
+    meta = {
+        "source": "raw_chunk_label_sample",
+        "tag": tag,
+        "model": model,
+        "chunk_files": len(files),
+        "raw_successful_points": total,
+        "reference_sample_size": int(len(codes)),
+    }
+    if p0 is None:
+        raise ValueError("No p0 loaded from raw chunks")
+    return counts, p, int(len(p0)), meta
+
+
+def load_label_distribution(args: argparse.Namespace) -> tuple[np.ndarray, np.ndarray, int, dict]:
+    if args.reference_source == "sample":
+        return load_label_distribution_from_sample(CHEN_CONFIG["sample"])
+    if args.reference_source == "raw":
+        return load_label_distribution_from_raw(args.reference_tag, CHEN_CONFIG["model"], args.reference_sample_size, args.seed)
+    if args.reference_sample_size > 0 and chunk_files(args.reference_tag, CHEN_CONFIG["model"]):
+        return load_label_distribution_from_raw(args.reference_tag, CHEN_CONFIG["model"], args.reference_sample_size, args.seed)
+    return load_label_distribution_from_sample(CHEN_CONFIG["sample"])
 
 
 def parse_n_values(text: str) -> list[int]:
@@ -134,7 +203,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
     cmap = plt.get_cmap("viridis")
     colors = [cmap(i / max(1, len(n_values) - 1)) for i in range(len(n_values))]
 
-    counts, p, reference_dim = load_label_distribution(CHEN_CONFIG["sample"])
+    counts, p, reference_dim, reference_meta = load_label_distribution(args)
     for ax, dim in zip(axes, panel_dims):
         config = CHEN_CONFIG
         radii = make_radii(dim, args.radii)
@@ -148,6 +217,7 @@ def run(args: argparse.Namespace) -> tuple[Path, Path]:
             "reference_dimensions": reference_dim,
             "phenotypes_in_reference_sample": int(len(counts)),
             "reference_sample_size": int(np.sum(counts)),
+            "reference_distribution": reference_meta,
             "label_frequency_assumption": "fixed phenotype frequencies from the reference sample",
             "q_method": q_method,
             "radii": radii.tolist(),
@@ -202,6 +272,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n-values", default="1000000,10000000,100000000,1000000000,10000000000")
     parser.add_argument("--panel-dims", default="136,100,75,50")
+    parser.add_argument("--reference-source", choices=["auto", "sample", "raw"], default="auto")
+    parser.add_argument("--reference-tag", default="chen_bfc_1e9")
+    parser.add_argument("--reference-sample-size", type=int, default=0)
     parser.add_argument("--radii", type=int, default=240)
     parser.add_argument("--mc-samples", type=int, default=500_000)
     parser.add_argument("--seed", type=int, default=42)

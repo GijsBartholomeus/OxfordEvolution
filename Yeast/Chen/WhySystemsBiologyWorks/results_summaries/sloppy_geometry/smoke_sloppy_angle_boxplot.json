@@ -1,0 +1,75 @@
+{
+  "config": {
+    "model": "tyson1991",
+    "neutral_npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+    "bruteforce_tag": "",
+    "neutral_threshold": 1.0,
+    "n_neutral": 3,
+    "n_random": 3,
+    "pair_samples": 5,
+    "k_sloppy": 3,
+    "seed": 42,
+    "t_end": 100.0,
+    "n_time": 501,
+    "tag": "smoke_sloppy_angle_boxplot"
+  },
+  "neutral_source": {
+    "source": "candidate_vectors<= 1",
+    "neutral_npz": "results/nnse_batch_init/tyson_nnse_batch_1e6/tyson1991_nnse_batch_init_merged_N=1e6.npz",
+    "neutral_points_seen": 948,
+    "neutral_points_sampled": 3
+  },
+  "elapsed_seconds": 1.9146759510040283,
+  "neutral_valid_hessians": 3,
+  "random_valid_hessians": 3,
+  "neutral_failed_hessians": [],
+  "random_failed_hessians": [],
+  "neutral_pairwise_max_angle_degrees": {
+    "name": "neutral pairwise",
+    "n": 3,
+    "min": 0.31754679620217635,
+    "q05": 0.3919368483588299,
+    "q25": 0.6894970569854441,
+    "median": 1.0614473177687118,
+    "q75": 1.0614473177690553,
+    "q95": 1.06144731776933,
+    "max": 1.0614473177693986,
+    "mean": 0.8134804772467623
+  },
+  "neutral_wt_max_angle_degrees": {
+    "name": "neutral vs WT",
+    "n": 3,
+    "min": 0.24740144517215604,
+    "q05": 0.26876585512199175,
+    "q25": 0.35422349492133465,
+    "median": 0.46104554467051323,
+    "q75": 0.8523839459007276,
+    "q95": 1.165454666884899,
+    "max": 1.243722347130942,
+    "mean": 0.6507231123245371
+  },
+  "random_pairwise_max_angle_degrees": {
+    "name": "random pairwise",
+    "n": 3,
+    "min": 3.1554852036334,
+    "q05": 7.629682873497654,
+    "q25": 25.526473552954666,
+    "median": 47.897461902275936,
+    "q75": 47.897461902275936,
+    "q95": 47.897461902275936,
+    "max": 47.897461902275936,
+    "mean": 32.98346966939509
+  },
+  "random_wt_max_angle_degrees": {
+    "name": "random vs WT",
+    "n": 3,
+    "min": 2.5444696733901124,
+    "q05": 2.6258656918262053,
+    "q25": 2.951449765570576,
+    "median": 3.358429857751039,
+    "q75": 25.23924356513249,
+    "q95": 42.74389453103765,
+    "max": 47.12005727251394,
+    "mean": 17.674318934551696
+  }
+}

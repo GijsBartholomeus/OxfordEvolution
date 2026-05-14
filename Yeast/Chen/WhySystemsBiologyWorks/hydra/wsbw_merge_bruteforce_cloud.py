@@ -19,7 +19,7 @@ from scipy.spatial.distance import pdist
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from wsbw_pipeline import PLOTS, RESULTS, SPECS, draw_complexity_panel
+from wsbw_pipeline import PLOTS, RESULTS, SPECS, draw_complexity_panel, plot_complexity_frequency
 
 
 IN_ROOT = RESULTS / "bruteforce_cloud"
@@ -73,22 +73,37 @@ def reservoir_update(
     current_codes = np.asarray(current_codes, dtype=np.uint64)
     codes = np.asarray(codes, dtype=np.uint64) if codes is not None else None
 
-    for idx in range(len(points)):
-        seen += 1
-        if len(current_points) < max_size:
-            current_points = np.vstack([current_points, points[idx : idx + 1].astype(np.float32)])
-            current_complexities = np.append(current_complexities, complexities[idx]).astype(np.float32)
-            current_objectives = np.append(current_objectives, objectives[idx]).astype(np.float32)
+    start_idx = 0
+    if len(current_points) < max_size:
+        n_fill = min(max_size - len(current_points), len(points))
+        if n_fill:
+            current_points = np.concatenate([current_points, points[:n_fill].astype(np.float32)], axis=0)
+            current_complexities = np.concatenate(
+                [current_complexities, complexities[:n_fill].astype(np.float32)],
+                axis=0,
+            )
+            current_objectives = np.concatenate(
+                [current_objectives, objectives[:n_fill].astype(np.float32)],
+                axis=0,
+            )
             if codes is not None:
-                current_codes = np.append(current_codes, codes[idx]).astype(np.uint64)
-        else:
-            replace = int(rng.integers(0, seen))
-            if replace < max_size:
-                current_points[replace] = points[idx]
-                current_complexities[replace] = complexities[idx]
-                current_objectives[replace] = objectives[idx]
-                if codes is not None:
-                    current_codes[replace] = codes[idx]
+                current_codes = np.concatenate([current_codes, codes[:n_fill].astype(np.uint64)], axis=0)
+            seen += n_fill
+            start_idx = n_fill
+
+    remaining = len(points) - start_idx
+    if remaining > 0:
+        replace = rng.integers(0, seen + np.arange(1, remaining + 1), size=remaining)
+        keep = replace < max_size
+        if np.any(keep):
+            src = np.nonzero(keep)[0] + start_idx
+            dst = replace[keep].astype(np.int64)
+            current_points[dst] = points[src]
+            current_complexities[dst] = complexities[src]
+            current_objectives[dst] = objectives[src]
+            if codes is not None:
+                current_codes[dst] = codes[src]
+        seen += remaining
 
     sample["seen"] = seen
     sample["points"] = current_points
@@ -273,11 +288,16 @@ def main(args: argparse.Namespace) -> None:
     out_tag = args.out_tag or args.tag
     if not in_dir.exists():
         raise FileNotFoundError(in_dir)
-    paths = sorted(in_dir.glob(f"{args.model}_bruteforce_cloud_N=*chunk-*.npz"))
-    if not paths:
+    all_paths = sorted(in_dir.glob(f"{args.model}_bruteforce_cloud_N=*chunk-*.npz"))
+    if not all_paths:
         raise FileNotFoundError(f"No chunk files for {args.model} in {in_dir}")
 
     rng = np.random.default_rng(args.seed)
+    paths = all_paths
+    if args.max_chunks > 0 and len(paths) > args.max_chunks:
+        chosen = np.sort(rng.choice(len(paths), size=args.max_chunks, replace=False))
+        paths = [paths[int(i)] for i in chosen]
+
     phenotype_counts: Counter = Counter()
     attempted = 0
     successes = 0
@@ -314,11 +334,12 @@ def main(args: argparse.Namespace) -> None:
                 summary = json.loads(summary_path.read_text())
                 label = summary.get("label", args.model)
 
-        unique_codes, first_indices, counts = np.unique(codes, return_index=True, return_counts=True)
-        for code, first_idx, count in zip(unique_codes, first_indices, counts):
-            code_int = int(code)
-            complexity = float(complexities[int(first_idx)])
-            phenotype_counts[(code_int, complexity)] += int(count)
+        if not args.sampled_phenotype_counts:
+            unique_codes, first_indices, counts = np.unique(codes, return_index=True, return_counts=True)
+            for code, first_idx, count in zip(unique_codes, first_indices, counts):
+                code_int = int(code)
+                complexity = float(complexities[int(first_idx)])
+                phenotype_counts[(code_int, complexity)] += int(count)
 
         reservoir_update(all_sample, points, complexities, objectives, codes, args.max_point_sample, rng)
         neutral_mask = np.isfinite(objectives) & (objectives <= args.neutral_cutoff)
@@ -348,6 +369,39 @@ def main(args: argparse.Namespace) -> None:
     assert wildtype_code is not None
     assert wildtype_complexity is not None
 
+    processed_attempted = attempted
+    processed_successes = successes
+    processed_failures = failures
+    if args.scale_sampled_counts_to_full_run:
+        attempted = 0
+        successes = 0
+        failures = 0
+        for path in all_paths:
+            summary_path = path.with_suffix(".json")
+            if summary_path.exists():
+                summary = json.loads(summary_path.read_text())
+                attempted += int(summary.get("samples_attempted", 0))
+                successes += int(summary.get("successes", 0))
+                failures += int(summary.get("failures", 0))
+            else:
+                with np.load(path, allow_pickle=True) as data:
+                    attempted += int(data["samples_attempted"][0])
+                    successes += int(data["successes"][0])
+                    failures += int(data["failures"][0])
+
+    if args.sampled_phenotype_counts:
+        sample_codes = sample_array(all_sample, "codes", None, np.uint64)
+        sample_complexities = sample_array(all_sample, "complexities", None, np.float32)
+        scale = successes / max(1, len(sample_codes))
+        sampled_counts: Counter = Counter()
+        if len(sample_codes):
+            unique_codes, first_indices, counts = np.unique(sample_codes, return_index=True, return_counts=True)
+            for code, first_idx, count in zip(unique_codes, first_indices, counts):
+                code_int = int(code)
+                complexity = float(sample_complexities[int(first_idx)])
+                sampled_counts[(code_int, complexity)] += max(1, int(round(float(count) * scale)))
+        phenotype_counts = sampled_counts
+
     panel_data = make_data_for_panel(
         args.model,
         label,
@@ -357,7 +411,7 @@ def main(args: argparse.Namespace) -> None:
         wildtype_code,
         wildtype_complexity,
     )
-    freq_json = save_complexity_frequency_json(panel_data, out_dir, out_tag)
+    freq_json = None if args.skip_frequency_json else save_complexity_frequency_json(panel_data, out_dir, out_tag)
 
     all_points_arr = sample_array(all_sample, "points", len(p0), np.float32)
     neutral_points_arr = sample_array(neutral_sample, "points", len(p0), np.float32)
@@ -379,25 +433,42 @@ def main(args: argparse.Namespace) -> None:
         rng,
         args.max_plot_points,
     )
+    pipeline_freqcomp_path = None
+    if args.pipeline_freqcomp:
+        all_data = [panel_data]
+        missing = []
+        for spec in SPECS:
+            if spec.key == args.model:
+                continue
+            path = RESULTS / f"{spec.key}_complexity_frequency_{args.pipeline_other_tag}_merged.json"
+            if path.exists():
+                all_data.append(json.loads(path.read_text()))
+            else:
+                missing.append(str(path))
+        if missing:
+            raise FileNotFoundError("Missing pipeline comparison JSONs:\n" + "\n".join(missing))
+        pipeline_freqcomp_path = plot_complexity_frequency(all_data, out=PLOTS / args.pipeline_freqcomp)
 
-    sample_npz = out_dir / f"{args.model}_bruteforce_samples_{out_tag}.npz"
-    np.savez_compressed(
-        sample_npz,
-        all_points=all_points_arr,
-        all_complexities=sample_array(all_sample, "complexities", None, np.float32),
-        all_objectives=sample_array(all_sample, "objectives", None, np.float32),
-        all_phenotype_codes=sample_array(all_sample, "codes", None, np.uint64),
-        neutral_points=neutral_points_arr,
-        neutral_complexities=sample_array(neutral_sample, "complexities", None, np.float32),
-        neutral_objectives=sample_array(neutral_sample, "objectives", None, np.float32),
-        neutral_phenotype_codes=sample_array(neutral_sample, "codes", None, np.uint64),
-        wt_phenotype_points=wt_phenotype_points_arr,
-        wt_phenotype_complexities=sample_array(wt_phenotype_sample, "complexities", None, np.float32),
-        wt_phenotype_objectives=sample_array(wt_phenotype_sample, "objectives", None, np.float32),
-        wt_phenotype_codes=sample_array(wt_phenotype_sample, "codes", None, np.uint64),
-        p0=p0,
-        parameter_names=np.asarray(parameter_names, dtype=object),
-    )
+    sample_npz = None
+    if not args.skip_sample_npz:
+        sample_npz = out_dir / f"{args.model}_bruteforce_samples_{out_tag}.npz"
+        np.savez_compressed(
+            sample_npz,
+            all_points=all_points_arr,
+            all_complexities=sample_array(all_sample, "complexities", None, np.float32),
+            all_objectives=sample_array(all_sample, "objectives", None, np.float32),
+            all_phenotype_codes=sample_array(all_sample, "codes", None, np.uint64),
+            neutral_points=neutral_points_arr,
+            neutral_complexities=sample_array(neutral_sample, "complexities", None, np.float32),
+            neutral_objectives=sample_array(neutral_sample, "objectives", None, np.float32),
+            neutral_phenotype_codes=sample_array(neutral_sample, "codes", None, np.uint64),
+            wt_phenotype_points=wt_phenotype_points_arr,
+            wt_phenotype_complexities=sample_array(wt_phenotype_sample, "complexities", None, np.float32),
+            wt_phenotype_objectives=sample_array(wt_phenotype_sample, "objectives", None, np.float32),
+            wt_phenotype_codes=sample_array(wt_phenotype_sample, "codes", None, np.uint64),
+            p0=p0,
+            parameter_names=np.asarray(parameter_names, dtype=object),
+        )
 
     elapsed = time.time() - start
     summary = {
@@ -406,11 +477,17 @@ def main(args: argparse.Namespace) -> None:
         "tag": out_tag,
         "input_tag": args.tag,
         "chunks_merged": len(paths),
+        "chunks_available": len(all_paths),
         "samples_attempted": attempted,
         "successes": successes,
         "failures": failures,
+        "processed_samples_attempted": processed_attempted,
+        "processed_successes": processed_successes,
+        "processed_failures": processed_failures,
         "success_fraction": successes / max(1, attempted),
         "unique_phenotypes": len(phenotype_counts),
+        "phenotype_count_mode": "sampled_reservoir_scaled" if args.sampled_phenotype_counts else "exact_full_cloud",
+        "scaled_sampled_counts_to_full_run": bool(args.scale_sampled_counts_to_full_run),
         "neutral_cutoff": args.neutral_cutoff,
         "all_point_sample_seen": int(all_sample["seen"]),
         "all_point_sample_saved": int(len(all_points_arr)),
@@ -425,15 +502,17 @@ def main(args: argparse.Namespace) -> None:
         "wildtype_complexity": wildtype_complexity,
         "parameter_names": parameter_names,
         "elapsed_seconds": elapsed,
-        "complexity_frequency_json": str(freq_json),
-        "sample_npz": str(sample_npz),
+        "complexity_frequency_json": None if freq_json is None else str(freq_json),
+        "sample_npz": None if sample_npz is None else str(sample_npz),
         "plot": str(plot_path),
+        "pipeline_freqcomp_plot": None if pipeline_freqcomp_path is None else str(pipeline_freqcomp_path),
     }
     summary_path = out_dir / f"{args.model}_bruteforce_summary_{out_tag}.json"
     summary_path.write_text(json.dumps(summary, indent=2))
     print(f"Saved {summary_path}")
     print(f"Saved {plot_path}")
-    print(f"Saved {sample_npz}")
+    if sample_npz is not None:
+        print(f"Saved {sample_npz}")
     print(json.dumps(summary, indent=2))
 
 
@@ -448,5 +527,12 @@ if __name__ == "__main__":
     parser.add_argument("--max-wt-phenotype-sample", type=int, default=100000)
     parser.add_argument("--max-plot-points", type=int, default=50000)
     parser.add_argument("--max-pairwise-points", type=int, default=3000)
+    parser.add_argument("--skip-frequency-json", action="store_true")
+    parser.add_argument("--skip-sample-npz", action="store_true")
+    parser.add_argument("--sampled-phenotype-counts", action="store_true")
+    parser.add_argument("--pipeline-freqcomp", default=None)
+    parser.add_argument("--pipeline-other-tag", default="hydra_1e7")
+    parser.add_argument("--max-chunks", type=int, default=0)
+    parser.add_argument("--scale-sampled-counts-to-full-run", action="store_true")
     parser.add_argument("--seed", type=int, default=42)
     main(parser.parse_args())
