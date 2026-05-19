@@ -5,8 +5,12 @@ from __future__ import annotations
 
 import json
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from wsbw_pipeline import PLOTS, RESULTS, SPECS, plot_complexity_frequency
 
