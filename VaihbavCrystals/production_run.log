@@ -1,0 +1,34 @@
+Compiled with: -O3 -std=c11 -march=native -Wall -Wextra
+
+============================================================
+Starting: d24_uniform
+  T*_Landau = 0.00537109
+  Q = 4096 phenotypes, 60 sweeps, 9 temps
+  Temp range: 0.002148 (cold) to 0.01343 (hot)
+completed 9 temperatures in 5860.654 seconds, final S=12110213
+Traceback (most recent call last):
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_production.py", line 259, in <module>
+    main()
+    ~~~~^^
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_production.py", line 194, in main
+    meta_u = run_case(
+        name="d24_uniform",
+    ...<5 lines>...
+        description="Binary d=24 uniform phenotype counts: Q=4096, each size 4096.",
+    )
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_production.py", line 158, in run_case
+    (run_dir / "stationarity_diagnostics.json").write_text(json.dumps(diagnostics, indent=2))
+                                                           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/usr/lib/python3.14/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.14/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.14/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type int64 is not JSON serializable
+when serializing dict item 'temp_index'
+when serializing list item 0

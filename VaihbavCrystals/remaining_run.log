@@ -1,0 +1,51 @@
+Compiled: -O3 -std=c11 -march=native -Wall -Wextra
+
+============================================================
+Starting: d24_zipf_classbits4
+  T*_Landau = 0.6875
+  Q = 65535 phenotypes, 60 sweeps, 9 temps
+  Temp range: 0.275 (cold) to 1.719 (hot)
+completed 9 temperatures in 5461.908 seconds, final S=30297681
+  Done in 91.1 min
+  Peak C_S at T=0.275  (0.400 x T*_Landau)
+  Stationarity max half-diff E = 0.01015
+
+============================================================
+Starting: d24_geometric_25phenotypes
+  T*_Landau = 5.5
+  Q = 25 phenotypes, 60 sweeps, 9 temps
+  Temp range: 2.2 (cold) to 13.75 (hot)
+completed 9 temperatures in 4154.655 seconds, final S=174911248
+  Done in 69.3 min
+  Peak C_S at T=3.85  (0.700 x T*_Landau)
+  Stationarity max half-diff E = 0.03398
+
+Uniform wide grid: 15 temps from 0.002148 to 1.719
+
+============================================================
+Starting: d24_uniform_wide
+  T*_Landau = 0.00537109
+  Q = 4096 phenotypes, 60 sweeps, 15 temps
+  Temp range: 0.002148 (cold) to 1.719 (hot)
+completed 15 temperatures in 9093.429 seconds, final S=12570847
+  Done in 151.6 min
+  Peak C_S at T=0.002148  (0.400 x T*_Landau)
+  Stationarity max half-diff E = 0.004248
+
+============================================================
+SUMMARY
+
+  d24_zipf_classbits4
+    T*_Landau = 0.6875
+    heat peak = 0.275  (0.400 x T*_Landau)
+    runtime   = 91.1 min
+
+  d24_geometric_25phenotypes
+    T*_Landau = 5.5
+    heat peak = 3.85  (0.700 x T*_Landau)
+    runtime   = 69.3 min
+
+  d24_uniform_wide
+    T*_Landau = 0.0053711
+    heat peak = 0.002148  (0.400 x T*_Landau)
+    runtime   = 151.6 min

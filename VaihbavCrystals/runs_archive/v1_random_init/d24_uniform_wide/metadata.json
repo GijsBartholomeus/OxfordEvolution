@@ -1,0 +1,66 @@
+{
+  "name": "d24_uniform_wide",
+  "description": "Uniform d=24 wide grid, 9 log-spaced temps 0.4-320x T*_Landau, 100 sweeps.",
+  "d": 24,
+  "k": 2,
+  "N": 16777216,
+  "z": 24,
+  "counts_summary": {
+    "Q": 4096,
+    "total": 16777216,
+    "min": 4096,
+    "max": 4096,
+    "unique_sizes": 1
+  },
+  "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform_wide/counts.tsv",
+  "frequencies_summary": {
+    "min": 0.000244140625,
+    "max": 0.000244140625,
+    "sum_f_squared": 0.000244140625
+  },
+  "lambda_1": 22,
+  "h_f": 0.000244140625,
+  "mu_f": 4096.0,
+  "T_star_Landau": 0.00537109375,
+  "temperature_grid_hot_to_cold": [
+    1.7187499999999993,
+    0.745292005633659,
+    0.3231768283121118,
+    0.14013737108192498,
+    0.06076698900821889,
+    0.026350051557384145,
+    0.011426026341092747,
+    0.004954604269484239,
+    0.0021484375
+  ],
+  "selected_snapshot_indices": [
+    0,
+    1,
+    4,
+    7,
+    8
+  ],
+  "selected_snapshot_temperatures": [
+    1.7187499999999993,
+    0.745292005633659,
+    0.06076698900821889,
+    0.004954604269484239,
+    0.0021484375
+  ],
+  "sweeps": 100,
+  "burn_in": 30,
+  "thin": 1,
+  "rng_seed": 3003,
+  "initialization": "random",
+  "compiler_flags": "",
+  "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+  "heat_capacity_convention": "C_S(T*) = Var(S)/(N*T*^2), post-burn-in thinned sweeps.",
+  "high_temperature_random_E_expectation": -0.000244140625,
+  "snapshot_dtype_expected": "uint16",
+  "notes": "Hot-to-cold, 100 sweeps, 30 burn-in. ~5-hr target run.",
+  "runtime_seconds": 8644.925110581004,
+  "counts_preservation_snapshot_failures": [],
+  "observed_heat_peak_temperature": 0.0021484375,
+  "observed_heat_peak_over_landau": 0.4,
+  "stationarity_max_half_diff_E": 0.006683060243016192
+}

@@ -1,0 +1,270 @@
+{
+  "created_at": "2026-06-11 17:21:24 BST",
+  "root": "/home/gijs/Documents/VaihbavCrystals",
+  "cases": [
+    {
+      "name": "d12_uniform",
+      "d": 12,
+      "k": 2,
+      "N": 4096,
+      "z": 12,
+      "counts_summary": {
+        "Q": 64,
+        "total": 4096,
+        "min": 64,
+        "max": 64,
+        "unique_sizes": 1
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d12_uniform/counts.tsv",
+      "frequencies_summary": {
+        "min": 0.015625,
+        "max": 0.015625,
+        "sum_f_squared": 0.015625
+      },
+      "lambda_1": 10,
+      "h_f": 0.015625,
+      "mu_f": 64.0,
+      "T_star_Landau": 0.15625,
+      "temperature_grid": [
+        0.0546875,
+        0.078125,
+        0.1015625,
+        0.125,
+        0.140625,
+        0.1515625,
+        0.15625,
+        0.1609375,
+        0.171875,
+        0.1953125,
+        0.234375,
+        0.3125,
+        0.46875
+      ],
+      "selected_snapshot_indices": [
+        0,
+        4,
+        6,
+        8,
+        11
+      ],
+      "selected_snapshot_temperatures": [
+        0.0546875,
+        0.140625,
+        0.15625,
+        0.171875,
+        0.3125
+      ],
+      "sweeps": 2500,
+      "burn_in": 600,
+      "thin": 1,
+      "rng_seed": 1001,
+      "initialization": "random",
+      "compiler_flags": "-O3 -std=c11 -march=native -Wall -Wextra",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), using post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.015625,
+      "snapshot_dtype_expected": "uint8",
+      "notes": "d=24 runs are short production pilots; do not treat stationarity as established.",
+      "runtime_seconds": 8.214784820000204,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.0546875,
+      "observed_heat_peak_over_landau": 0.35,
+      "final_metadata_written_after_run": true
+    },
+    {
+      "name": "d12_zipf_classbits3",
+      "d": 12,
+      "k": 2,
+      "N": 4096,
+      "z": 12,
+      "counts_summary": {
+        "Q": 255,
+        "total": 4096,
+        "min": 4,
+        "max": 512,
+        "unique_sizes": 8
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d12_zipf_classbits3/counts.tsv",
+      "frequencies_summary": {
+        "min": 0.0009765625,
+        "max": 0.125,
+        "sum_f_squared": 0.0311279296875
+      },
+      "lambda_1": 10,
+      "h_f": 0.06250000000000001,
+      "mu_f": 15.999999999999996,
+      "T_star_Landau": 0.6250000000000001,
+      "temperature_grid": [
+        0.21875000000000003,
+        0.31250000000000006,
+        0.4062500000000001,
+        0.5000000000000001,
+        0.5625000000000001,
+        0.6062500000000001,
+        0.6250000000000001,
+        0.6437500000000002,
+        0.6875000000000002,
+        0.7812500000000001,
+        0.9375000000000002,
+        1.2500000000000002,
+        1.8750000000000004
+      ],
+      "selected_snapshot_indices": [
+        0,
+        4,
+        6,
+        8,
+        11
+      ],
+      "selected_snapshot_temperatures": [
+        0.21875000000000003,
+        0.5625000000000001,
+        0.6250000000000001,
+        0.6875000000000002,
+        1.2500000000000002
+      ],
+      "sweeps": 2500,
+      "burn_in": 600,
+      "thin": 1,
+      "rng_seed": 2001,
+      "initialization": "random",
+      "compiler_flags": "-O3 -std=c11 -march=native -Wall -Wextra",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), using post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.0311279296875,
+      "snapshot_dtype_expected": "uint8",
+      "notes": "d=24 runs are short production pilots; do not treat stationarity as established.",
+      "runtime_seconds": 8.12910656699978,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.21875000000000003,
+      "observed_heat_peak_over_landau": 0.35,
+      "final_metadata_written_after_run": true
+    },
+    {
+      "name": "d24_uniform",
+      "d": 24,
+      "k": 2,
+      "N": 16777216,
+      "z": 24,
+      "counts_summary": {
+        "Q": 4096,
+        "total": 16777216,
+        "min": 4096,
+        "max": 4096,
+        "unique_sizes": 1
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform/counts.tsv",
+      "frequencies_summary": {
+        "min": 0.000244140625,
+        "max": 0.000244140625,
+        "sum_f_squared": 0.000244140625
+      },
+      "lambda_1": 22,
+      "h_f": 0.000244140625,
+      "mu_f": 4096.0,
+      "T_star_Landau": 0.00537109375,
+      "temperature_grid": [
+        0.0021484375,
+        0.0037597656249999997,
+        0.004833984375,
+        0.00537109375,
+        0.005908203125000001,
+        0.007519531249999999,
+        0.013427734375
+      ],
+      "selected_snapshot_indices": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ],
+      "selected_snapshot_temperatures": [
+        0.0021484375,
+        0.004833984375,
+        0.00537109375,
+        0.005908203125000001,
+        0.013427734375
+      ],
+      "sweeps": 2,
+      "burn_in": 0,
+      "thin": 1,
+      "rng_seed": 3001,
+      "initialization": "random",
+      "compiler_flags": "-O3 -std=c11 -march=native -Wall -Wextra",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), using post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.000244140625,
+      "snapshot_dtype_expected": "uint16",
+      "notes": "d=24 runs are short production pilots; do not treat stationarity as established.",
+      "runtime_seconds": 151.52229150699986,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.0021484375,
+      "observed_heat_peak_over_landau": 0.4,
+      "final_metadata_written_after_run": true
+    },
+    {
+      "name": "d24_zipf_classbits4",
+      "d": 24,
+      "k": 2,
+      "N": 16777216,
+      "z": 24,
+      "counts_summary": {
+        "Q": 65535,
+        "total": 16777216,
+        "min": 32,
+        "max": 1048576,
+        "unique_sizes": 16
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_zipf_classbits4/counts.tsv",
+      "frequencies_summary": {
+        "min": 1.9073486328125e-06,
+        "max": 0.0625,
+        "sum_f_squared": 0.007812380790710449
+      },
+      "lambda_1": 22,
+      "h_f": 0.03125000000000001,
+      "mu_f": 31.999999999999993,
+      "T_star_Landau": 0.6875000000000001,
+      "temperature_grid": [
+        0.2750000000000001,
+        0.48125000000000007,
+        0.6187500000000001,
+        0.6875000000000001,
+        0.7562500000000002,
+        0.9625000000000001,
+        1.7187500000000002
+      ],
+      "selected_snapshot_indices": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ],
+      "selected_snapshot_temperatures": [
+        0.2750000000000001,
+        0.6187500000000001,
+        0.6875000000000001,
+        0.7562500000000002,
+        1.7187500000000002
+      ],
+      "sweeps": 2,
+      "burn_in": 0,
+      "thin": 1,
+      "rng_seed": 4001,
+      "initialization": "random",
+      "compiler_flags": "-O3 -std=c11 -march=native -Wall -Wextra",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), using post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.007812380790710449,
+      "snapshot_dtype_expected": "uint16",
+      "notes": "d=24 runs are short production pilots; do not treat stationarity as established.",
+      "runtime_seconds": 148.3507105370004,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.2750000000000001,
+      "observed_heat_peak_over_landau": 0.4,
+      "final_metadata_written_after_run": true
+    }
+  ]
+}

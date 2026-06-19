@@ -1,0 +1,24 @@
+Compiled: -O3 -std=c11 -march=native -Wall -Wextra
+
+============================================================
+Starting: d24_zipf_classbits4
+  T*_Landau=0.6875  Q=65535  100 sweeps  9 temps
+  0.275 (cold) → 6.875 (hot)
+completed 9 temperatures in 8922.290 seconds, final S=32202845
+  Done in 148.7 min
+  C_S peak T=0.275 (0.40x T*_Landau)
+  stationarity max half-diff = 0.01867
+
+============================================================
+Starting: d24_uniform_wide
+  T*_Landau=0.005371  Q=4096  100 sweeps  9 temps
+  0.002148 (cold) → 1.719 (hot)
+completed 9 temperatures in 8643.731 seconds, final S=12496821
+  Done in 144.1 min
+  C_S peak T=0.002148 (0.40x T*_Landau)
+  stationarity max half-diff = 0.006683
+
+============================================================
+SUMMARY
+  d24_zipf_classbits4: peak at 0.40x T*_Landau, 149 min
+  d24_uniform_wide: peak at 0.40x T*_Landau, 144 min

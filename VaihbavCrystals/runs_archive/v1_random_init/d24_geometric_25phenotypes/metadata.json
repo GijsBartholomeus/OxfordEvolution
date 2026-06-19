@@ -1,0 +1,67 @@
+{
+  "name": "d24_geometric_25phenotypes",
+  "description": "Binary d=24 geometric counts: [2^23,...,2,1,1], Q=25 phenotypes.",
+  "d": 24,
+  "k": 2,
+  "N": 16777216,
+  "z": 24,
+  "counts_summary": {
+    "Q": 25,
+    "total": 16777216,
+    "min": 1,
+    "max": 8388608,
+    "unique_sizes": 24
+  },
+  "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_geometric_25phenotypes/counts.tsv",
+  "frequencies_summary": {
+    "min": 5.960464477539063e-08,
+    "max": 0.5,
+    "sum_f_squared": 0.3333333333333357
+  },
+  "lambda_1": 22,
+  "h_f": 0.25000000000000006,
+  "mu_f": 3.999999999999999,
+  "T_star_Landau": 5.500000000000001,
+  "temperature_grid_hot_to_cold": [
+    13.750000000000002,
+    8.800000000000002,
+    7.150000000000001,
+    6.050000000000002,
+    5.500000000000001,
+    4.950000000000001,
+    3.8500000000000005,
+    2.7500000000000004,
+    2.2000000000000006
+  ],
+  "selected_snapshot_indices": [
+    0,
+    3,
+    4,
+    5,
+    8
+  ],
+  "selected_snapshot_temperatures": [
+    13.750000000000002,
+    6.050000000000002,
+    5.500000000000001,
+    4.950000000000001,
+    2.2000000000000006
+  ],
+  "sweeps": 60,
+  "burn_in": 20,
+  "thin": 1,
+  "rng_seed": 5001,
+  "initialization": "random",
+  "compiler_flags": "",
+  "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+  "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), post-burn-in thinned sweeps.",
+  "high_temperature_random_E_expectation": -0.3333333333333357,
+  "snapshot_dtype_expected": "uint8",
+  "notes": "Hot-to-cold annealing, 60 sweeps per temperature, 20 burn-in. Stationarity checked by first/second post-burn-in half comparison.",
+  "runtime_seconds": 4156.642022493001,
+  "counts_preservation_snapshot_failures": [],
+  "observed_heat_peak_temperature": 3.8500000000000005,
+  "observed_heat_peak_over_landau": 0.7,
+  "stationarity_diagnostics_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_geometric_25phenotypes/stationarity_diagnostics.json",
+  "stationarity_max_half_diff_E": 0.03398324201504399
+}

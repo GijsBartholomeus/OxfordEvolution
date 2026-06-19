@@ -1,0 +1,16 @@
+# Binary MCMC snapshots — large, regenerable
+runs/*/worker_*/
+runs/diagnostics/*/worker_*/
+
+# Raw time-series per sweep — very large, regenerable from source
+runs/dseries/*/worker_*/
+runs/dseries/*/timeseries.tsv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Compiled C extensions
+src/*.so
+src/hamming_core.c

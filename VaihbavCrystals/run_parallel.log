@@ -1,0 +1,797 @@
+Compiled: -O3 -std=c11 -march=native -Wall -Wextra
+
+============================================================
+d24_geometric_ordered
+  T*_Landau=5.5  Q=25  150 temps  350+50 sweeps  12 workers
+  T* range: 0.1 .. 15
+  [  1/150] T*=14.400  8408s  ok
+  [  2/150] T*=14.600  8424s  ok
+  [  3/150] T*=14.500  8432s  ok
+  [  4/150] T*=14.800  8434s  ok
+  [  5/150] T*=14.000  8436s  ok
+  [  6/150] T*=14.300  8437s  ok
+  [  7/150] T*=15.000  8437s  ok
+  [  8/150] T*=14.200  8437s  ok
+  [  9/150] T*=14.900  8438s  ok
+  [ 10/150] T*=14.700  8439s  ok
+  [ 11/150] T*=14.100  8441s  ok
+  [ 12/150] T*=13.900  8451s  ok
+  [ 13/150] T*=13.800  8440s  ok
+  [ 14/150] T*=13.600  8429s  ok
+  [ 15/150] T*=13.400  8430s  ok
+  [ 16/150] T*=12.800  8427s  ok
+  [ 17/150] T*=13.700  8447s  ok
+  [ 18/150] T*=13.000  8434s  ok
+  [ 19/150] T*=13.200  8443s  ok
+  [ 20/150] T*=13.500  8447s  ok
+  [ 21/150] T*=13.300  8452s  ok
+  [ 22/150] T*=13.100  8463s  ok
+  [ 23/150] T*=12.900  8462s  ok
+  [ 24/150] T*=12.700  8462s  ok
+  [ 25/150] T*=12.600  8456s  ok
+  [ 26/150] T*=12.300  8439s  ok
+  [ 27/150] T*=12.200  8436s  ok
+  [ 28/150] T*=12.000  8427s  ok
+  [ 29/150] T*=12.500  8449s  ok
+  [ 30/150] T*=11.900  8430s  ok
+  [ 31/150] T*=12.400  8461s  ok
+  [ 32/150] T*=12.100  8455s  ok
+  [ 33/150] T*=11.800  8441s  ok
+  [ 34/150] T*=11.600  8431s  ok
+  [ 35/150] T*=11.700  8436s  ok
+  [ 36/150] T*=11.500  8460s  ok
+  [ 37/150] T*=11.100  8426s  ok
+  [ 38/150] T*=11.200  8431s  ok
+  [ 39/150] T*=11.000  8428s  ok
+  [ 40/150] T*=11.400  8434s  ok
+  [ 41/150] T*=10.500  8418s  ok
+  [ 42/150] T*=11.300  8447s  ok
+  [ 43/150] T*=10.800  8438s  ok
+  [ 44/150] T*=10.600  8444s  ok
+  [ 45/150] T*=10.400  8443s  ok
+  [ 46/150] T*=10.900  8469s  ok
+  [ 47/150] T*=10.700  8463s  ok
+  [ 48/150] T*=10.300  8437s  ok
+  [ 49/150] T*=10.200  8414s  ok
+  [ 50/150] T*=10.100  8413s  ok
+  [ 51/150] T*=10.000  8429s  ok
+  [ 52/150] T*=9.900  8442s  ok
+  [ 53/150] T*=9.600  8417s  ok
+  [ 54/150] T*=9.800  8431s  ok
+  [ 55/150] T*=9.700  8450s  ok
+  [ 56/150] T*=9.500  8433s  ok
+  [ 57/150] T*=9.200  8432s  ok
+  [ 58/150] T*=9.400  8443s  ok
+  [ 59/150] T*=9.300  8451s  ok
+  [ 60/150] T*=9.100  8428s  ok
+  [ 61/150] T*=9.000  8409s  ok
+  [ 62/150] T*=8.900  8423s  ok
+  [ 63/150] T*=8.700  8418s  ok
+  [ 64/150] T*=8.500  8439s  ok
+  [ 65/150] T*=8.600  8444s  ok
+  [ 66/150] T*=8.800  8461s  ok
+  [ 67/150] T*=8.300  8440s  ok
+  [ 68/150] T*=8.100  8426s  ok
+  [ 69/150] T*=8.200  8432s  ok
+  [ 70/150] T*=8.000  8432s  ok
+  [ 71/150] T*=8.400  8460s  ok
+  [ 72/150] T*=7.900  8437s  ok
+  [ 73/150] T*=7.800  8382s  ok
+  [ 74/150] T*=7.700  8369s  ok
+  [ 75/150] T*=7.400  8344s  ok
+  [ 76/150] T*=7.600  8378s  ok
+  [ 77/150] T*=7.300  8372s  ok
+  [ 78/150] T*=7.500  8386s  ok
+  [ 79/150] T*=7.200  8381s  ok
+  [ 80/150] T*=6.700  8360s  ok
+  [ 81/150] T*=6.900  8373s  ok
+  [ 82/150] T*=7.000  8390s  ok
+  [ 83/150] T*=7.100  8398s  ok
+  [ 84/150] T*=6.800  8410s  ok
+  [ 85/150] T*=6.500  8221s  ok
+  [ 86/150] T*=6.600  8236s  ok
+  [ 87/150] T*=6.300  8205s  ok
+  [ 88/150] T*=6.400  8231s  ok
+  [ 89/150] T*=6.100  8204s  ok
+  [ 90/150] T*=6.200  8212s  ok
+  [ 91/150] T*=5.700  8182s  ok
+  [ 92/150] T*=5.800  8197s  ok
+  [ 93/150] T*=6.000  8215s  ok
+  [ 94/150] T*=5.900  8217s  ok
+  [ 95/150] T*=5.500  8210s  ok
+  [ 96/150] T*=5.600  8238s  ok
+  [ 97/150] T*=5.400  8072s  ok
+  [ 98/150] T*=5.300  8073s  ok
+  [ 99/150] T*=4.900  8038s  ok
+  [100/150] T*=5.200  8068s  ok
+  [101/150] T*=4.700  8034s  ok
+  [102/150] T*=5.100  8087s  ok
+  [103/150] T*=5.000  8077s  ok
+  [104/150] T*=4.800  8076s  ok
+  [105/150] T*=4.500  8070s  ok
+  [106/150] T*=4.600  8080s  ok
+  [107/150] T*=4.300  8069s  ok
+  [108/150] T*=4.400  8072s  ok
+  [109/150] T*=3.900  7985s  ok
+  [110/150] T*=3.800  7989s  ok
+  [111/150] T*=4.200  8028s  ok
+  [112/150] T*=4.100  8022s  ok
+  [113/150] T*=3.600  7985s  ok
+  [114/150] T*=4.000  8055s  ok
+  [115/150] T*=3.400  7986s  ok
+  [116/150] T*=3.700  8020s  ok
+  [117/150] T*=3.500  8008s  ok
+  [118/150] T*=3.300  7998s  ok
+  [119/150] T*=3.100  7991s  ok
+  [120/150] T*=3.200  8013s  ok
+  [121/150] T*=3.000  8018s  ok
+  [122/150] T*=2.900  8020s  ok
+  [123/150] T*=2.800  8015s  ok
+  [124/150] T*=2.500  8000s  ok
+  [125/150] T*=2.700  8037s  ok
+  [126/150] T*=2.600  8035s  ok
+  [127/150] T*=2.300  8011s  ok
+  [128/150] T*=2.400  8021s  ok
+  [129/150] T*=2.200  8030s  ok
+  [130/150] T*=2.100  8024s  ok
+  [131/150] T*=2.000  8020s  ok
+  [132/150] T*=1.900  8016s  ok
+  [133/150] T*=1.800  7984s  ok
+  [134/150] T*=1.700  7987s  ok
+  [135/150] T*=1.600  7989s  ok
+  [136/150] T*=1.500  7993s  ok
+  [137/150] T*=1.300  8003s  ok
+  [138/150] T*=0.900  7978s  ok
+  [139/150] T*=1.100  8001s  ok
+  [140/150] T*=1.200  8010s  ok
+  [141/150] T*=1.000  7990s  ok
+  [142/150] T*=1.400  8029s  ok
+  [143/150] T*=0.800  7998s  ok
+  [144/150] T*=0.700  7992s  ok
+  [145/150] T*=0.500  3935s  ok
+  [146/150] T*=0.400  3956s  ok
+  [147/150] T*=0.200  3914s  ok
+  [148/150] T*=0.100  3913s  ok
+  [149/150] T*=0.300  3959s  ok
+  [150/150] T*=0.600  4074s  ok
+  Merging 150 workers...
+Traceback (most recent call last):
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_parallel.py", line 332, in <module>
+    main()
+    ~~~~^^
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_parallel.py", line 290, in main
+    m = run_case("d24_geometric_ordered", 24, counts_g, seed=5100,
+        ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 temps=temps_g, save_indices=sidx_g,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 description="Geometric d=24, ordered init, linear grid 0.1-15 δ0.1. Matches Mohanty (2021) density.")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_d24_parallel.py", line 217, in run_case
+    base.validate_counts_preserved(run_dir, counts),
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/gijs/Documents/VaihbavCrystals/src/run_hamming_sims.py", line 160, in validate_counts_preserved
+    arr = np.fromfile(path, dtype=np.dtype(dtype))
+FileNotFoundError: [Errno 2] No such file or directory: 'omega_T000.bin'
+
+Compiled: -O3 -std=c11 -march=native -Wall -Wextra
+Zipf + Uniform at Mohanty sweeps (100+50)
+
+============================================================
+d24_zipf_ordered
+  T*_Landau=0.6875  Q=65535  80 temps  100+50 sweeps  12 workers
+  T* range: 0.1 .. 8
+
+Compiled: -O3 -std=c11 -march=native -Wall -Wextra
+Zipf + Uniform at Mohanty sweeps (100+50)
+
+============================================================
+d24_zipf_ordered
+  T*_Landau=0.6875  Q=65535  80 temps  100+50 sweeps  12 workers
+  T* range: 0.1 .. 8
+  [  1/80] T*=8.000  3434s  ok
+  [  2/80] T*=7.900  3434s  ok
+  [  3/80] T*=7.300  3435s  ok
+  [  4/80] T*=7.600  3437s  ok
+  [  5/80] T*=7.200  3439s  ok
+  [  6/80] T*=7.700  3439s  ok
+  [  7/80] T*=6.900  3442s  ok
+  [  8/80] T*=7.100  3443s  ok
+  [  9/80] T*=7.000  3443s  ok
+  [ 10/80] T*=7.400  3445s  ok
+  [ 11/80] T*=7.800  3445s  ok
+  [ 12/80] T*=7.500  3447s  ok
+  [ 13/80] T*=6.800  3430s  ok
+  [ 14/80] T*=6.400  3428s  ok
+  [ 15/80] T*=6.300  3430s  ok
+  [ 16/80] T*=6.600  3435s  ok
+  [ 17/80] T*=6.200  3430s  ok
+  [ 18/80] T*=5.800  3428s  ok
+  [ 19/80] T*=6.700  3440s  ok
+  [ 20/80] T*=6.100  3436s  ok
+  [ 21/80] T*=5.900  3437s  ok
+  [ 22/80] T*=5.700  3435s  ok
+  [ 23/80] T*=6.500  3446s  ok
+  [ 24/80] T*=6.000  3440s  ok
+  [ 25/80] T*=5.500  3421s  ok
+  [ 26/80] T*=5.300  3420s  ok
+  [ 27/80] T*=5.600  3429s  ok
+  [ 28/80] T*=5.400  3428s  ok
+  [ 29/80] T*=5.200  3427s  ok
+  [ 30/80] T*=5.000  3432s  ok
+  [ 31/80] T*=4.900  3427s  ok
+  [ 32/80] T*=5.100  3439s  ok
+  [ 33/80] T*=4.500  3433s  ok
+  [ 34/80] T*=4.700  3437s  ok
+  [ 35/80] T*=4.600  3439s  ok
+  [ 36/80] T*=4.800  3441s  ok
+  [ 37/80] T*=4.400  3385s  ok
+  [ 38/80] T*=4.200  3385s  ok
+  [ 39/80] T*=4.300  3391s  ok
+  [ 40/80] T*=4.100  3389s  ok
+  [ 41/80] T*=4.000  3400s  ok
+  [ 42/80] T*=3.800  3410s  ok
+  [ 43/80] T*=3.700  3405s  ok
+  [ 44/80] T*=3.600  3408s  ok
+  [ 45/80] T*=3.900  3424s  ok
+  [ 46/80] T*=3.500  3415s  ok
+  [ 47/80] T*=3.400  3436s  ok
+  [ 48/80] T*=3.300  3446s  ok
+  [ 49/80] T*=3.200  3269s  ok
+  [ 50/80] T*=3.100  3271s  ok
+  [ 51/80] T*=3.000  3294s  ok
+  [ 52/80] T*=2.900  3303s  ok
+  [ 53/80] T*=2.800  3320s  ok
+  [ 54/80] T*=2.700  3312s  ok
+  [ 55/80] T*=2.600  3337s  ok
+  [ 56/80] T*=2.300  3335s  ok
+  [ 57/80] T*=2.500  3346s  ok
+  [ 58/80] T*=2.400  3346s  ok
+  [ 59/80] T*=2.200  3339s  ok
+  [ 60/80] T*=2.100  3345s  ok
+  [ 61/80] T*=2.000  3231s  ok
+  [ 62/80] T*=1.900  3228s  ok
+  [ 63/80] T*=1.800  3227s  ok
+  [ 64/80] T*=1.700  3222s  ok
+  [ 65/80] T*=1.600  3223s  ok
+  [ 66/80] T*=1.500  3230s  ok
+  [ 67/80] T*=1.400  3223s  ok
+  [ 68/80] T*=1.200  3222s  ok
+  [ 69/80] T*=1.300  3224s  ok
+  [ 70/80] T*=1.100  3219s  ok
+  [ 71/80] T*=1.000  3219s  ok
+  [ 72/80] T*=0.900  3232s  ok
+  [ 73/80] T*=0.700  1678s  ok
+  [ 74/80] T*=0.100  1568s  ok
+  [ 75/80] T*=0.200  1613s  ok
+  [ 76/80] T*=0.500  1928s  ok
+  [ 77/80] T*=0.800  1975s  ok
+  [ 78/80] T*=0.600  2163s  ok
+  [ 79/80] T*=0.300  2121s  ok
+  [ 80/80] T*=0.400  2154s  ok
+  Merging 80 workers...
+  Wall time: 373.3 min
+  C_S peak T*=2.3  (3.35× T*_Landau)
+  Stationarity max half-diff/E: 0.07467
+
+============================================================
+d24_uniform_ordered
+  T*_Landau=0.005371  Q=4096  60 temps  100+50 sweeps  12 workers
+  T* range: 0.05 .. 3
+  [  1/60] T*=3.000  3206s  ok
+  [  2/60] T*=2.950  3209s  ok
+  [  3/60] T*=2.900  3230s  ok
+  [  4/60] T*=2.850  3240s  ok
+  [  5/60] T*=2.800  3261s  ok
+  [  6/60] T*=2.700  3275s  ok
+  [  7/60] T*=2.550  3276s  ok
+  [  8/60] T*=2.650  3282s  ok
+  [  9/60] T*=2.600  3283s  ok
+  [ 10/60] T*=2.500  3288s  ok
+  [ 11/60] T*=2.750  3293s  ok
+  [ 12/60] T*=2.450  3297s  ok
+  [ 13/60] T*=2.350  3235s  ok
+  [ 14/60] T*=2.400  3238s  ok
+  [ 15/60] T*=2.300  3236s  ok
+  [ 16/60] T*=2.250  3233s  ok
+  [ 17/60] T*=2.200  3235s  ok
+  [ 18/60] T*=2.150  3230s  ok
+  [ 19/60] T*=2.050  3227s  ok
+  [ 20/60] T*=2.000  3233s  ok
+  [ 21/60] T*=2.100  3241s  ok
+  [ 22/60] T*=1.950  3234s  ok
+  [ 23/60] T*=1.900  3235s  ok
+  [ 24/60] T*=1.850  3236s  ok
+  [ 25/60] T*=1.800  3238s  ok
+  [ 26/60] T*=1.750  3241s  ok
+  [ 27/60] T*=1.700  3234s  ok
+  [ 28/60] T*=1.650  3229s  ok
+  [ 29/60] T*=1.600  3243s  ok
+  [ 30/60] T*=1.550  3239s  ok
+  [ 31/60] T*=1.500  3236s  ok
+  [ 32/60] T*=1.450  3235s  ok
+  [ 33/60] T*=1.400  3239s  ok
+  [ 34/60] T*=1.300  3236s  ok
+  [ 35/60] T*=1.350  3243s  ok
+  [ 36/60] T*=1.250  3245s  ok
+  [ 37/60] T*=1.150  3293s  ok
+  [ 38/60] T*=1.050  3278s  ok
+  [ 39/60] T*=1.200  3302s  ok
+  [ 40/60] T*=1.100  3291s  ok
+  [ 41/60] T*=1.000  3286s  ok
+  [ 42/60] T*=0.950  3282s  ok
+  [ 43/60] T*=0.850  3281s  ok
+  [ 44/60] T*=0.700  3281s  ok
+  [ 45/60] T*=0.900  3301s  ok
+  [ 46/60] T*=0.800  3289s  ok
+  [ 47/60] T*=0.750  3296s  ok
+  [ 48/60] T*=0.650  3286s  ok
+Mon Jun 15 08:21:27 PM BST 2026: queue_dseries watcher started, waiting for PID 129624
+  [ 49/60] T*=0.600  3267s  ok
+  [ 50/60] T*=0.550  3270s  ok
+  [ 51/60] T*=0.500  3268s  ok
+  [ 52/60] T*=0.450  3267s  ok
+  [ 53/60] T*=0.350  3247s  ok
+  [ 54/60] T*=0.400  3253s  ok
+  [ 55/60] T*=0.300  3248s  ok
+  [ 56/60] T*=0.250  3242s  ok
+  [ 57/60] T*=0.100  3228s  ok
+  [ 58/60] T*=0.200  3243s  ok
+  [ 59/60] T*=0.150  3244s  ok
+  [ 60/60] T*=0.050  3231s  ok
+  Merging 60 workers...
+  Wall time: 271.6 min
+  C_S peak T*=2.85  (530.62× T*_Landau)
+  Stationarity max half-diff/E: 0.3135
+
+============================================================
+SUMMARY
+  d24_zipf_ordered: C_S peak 3.35x T*_Landau, wall 373 min
+  d24_uniform_ordered: C_S peak 530.62x T*_Landau, wall 272 min
+Mon Jun 15 09:06:28 PM BST 2026: PID 129624 finished — starting d-series runs
+Mon Jun 15 09:06:31 PM BST 2026: run_dseries.py started as PID 155665
+
+=======================================================
+GEOMETRIC d-series
+
+=======================================================
+geometric_d8_ordered
+  d=8  N=256  Q=9  lam1=6  T*_Landau=1.5  55 temps
+  [ 12/55] last T*=2.196  0s  ok
+  [ 24/55] last T*=1.734  0s  ok
+  [ 36/55] last T*=1.188  0s  ok
+  [ 48/55] last T*=0.600  0s  ok
+  [ 55/55] last T*=0.120  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.184
+
+=======================================================
+geometric_d10_ordered
+  d=10  N=1,024  Q=11  lam1=8  T*_Landau=2  55 temps
+  [ 12/55] last T*=2.872  0s  ok
+  [ 24/55] last T*=2.200  0s  ok
+  [ 36/55] last T*=1.640  0s  ok
+  [ 48/55] last T*=0.968  0s  ok
+  [ 55/55] last T*=0.160  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.212
+
+=======================================================
+geometric_d12_ordered
+  d=12  N=4,096  Q=13  lam1=10  T*_Landau=2.5  55 temps
+  [ 12/55] last T*=4.010  0s  ok
+  [ 24/55] last T*=2.890  0s  ok
+  [ 36/55] last T*=2.050  0s  ok
+  [ 48/55] last T*=1.210  0s  ok
+  [ 55/55] last T*=0.600  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.219
+
+=======================================================
+geometric_d14_ordered
+  d=14  N=16,384  Q=15  lam1=12  T*_Landau=3  55 temps
+  [ 12/55] last T*=4.896  0s  ok
+  [ 24/55] last T*=3.468  0s  ok
+  [ 36/55] last T*=2.460  0s  ok
+  [ 48/55] last T*=1.452  0s  ok
+  [ 55/55] last T*=1.368  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.240
+
+=======================================================
+geometric_d16_ordered
+  d=16  N=65,536  Q=17  lam1=14  T*_Landau=3.5  55 temps
+  [ 12/55] last T*=6.300  1s  ok
+  [ 24/55] last T*=4.144  1s  ok
+  [ 36/55] last T*=2.870  1s  ok
+  [ 48/55] last T*=1.694  1s  ok
+  [ 55/55] last T*=1.120  1s  ok
+  Merging 55 workers...
+  Wall: 0.1 min  peak T*/lam1=0.240
+
+=======================================================
+geometric_d18_ordered
+  d=18  N=262,144  Q=19  lam1=16  T*_Landau=4  55 temps
+  [ 12/55] last T*=6.192  5s  ok
+  [ 24/55] last T*=4.624  4s  ok
+  [ 36/55] last T*=3.392  4s  ok
+  [ 48/55] last T*=1.936  5s  ok
+  [ 55/55] last T*=0.960  3s  ok
+  Merging 55 workers...
+  Wall: 0.4 min  peak T*/lam1=0.247
+
+=======================================================
+geometric_d20_ordered
+  d=20  N=1,048,576  Q=21  lam1=18  T*_Landau=4.5  55 temps
+  [ 12/55] last T*=6.714  92s  ok
+  [ 24/55] last T*=5.328  90s  ok
+  [ 36/55] last T*=3.690  85s  ok
+  [ 48/55] last T*=2.430  84s  ok
+  [ 55/55] last T*=0.360  38s  ok
+  Merging 55 workers...
+  Wall: 6.5 min  peak T*/lam1=0.247
+
+=======================================================
+geometric_d22_ordered
+  d=22  N=4,194,304  Q=23  lam1=20  T*_Landau=5  55 temps
+  [ 12/55] last T*=7.460  514s  ok
+  [ 24/55] last T*=5.780  504s  ok
+  [ 36/55] last T*=4.100  487s  ok
+  [ 48/55] last T*=2.560  489s  ok
+  [ 55/55] last T*=2.280  286s  ok
+  Merging 55 workers...
+  Wall: 37.9 min  peak T*/lam1=0.254
+  Overlay plot saved: /home/gijs/Documents/VaihbavCrystals/plots/geometric_dseries_overlay.png
+
+=======================================================
+UNIFORM d-series
+
+=======================================================
+uniform_d8_ordered
+  d=8  N=256  Q=16  lam1=6  T*_Landau=0.375  55 temps
+  [ 12/55] last T*=2.280  0s  ok
+  [ 24/55] last T*=1.860  0s  ok
+  [ 36/55] last T*=1.188  0s  ok
+  [ 48/55] last T*=0.726  0s  ok
+  [ 55/55] last T*=0.120  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.163
+
+=======================================================
+uniform_d10_ordered
+  d=10  N=1,024  Q=32  lam1=8  T*_Landau=0.25  55 temps
+  [ 12/55] last T*=2.872  0s  ok
+  [ 24/55] last T*=2.312  0s  ok
+  [ 36/55] last T*=1.752  0s  ok
+  [ 48/55] last T*=0.640  0s  ok
+  [ 55/55] last T*=0.160  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.142
+
+=======================================================
+uniform_d12_ordered
+  d=12  N=4,096  Q=64  lam1=10  T*_Landau=0.156  55 temps
+  [ 12/55] last T*=3.730  0s  ok
+  [ 24/55] last T*=2.890  0s  ok
+  [ 36/55] last T*=2.050  0s  ok
+  [ 48/55] last T*=1.280  0s  ok
+  [ 55/55] last T*=0.200  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.142
+
+=======================================================
+uniform_d14_ordered
+  d=14  N=16,384  Q=128  lam1=12  T*_Landau=0.0938  55 temps
+  [ 12/55] last T*=4.896  0s  ok
+  [ 24/55] last T*=3.720  0s  ok
+  [ 36/55] last T*=2.460  0s  ok
+  [ 48/55] last T*=1.452  0s  ok
+  [ 55/55] last T*=0.480  0s  ok
+  Merging 55 workers...
+  Wall: 0.0 min  peak T*/lam1=0.135
+
+=======================================================
+uniform_d16_ordered
+  d=16  N=65,536  Q=256  lam1=14  T*_Landau=0.0547  55 temps
+  [ 12/55] last T*=5.222  1s  ok
+  [ 24/55] last T*=4.046  1s  ok
+  [ 36/55] last T*=2.870  1s  ok
+  [ 48/55] last T*=1.792  1s  ok
+  [ 55/55] last T*=1.400  1s  ok
+  Merging 55 workers...
+  Wall: 0.1 min  peak T*/lam1=0.135
+
+=======================================================
+uniform_d18_ordered
+  d=18  N=262,144  Q=512  lam1=16  T*_Landau=0.0312  55 temps
+  [ 12/55] last T*=6.528  5s  ok
+  [ 24/55] last T*=4.624  5s  ok
+  [ 36/55] last T*=3.280  5s  ok
+  [ 48/55] last T*=1.936  5s  ok
+  [ 55/55] last T*=0.320  4s  ok
+  Merging 55 workers...
+  Wall: 0.4 min  peak T*/lam1=0.135
+
+=======================================================
+uniform_d20_ordered
+  d=20  N=1,048,576  Q=1024  lam1=18  T*_Landau=0.0176  55 temps
+  [ 12/55] last T*=8.100  131s  ok
+  [ 24/55] last T*=5.202  130s  ok
+  [ 36/55] last T*=3.690  128s  ok
+  [ 48/55] last T*=2.304  130s  ok
+  [ 55/55] last T*=1.080  54s  ok
+  Merging 55 workers...
+  Wall: 9.4 min  peak T*/lam1=0.135
+
+=======================================================
+uniform_d22_ordered
+  d=22  N=4,194,304  Q=2048  lam1=20  T*_Landau=0.00977  55 temps
+  [ 12/55] last T*=7.460  744s  ok
+  [ 24/55] last T*=5.920  761s  ok
+  [ 36/55] last T*=4.100  745s  ok
+Mon Jun 15 10:38:52 PM BST 2026: queue_phase2 watcher started, waiting for PID 155665
+  [ 48/55] last T*=2.420  741s  ok
+  [ 55/55] last T*=0.800  413s  ok
+  Merging 55 workers...
+  Wall: 56.2 min  peak T*/lam1=0.128
+  Overlay plot saved: /home/gijs/Documents/VaihbavCrystals/plots/uniform_dseries_overlay.png
+
+=======================================================
+ZIPF d-series  (class_bits=4, d>=20 only)
+
+=======================================================
+zipf_cb4_d20_ordered
+  d=20  N=1,048,576  Q=65535  lam1=18  T*_Landau=0.563  55 temps
+  [ 12/55] last T*=6.966  130s  ok
+  [ 24/55] last T*=5.202  129s  ok
+  [ 36/55] last T*=3.690  130s  ok
+  [ 48/55] last T*=2.178  130s  ok
+  [ 55/55] last T*=1.926  54s  ok
+  Merging 55 workers...
+  Wall: 9.4 min  peak T*/lam1=0.107
+
+=======================================================
+zipf_cb4_d22_ordered
+  d=22  N=4,194,304  Q=65535  lam1=20  T*_Landau=0.625  55 temps
+  [ 12/55] last T*=10.000  737s  ok
+  [ 24/55] last T*=5.920  737s  ok
+  [ 36/55] last T*=4.100  737s  ok
+  [ 48/55] last T*=2.420  738s  ok
+  [ 55/55] last T*=1.200  407s  ok
+  Merging 55 workers...
+  Wall: 55.5 min  peak T*/lam1=0.114
+  Overlay plot saved: /home/gijs/Documents/VaihbavCrystals/plots/zipf_dseries_overlay.png
+
+All d-series done.
+Tue Jun 16 12:02:53 AM BST 2026: PID 155665 finished — starting phase-2 (scaled sweeps + normalized plots)
+Tue Jun 16 12:02:56 AM BST 2026: run_dseries_phase2.py started as PID 176249
+
+=======================================================
+GEOMETRIC phase-2
+
+=======================================================
+geometric_d8_ordered
+  d=8  N=256  Q=9  sweeps=10000  55 temps
+  [ 12/55]  0s
+  [ 24/55]  0s
+  [ 36/55]  0s
+  [ 48/55]  0s
+  [ 55/55]  0s
+  Wall: 0.0 min  peak T*/lam1=0.226
+
+=======================================================
+geometric_d10_ordered
+  d=10  N=1,024  Q=11  sweeps=10000  55 temps
+  [ 12/55]  1s
+  [ 24/55]  1s
+  [ 36/55]  1s
+  [ 48/55]  1s
+  [ 55/55]  1s
+  Wall: 0.1 min  peak T*/lam1=0.205
+
+=======================================================
+geometric_d12_ordered
+  d=12  N=4,096  Q=13  sweeps=10000  55 temps
+  [ 12/55]  4s
+  [ 24/55]  4s
+  [ 36/55]  4s
+  [ 48/55]  4s
+  [ 55/55]  3s
+  Wall: 0.3 min  peak T*/lam1=0.184
+
+=======================================================
+geometric_d14_ordered
+  d=14  N=16,384  Q=15  sweeps=6400  55 temps
+  [ 12/55]  11s
+  [ 24/55]  11s
+  [ 36/55]  11s
+  [ 48/55]  11s
+  [ 55/55]  9s
+  Wall: 0.9 min  peak T*/lam1=0.191
+
+=======================================================
+geometric_d16_ordered
+  d=16  N=65,536  Q=17  sweeps=1600  55 temps
+  [ 12/55]  13s
+  [ 24/55]  13s
+  [ 36/55]  13s
+  [ 48/55]  12s
+  [ 55/55]  10s
+  Wall: 1.0 min  peak T*/lam1=0.198
+
+=======================================================
+geometric_d18_ordered
+  d=18  N=262,144  Q=19  sweeps=400  55 temps
+  [ 12/55]  18s
+  [ 24/55]  18s
+  [ 36/55]  17s
+  [ 48/55]  17s
+  [ 55/55]  14s
+  Wall: 1.4 min  peak T*/lam1=0.212
+
+=======================================================
+geometric_d20_ordered
+  d=20  N=1,048,576  Q=21  sweeps=100  55 temps
+  [ 12/55]  91s
+  [ 24/55]  90s
+  [ 36/55]  85s
+  [ 48/55]  84s
+  [ 55/55]  37s
+  Wall: 6.4 min  peak T*/lam1=0.247
+  Normalized overlay: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots/geometric_dseries_normalized.png
+
+=======================================================
+UNIFORM phase-2
+
+=======================================================
+uniform_d8_ordered
+  d=8  N=256  Q=16  sweeps=10000  42 temps
+  [ 12/42]  0s
+  [ 24/42]  0s
+  [ 36/42]  0s
+  [ 42/42]  0s
+  Wall: 0.0 min  peak T*/lam1=0.105
+
+=======================================================
+uniform_d10_ordered
+  d=10  N=1,024  Q=32  sweeps=10000  42 temps
+  [ 12/42]  1s
+  [ 24/42]  1s
+  [ 36/42]  1s
+  [ 42/42]  1s
+  Wall: 0.1 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d12_ordered
+  d=12  N=4,096  Q=64  sweeps=10000  42 temps
+  [ 12/42]  4s
+  [ 24/42]  4s
+  [ 36/42]  5s
+  [ 42/42]  3s
+  Wall: 0.3 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d14_ordered
+  d=14  N=16,384  Q=128  sweeps=6400  42 temps
+  [ 12/42]  13s
+  [ 24/42]  13s
+  [ 36/42]  13s
+  [ 42/42]  8s
+  Wall: 0.8 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d16_ordered
+  d=16  N=65,536  Q=256  sweeps=1600  42 temps
+  [ 12/42]  14s
+  [ 24/42]  14s
+  [ 36/42]  15s
+  [ 42/42]  9s
+  Wall: 0.9 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d18_ordered
+  d=18  N=262,144  Q=512  sweeps=400  42 temps
+  [ 12/42]  38s
+  [ 24/42]  23s
+  [ 36/42]  22s
+  [ 42/42]  21s
+  Wall: 1.6 min  peak T*/lam1=0.110
+
+=======================================================
+uniform_d20_ordered
+  d=20  N=1,048,576  Q=1024  sweeps=100  42 temps
+  [ 12/42]  129s
+  [ 24/42]  130s
+  [ 36/42]  123s
+  [ 42/42]  47s
+  Wall: 6.9 min  peak T*/lam1=0.130
+  Normalized overlay: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots/uniform_dseries_normalized.png
+
+=======================================================
+ZIPF phase-2 (class_bits=4, d>=20)
+
+=======================================================
+zipf_cb4_d20_ordered
+  d=20  N=1,048,576  Q=65535  sweeps=100  39 temps
+  [ 12/39]  129s
+  [ 24/39]  129s
+  [ 36/39]  122s
+  [ 39/39]  26s
+  Wall: 6.7 min  peak T*/lam1=0.105
+  Normalized overlay: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots/zipf_dseries_normalized.png
+
+Phase-2 done. Plots in: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots
+=== GEOMETRIC small-d smooth rerun ===
+
+=======================================================
+geometric_d8_ordered  sweeps=1,000,000
+  [ 12/55]  28s
+  [ 24/55]  26s
+  [ 36/55]  25s
+  [ 48/55]  25s
+  [ 55/55]  18s
+  Wall: 2.0 min  peak T*/lam1=0.219
+
+=======================================================
+geometric_d10_ordered  sweeps=300,000
+  [ 12/55]  29s
+  [ 24/55]  28s
+  [ 36/55]  28s
+  [ 48/55]  28s
+  [ 55/55]  21s
+  Wall: 2.2 min  peak T*/lam1=0.254
+
+=======================================================
+geometric_d12_ordered  sweeps=80,000
+  [ 12/55]  32s
+  [ 24/55]  32s
+  [ 36/55]  31s
+  [ 48/55]  31s
+  [ 55/55]  24s
+  Wall: 2.5 min  peak T*/lam1=0.226
+
+=======================================================
+geometric_d14_ordered  sweeps=20,000
+  [ 12/55]  35s
+  [ 24/55]  36s
+  [ 36/55]  34s
+  [ 48/55]  35s
+  [ 55/55]  27s
+  Wall: 2.8 min  peak T*/lam1=0.191
+  Saved: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots/geometric_dseries_normalized.png
+
+=== UNIFORM small-d smooth rerun ===
+
+=======================================================
+uniform_d8_ordered  sweeps=1,000,000
+  [ 12/42]  26s
+  [ 24/42]  25s
+  [ 36/42]  25s
+  [ 42/42]  15s
+  Wall: 1.5 min  peak T*/lam1=0.100
+
+=======================================================
+uniform_d10_ordered  sweeps=300,000
+  [ 12/42]  33s
+  [ 24/42]  36s
+  [ 36/42]  34s
+  [ 42/42]  20s
+  Wall: 2.0 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d12_ordered  sweeps=80,000
+  [ 12/42]  37s
+  [ 24/42]  37s
+  [ 36/42]  38s
+  [ 42/42]  23s
+  Wall: 2.2 min  peak T*/lam1=0.090
+
+=======================================================
+uniform_d14_ordered  sweeps=20,000
+  [ 12/42]  42s
+  [ 24/42]  43s
+  [ 36/42]  45s
+  [ 42/42]  26s
+  Wall: 2.5 min  peak T*/lam1=0.090
+  Saved: /home/gijs/Documents/VaihbavCrystals/plots/mergedheatplots/uniform_dseries_normalized.png
+
+Done.

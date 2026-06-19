@@ -1,0 +1,1 @@
+completed 9 temperatures in 8922.290 seconds, final S=32202845

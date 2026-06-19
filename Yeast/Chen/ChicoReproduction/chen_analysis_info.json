@@ -1,0 +1,8 @@
+{
+  "total_parameters": 163,
+  "structurally_free": 143,
+  "sensitivity_active": 127,
+  "threshold": 0.0001,
+  "simulation_time": 400,
+  "observable": "CLB2"
+}

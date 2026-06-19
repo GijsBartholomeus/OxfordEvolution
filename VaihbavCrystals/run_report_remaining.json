@@ -1,0 +1,213 @@
+{
+  "created_at": "2026-06-12 15:35:22 BST",
+  "root": "/home/gijs/Documents/VaihbavCrystals",
+  "cases": [
+    {
+      "name": "d24_zipf_classbits4",
+      "description": "Binary d=24 Zipf-like counts: class_bits=4, Q=65535 phenotypes.",
+      "d": 24,
+      "k": 2,
+      "N": 16777216,
+      "z": 24,
+      "counts_summary": {
+        "Q": 65535,
+        "total": 16777216,
+        "min": 32,
+        "max": 1048576,
+        "unique_sizes": 16
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_zipf_classbits4/counts.tsv",
+      "frequencies_summary": {
+        "min": 1.9073486328125e-06,
+        "max": 0.0625,
+        "sum_f_squared": 0.007812380790710449
+      },
+      "lambda_1": 22,
+      "h_f": 0.03125000000000001,
+      "mu_f": 31.999999999999993,
+      "T_star_Landau": 0.6875000000000001,
+      "temperature_grid_hot_to_cold": [
+        1.7187500000000002,
+        1.1000000000000003,
+        0.8937500000000002,
+        0.7562500000000002,
+        0.6875000000000001,
+        0.6187500000000001,
+        0.48125000000000007,
+        0.34375000000000006,
+        0.2750000000000001
+      ],
+      "selected_snapshot_indices": [
+        0,
+        3,
+        4,
+        5,
+        8
+      ],
+      "selected_snapshot_temperatures": [
+        1.7187500000000002,
+        0.7562500000000002,
+        0.6875000000000001,
+        0.6187500000000001,
+        0.2750000000000001
+      ],
+      "sweeps": 60,
+      "burn_in": 20,
+      "thin": 1,
+      "rng_seed": 4001,
+      "initialization": "random",
+      "compiler_flags": "",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.007812380790710449,
+      "snapshot_dtype_expected": "uint16",
+      "notes": "Hot-to-cold annealing, 60 sweeps per temperature, 20 burn-in. Stationarity checked by first/second post-burn-in half comparison.",
+      "runtime_seconds": 5463.210696267999,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.2750000000000001,
+      "observed_heat_peak_over_landau": 0.4,
+      "stationarity_diagnostics_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_zipf_classbits4/stationarity_diagnostics.json",
+      "stationarity_max_half_diff_E": 0.010145880778630573
+    },
+    {
+      "name": "d24_geometric_25phenotypes",
+      "description": "Binary d=24 geometric counts: [2^23,...,2,1,1], Q=25 phenotypes.",
+      "d": 24,
+      "k": 2,
+      "N": 16777216,
+      "z": 24,
+      "counts_summary": {
+        "Q": 25,
+        "total": 16777216,
+        "min": 1,
+        "max": 8388608,
+        "unique_sizes": 24
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_geometric_25phenotypes/counts.tsv",
+      "frequencies_summary": {
+        "min": 5.960464477539063e-08,
+        "max": 0.5,
+        "sum_f_squared": 0.3333333333333357
+      },
+      "lambda_1": 22,
+      "h_f": 0.25000000000000006,
+      "mu_f": 3.999999999999999,
+      "T_star_Landau": 5.500000000000001,
+      "temperature_grid_hot_to_cold": [
+        13.750000000000002,
+        8.800000000000002,
+        7.150000000000001,
+        6.050000000000002,
+        5.500000000000001,
+        4.950000000000001,
+        3.8500000000000005,
+        2.7500000000000004,
+        2.2000000000000006
+      ],
+      "selected_snapshot_indices": [
+        0,
+        3,
+        4,
+        5,
+        8
+      ],
+      "selected_snapshot_temperatures": [
+        13.750000000000002,
+        6.050000000000002,
+        5.500000000000001,
+        4.950000000000001,
+        2.2000000000000006
+      ],
+      "sweeps": 60,
+      "burn_in": 20,
+      "thin": 1,
+      "rng_seed": 5001,
+      "initialization": "random",
+      "compiler_flags": "",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.3333333333333357,
+      "snapshot_dtype_expected": "uint8",
+      "notes": "Hot-to-cold annealing, 60 sweeps per temperature, 20 burn-in. Stationarity checked by first/second post-burn-in half comparison.",
+      "runtime_seconds": 4156.642022493001,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 3.8500000000000005,
+      "observed_heat_peak_over_landau": 0.7,
+      "stationarity_diagnostics_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_geometric_25phenotypes/stationarity_diagnostics.json",
+      "stationarity_max_half_diff_E": 0.03398324201504399
+    },
+    {
+      "name": "d24_uniform_wide",
+      "description": "d=24 uniform, wide log grid (0.4\u2013320 x T*_Landau) to locate transition. Narrow-window run showed window entirely in ordered regime.",
+      "d": 24,
+      "k": 2,
+      "N": 16777216,
+      "z": 24,
+      "counts_summary": {
+        "Q": 4096,
+        "total": 16777216,
+        "min": 4096,
+        "max": 4096,
+        "unique_sizes": 1
+      },
+      "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform_wide/counts.tsv",
+      "frequencies_summary": {
+        "min": 0.000244140625,
+        "max": 0.000244140625,
+        "sum_f_squared": 0.000244140625
+      },
+      "lambda_1": 22,
+      "h_f": 0.000244140625,
+      "mu_f": 4096.0,
+      "T_star_Landau": 0.00537109375,
+      "temperature_grid_hot_to_cold": [
+        1.7187499999999993,
+        1.0662256858822123,
+        0.6614325604276332,
+        0.4103193515094001,
+        0.2545414004327882,
+        0.1579046279341781,
+        0.0979560554025278,
+        0.06076698900821889,
+        0.037696770638129505,
+        0.023385172438798014,
+        0.014506979795218176,
+        0.008999397516937251,
+        0.005582771659649806,
+        0.003463269551670629,
+        0.0021484375
+      ],
+      "selected_snapshot_indices": [
+        0,
+        4,
+        10,
+        12,
+        14
+      ],
+      "selected_snapshot_temperatures": [
+        1.7187499999999993,
+        0.2545414004327882,
+        0.014506979795218176,
+        0.005582771659649806,
+        0.0021484375
+      ],
+      "sweeps": 60,
+      "burn_in": 20,
+      "thin": 1,
+      "rng_seed": 3002,
+      "initialization": "random",
+      "compiler_flags": "",
+      "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+      "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), post-burn-in thinned sweeps.",
+      "high_temperature_random_E_expectation": -0.000244140625,
+      "snapshot_dtype_expected": "uint16",
+      "notes": "Hot-to-cold annealing, 60 sweeps per temperature, 20 burn-in. Stationarity checked by first/second post-burn-in half comparison.",
+      "runtime_seconds": 9094.632388801998,
+      "counts_preservation_snapshot_failures": [],
+      "observed_heat_peak_temperature": 0.0021484375,
+      "observed_heat_peak_over_landau": 0.4,
+      "stationarity_diagnostics_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform_wide/stationarity_diagnostics.json",
+      "stationarity_max_half_diff_E": 0.0042476703723271746
+    }
+  ]
+}

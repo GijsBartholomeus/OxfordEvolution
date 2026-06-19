@@ -1,0 +1,67 @@
+{
+  "name": "d24_uniform",
+  "description": "Binary d=24 uniform phenotype counts: Q=4096, each size 4096.",
+  "d": 24,
+  "k": 2,
+  "N": 16777216,
+  "z": 24,
+  "counts_summary": {
+    "Q": 4096,
+    "total": 16777216,
+    "min": 4096,
+    "max": 4096,
+    "unique_sizes": 1
+  },
+  "counts_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform/counts.tsv",
+  "frequencies_summary": {
+    "min": 0.000244140625,
+    "max": 0.000244140625,
+    "sum_f_squared": 0.000244140625
+  },
+  "lambda_1": 22,
+  "h_f": 0.000244140625,
+  "mu_f": 4096.0,
+  "T_star_Landau": 0.00537109375,
+  "temperature_grid_hot_to_cold": [
+    0.013427734375,
+    0.00859375,
+    0.006982421875,
+    0.005908203125000001,
+    0.00537109375,
+    0.004833984375,
+    0.0037597656249999997,
+    0.002685546875,
+    0.0021484375
+  ],
+  "selected_snapshot_indices": [
+    0,
+    3,
+    4,
+    5,
+    8
+  ],
+  "selected_snapshot_temperatures": [
+    0.013427734375,
+    0.005908203125000001,
+    0.00537109375,
+    0.004833984375,
+    0.0021484375
+  ],
+  "sweeps": 60,
+  "burn_in": 20,
+  "thin": 1,
+  "rng_seed": 3001,
+  "initialization": "random",
+  "compiler_flags": "",
+  "git_commit_Thesis_MSc": "26c7ab5136893585b34a628a6858bfa803be1d88",
+  "heat_capacity_convention": "C_S(T*) = Var(S) / (N * T*^2), post-burn-in thinned sweeps.",
+  "high_temperature_random_E_expectation": -0.000244140625,
+  "snapshot_dtype_expected": "uint16",
+  "notes": "Hot-to-cold annealing, 60 sweeps per temperature, 20 burn-in. Stationarity checked by first/second post-burn-in half comparison.",
+  "counts_preservation_snapshot_failures": [],
+  "observed_heat_peak_temperature": 0.013427734375,
+  "observed_heat_peak_over_landau": 2.5,
+  "stationarity_diagnostics_file": "/home/gijs/Documents/VaihbavCrystals/runs/d24_uniform/stationarity_diagnostics.json",
+  "stationarity_max_half_diff_E": 0.006297737608353296,
+  "postprocessed": true
+}
