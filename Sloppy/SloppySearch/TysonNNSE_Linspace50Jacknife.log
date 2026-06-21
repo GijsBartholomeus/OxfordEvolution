@@ -1,0 +1,89 @@
+Output directory : /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures
+Bins             : linspace(1, 50, 51)  N_Vec=50
+Steps            : MAX=2500  STAB=2500
+
+Running reference simulation (p0)...
+✓ Reference done
+
+Worker pool: 12 cores
+
+=== Main NNSE run ===
+  step    50  filled 36/50  phase=fill  stab=0/2500  elapsed=2.3min
+  step   100  filled 38/50  phase=fill  stab=0/2500  elapsed=4.2min
+  step   150  filled 38/50  phase=fill  stab=0/2500  elapsed=6.4min
+  step   200  filled 39/50  phase=fill  stab=0/2500  elapsed=8.6min
+  step   250  filled 41/50  phase=fill  stab=0/2500  elapsed=10.9min
+  step   300  filled 42/50  phase=fill  stab=0/2500  elapsed=13.0min
+  step   350  filled 42/50  phase=fill  stab=0/2500  elapsed=15.3min
+  step   400  filled 42/50  phase=fill  stab=0/2500  elapsed=17.4min
+  step   450  filled 42/50  phase=fill  stab=0/2500  elapsed=19.5min
+  step   500  filled 42/50  phase=fill  stab=0/2500  elapsed=21.7min
+  step   550  filled 42/50  phase=fill  stab=0/2500  elapsed=24.0min
+  step   600  filled 42/50  phase=fill  stab=0/2500  elapsed=26.4min
+  step   650  filled 42/50  phase=fill  stab=0/2500  elapsed=28.4min
+  step   700  filled 42/50  phase=fill  stab=0/2500  elapsed=30.2min
+  step   750  filled 42/50  phase=fill  stab=0/2500  elapsed=32.0min
+  step   800  filled 42/50  phase=fill  stab=0/2500  elapsed=33.9min
+  step   850  filled 42/50  phase=fill  stab=0/2500  elapsed=36.0min
+  step   900  filled 42/50  phase=fill  stab=0/2500  elapsed=38.2min
+  step   950  filled 42/50  phase=fill  stab=0/2500  elapsed=40.4min
+  step  1000  filled 42/50  phase=fill  stab=0/2500  elapsed=42.7min
+  step  1050  filled 42/50  phase=fill  stab=0/2500  elapsed=45.1min
+  step  1100  filled 42/50  phase=fill  stab=0/2500  elapsed=47.3min
+  step  1150  filled 42/50  phase=fill  stab=0/2500  elapsed=49.4min
+  step  1200  filled 42/50  phase=fill  stab=0/2500  elapsed=51.8min
+  step  1250  filled 42/50  phase=fill  stab=0/2500  elapsed=54.3min
+  step  1300  filled 42/50  phase=fill  stab=0/2500  elapsed=56.8min
+  step  1350  filled 42/50  phase=fill  stab=0/2500  elapsed=59.2min
+  step  1400  filled 42/50  phase=fill  stab=0/2500  elapsed=61.7min
+  step  1450  filled 42/50  phase=fill  stab=0/2500  elapsed=64.0min
+  step  1500  filled 42/50  phase=fill  stab=0/2500  elapsed=66.2min
+  step  1550  filled 42/50  phase=fill  stab=0/2500  elapsed=68.7min
+  step  1600  filled 42/50  phase=fill  stab=0/2500  elapsed=71.4min
+  step  1650  filled 42/50  phase=fill  stab=0/2500  elapsed=73.8min
+  step  1700  filled 42/50  phase=fill  stab=0/2500  elapsed=75.9min
+  step  1750  filled 42/50  phase=fill  stab=0/2500  elapsed=78.2min
+  step  1800  filled 42/50  phase=fill  stab=0/2500  elapsed=80.5min
+  step  1850  filled 42/50  phase=fill  stab=0/2500  elapsed=83.0min
+  step  1900  filled 42/50  phase=fill  stab=0/2500  elapsed=85.3min
+  step  1950  filled 42/50  phase=fill  stab=0/2500  elapsed=87.7min
+  step  2000  filled 42/50  phase=fill  stab=0/2500  elapsed=90.2min
+  step  2050  filled 42/50  phase=fill  stab=0/2500  elapsed=92.7min
+  step  2100  filled 42/50  phase=fill  stab=0/2500  elapsed=95.1min
+  step  2150  filled 42/50  phase=fill  stab=0/2500  elapsed=97.5min
+  step  2200  filled 42/50  phase=fill  stab=0/2500  elapsed=100.1min
+  step  2250  filled 42/50  phase=fill  stab=0/2500  elapsed=102.6min
+  step  2300  filled 42/50  phase=fill  stab=0/2500  elapsed=105.0min
+  step  2350  filled 42/50  phase=fill  stab=0/2500  elapsed=107.5min
+  step  2400  filled 42/50  phase=fill  stab=0/2500  elapsed=110.1min
+  step  2450  filled 42/50  phase=fill  stab=0/2500  elapsed=112.6min
+✓ Done in 6892.6s  (2500 steps)  41/50 valid volume ratios
+
+=== Random sampling  (6892.6s budget) ===
+✓ 115,300 random samples
+
+
+=== Jackknife: 5 independent runs ===
+  [1/5] seed=0 ... done 6105s | ETA 24425s
+  [2/5] seed=1 ... done 437s | ETA 9815s
+  [3/5] seed=2 ... done 3679s | ETA 6815s
+  [4/5] seed=3 ... done 5829s | ETA 4013s
+  [5/5] seed=4 ... done 5574s | ETA 0s
+/home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/TysonNNSE_Linspace50Jacknife.py:329: RuntimeWarning: Mean of empty slice
+  theta_hat = np.nanmean(runs, axis=0)
+/home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/TysonNNSE_Linspace50Jacknife.py:331: RuntimeWarning: Mean of empty slice
+  jk_ests   = np.array([np.nanmean(np.delete(runs, i, 0), axis=0) for i in range(n_r)])
+/home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/TysonNNSE_Linspace50Jacknife.py:332: RuntimeWarning: Mean of empty slice
+  bias      = (n_r - 1) * (np.nanmean(jk_ests, axis=0) - theta_hat)
+/home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/TysonNNSE_Linspace50Jacknife.py:333: RuntimeWarning: Mean of empty slice
+  se        = np.sqrt((n_r - 1) * np.nanmean((jk_ests - theta_hat)**2, axis=0))
+
+✓ Jackknife done: OK bias 42/50  OK SE 31/50
+
+=== Saving plots ===
+  Saved: /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures/cdf_overlay_logx.png
+  Saved: /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures/volume_ratios_comparison.png
+  Saved: /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures/comparison_2x2.png
+  Saved: /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures/jackknife_results.png
+
+✓ All plots saved to /home/gijs/Documents/OxfordEvolution/Sloppy/SloppySearch/NNSE_linspace_figures
